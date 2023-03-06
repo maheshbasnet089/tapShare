@@ -2,20 +2,31 @@ import { useState } from "react";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import { HiOutlineCursorClick } from "react-icons/hi";
-import {AiOutlineSend} from 'react-icons/ai';
+import { AiOutlineSend } from "react-icons/ai";
 import { useStore } from "./store";
 function App() {
   // store calls
   const send_file = useStore((state) => state.send_file);
   // states
-  const [files, setFiles]= useState(null);
+  const [files, setFiles] = useState(null);
+  const [email, setEmail] = useState(null);
+
+
   // handlers
   // handle file click
   const handleFileClick = (e) => {
-    const file = e.target.files;
-    if (file) {
-      setFiles(file);
+    console.log(e.target);
+    const fileList = e.target.files;
+    console.log(fileList);
+    const fileArray = Array.from(fileList);
+
+    console.log(fileArray);
+    // console.log(file);
+    // setFiles(inputFiles);
+    if (fileList.length > 0) {
+      setFiles(fileArray);
     }
+    console.log(files);
   };
   return (
     <div className="relative overflow-hidden">
@@ -78,7 +89,7 @@ function App() {
       {/* This section contains the input field that accepts file/files */}
       {/* select at least one file, to make the below section appear */}
       <div
-      title="Click to send file"
+        title="Click to send file"
         className="h-[4em] w-[4em] bg-[rgba(0,0,0,.5)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(0,0,0,0.4)] absolute upload"
       >
         <IconButton
@@ -86,7 +97,13 @@ function App() {
           component="label"
           className="w-full h-full"
         >
-          <input hidden accept="*" type="file" onChange={handleFileClick} />
+          <input
+            hidden
+            accept="*"
+            type="file"
+            multiple="multiple"
+            onChange={handleFileClick}
+          />
           <HiOutlineCursorClick className="text-[1.5rem] text-[#efefef]" />
         </IconButton>
       </div>
@@ -97,11 +114,13 @@ function App() {
           <input
             type="text"
             placeholder="Enter email or phone to send"
+            onChange={(e) => setEmail(e.target.value)}
             className="h-[2.2em]  outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem]  placeholder:text-[#555] tracking-wide"
           />
           <AiOutlineSend
-            onClick={() => send_file(files)}
-          className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]" />
+            onClick={() => send_file(files,email)}
+            className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
+          />
         </div>
       )}
     </div>
