@@ -2,4 +2,4 @@
 
 //for development use uncomment the following line
 
-export const baseUrl = "http://localhost:1337/api/v1";
+// export const baseUrl = "http://localhost:1337/api/v1";
