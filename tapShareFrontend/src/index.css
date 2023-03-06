@@ -1,0 +1,61 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Play&family=Playfair+Display:ital,wght@0,400;0,800;1,400;1,700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Play', sans-serif, roboto;
+}
+body{
+    background:#6f6f6f ;
+}
+
+.animate{
+    animation: ripple 2.5s ease-in-out infinite;
+    -webkit-animation: ripple 2.5s ease-in-out infinite;
+}
+@keyframes ripple{
+    0%{
+        transform: scale(.95);
+        opacity: 1;
+        -webkit-transform: scale(.95);
+        -moz-transform: scale(.95);
+        -ms-transform: scale(.95);
+        -o-transform: scale(.95);
+}
+    100%{
+        transform: scale(2);
+        opacity: 0;
+        -webkit-transform: scale(2);
+        -moz-transform: scale(2);
+        -ms-transform: scale(2);
+        -o-transform: scale(2);
+        -webkit-transform: scale(2);
+}
+}
+/* make .upload at center of screen with translate */
+.upload{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+}
+
+.to{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%,-45%);
+    -webkit-transform: translate(-50%,-45%);
+    -moz-transform: translate(-50%,-45%);
+    -ms-transform: translate(-50%,-45%);
+    -o-transform: translate(-50%,-45%);
+}
