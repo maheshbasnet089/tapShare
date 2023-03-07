@@ -11,13 +11,11 @@ function App() {
   const [files, setFiles] = useState(null);
   const [email, setEmail] = useState(null);
 
-
   // handlers
   // handle file click
   const handleFileClick = (e) => {
-    console.log(e.target);
     const fileList = e.target.files;
-    console.log(fileList);
+
     const fileArray = Array.from(fileList);
 
     console.log(fileArray);
@@ -26,7 +24,6 @@ function App() {
     if (fileList.length > 0) {
       setFiles(fileArray);
     }
-    console.log(files);
   };
   return (
     <div className="relative overflow-hidden">
@@ -118,7 +115,7 @@ function App() {
             className="h-[2.2em]  outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem]  placeholder:text-[#555] tracking-wide"
           />
           <AiOutlineSend
-            onClick={() => send_file(files,email)}
+            onClick={() => send_file(files, email)}
             className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
           />
         </div>
