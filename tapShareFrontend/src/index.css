@@ -14,14 +14,14 @@ body{
     background:#6f6f6f ;
 }
 
+/* infinite alternate backwards; */
 .animate{
-    animation: ripple 2.5s ease-in-out infinite;
-    -webkit-animation: ripple 2.5s ease-in-out infinite;
+    animation: ripple 2s ease-in infinite alternate;
+    -webkit-animation: ripple 2s ease-in infinite alternate;
 }
 @keyframes ripple{
     0%{
         transform: scale(.95);
-        opacity: 1;
         -webkit-transform: scale(.95);
         -moz-transform: scale(.95);
         -ms-transform: scale(.95);
@@ -29,7 +29,6 @@ body{
 }
     100%{
         transform: scale(2);
-        opacity: 0;
         -webkit-transform: scale(2);
         -moz-transform: scale(2);
         -ms-transform: scale(2);
@@ -58,4 +57,25 @@ body{
     -moz-transform: translate(-50%,-45%);
     -ms-transform: translate(-50%,-45%);
     -o-transform: translate(-50%,-45%);
+}
+.pointer{
+     animation: pointer-ripple 2s ease-in infinite alternate;
+     -webkit-animation: pointer-ripple 2s ease-in infinite alternate;
+}
+@keyframes pointer-ripple{
+    0%{
+        transform: scale(.95);
+        -webkit-transform: scale(.95);
+        -moz-transform: scale(.95);
+        -ms-transform: scale(.95);
+        -o-transform: scale(.95);
+}
+    100%{
+        transform: scale(1.25);
+        -webkit-transform: scale(1.25);
+        -moz-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+        -o-transform: scale(1.25);
+        -webkit-transform: scale(1.25);
+}
 }

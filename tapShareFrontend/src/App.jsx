@@ -10,8 +10,6 @@ function App() {
   // states
   const [files, setFiles] = useState(null);
   const [email, setEmail] = useState(null);
-
-
   // handlers
   // handle file click
   const handleFileClick = (e) => {
@@ -90,7 +88,7 @@ function App() {
       {/* select at least one file, to make the below section appear */}
       <div
         title="Click to send file"
-        className="h-[4em] w-[4em] bg-[rgba(0,0,0,.5)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(0,0,0,0.4)] absolute upload"
+        className="h-[4em] w-[4em] bg-[rgba(0,0,0,.5)] rounded-full flex items-center justify-center cursor-pointer hover:bg-[rgba(0,0,0,0.4)] absolute upload focus:outline-none"
       >
         <IconButton
           aria-label="upload file"
@@ -104,7 +102,11 @@ function App() {
             multiple="multiple"
             onChange={handleFileClick}
           />
-          <HiOutlineCursorClick className="text-[1.5rem] text-[#efefef]" />
+          <HiOutlineCursorClick
+            className={`text-[1.5rem] text-[#efefef] ${
+              files && files.length > 0 && "pointer"
+            }`}
+          />
         </IconButton>
       </div>
       {/* this section takes input to whom file should be send */}
@@ -115,11 +117,11 @@ function App() {
             type="text"
             placeholder="Enter email or phone to send"
             onChange={(e) => setEmail(e.target.value)}
-            className="h-[2.2em]  outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem]  placeholder:text-[#555] tracking-wide"
+            className="h-[2.3em]  outline-none bg-[lightgray] text-[1rem] text-[#585858] min-w-[15em] placeholder:text-[1rem]  placeholder:text-[#555] tracking-wide"
           />
           <AiOutlineSend
-            onClick={() => send_file(files,email)}
-            className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
+            onClick={() => send_file(files, email)}
+            className="text-[#555] text-[1.3rem] cursor-pointer hover:text-[#777676]"
           />
         </div>
       )}
