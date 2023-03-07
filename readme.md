@@ -22,6 +22,7 @@ Using TapShare is easy and straightforward. Here are the steps to follow:
 
 ## Upcoming Features
 
+- Facility of pasting code and sharing it too realtime
 - Generate shareable links that allow multiple people to access the same file
 - Automatically delete files after they have been downloaded
 - Establish secure shell(ssh) between sender and receiver
