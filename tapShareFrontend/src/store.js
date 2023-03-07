@@ -10,7 +10,7 @@ export const useStore = create((set) => ({
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
     }
- 
+
     const res = await axios.post(
       "https://tapshare.onrender.com/api/v1/sendFile",
       formData,
@@ -20,6 +20,12 @@ export const useStore = create((set) => ({
         },
       }
     );
-    console.log(res.data);
+    if (res.data.status === 200) {
+      alert("File sent successfully");
+    } else {
+      alert("Error sending file");
+    }
+
+    // console.log(res.data);
   },
 }));
