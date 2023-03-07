@@ -12,7 +12,8 @@ export const useStore = create((set) => ({
     }
 
     const res = await axios.post(
-      "https://tapshare.onrender.com/api/v1/sendFile",
+      "http://localhost:1337/api/v1/sendFile",
+      // "https://tapshare.onrender.com/api/v1/sendFile",
       formData,
       {
         headers: {
