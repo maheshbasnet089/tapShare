@@ -15,7 +15,7 @@ TapShare is a platform that enables users to transfer files, including zip files
 
 Using TapShare is easy and straightforward. Here are the steps to follow:
 
-- Go to the TapShare website: https://tapshare.vercel.app/
+- Go to the TapShare website: https://tapshare.xyz
 - Tap on the middle icon button to upload the files you want to transfer. You can upload multiple files at once.
 - Choose whether you want to send the files to email or phone number. If you choose email, enter the recipient's email address. If you choose phone number, enter the recipient's phone number(e.g:981232345)
 - Click on the "Send" to initiate the file transfer. The recipient will receive a notification with a link to download the files.
