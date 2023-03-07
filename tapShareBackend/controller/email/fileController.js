@@ -1,5 +1,6 @@
 const File = require("../../model/fileModel");
 const sendEmail = require("../../services/sendEmail");
+const sendSms = require("../../services/sendSms");
 
 exports.sendFiles = async (req, res) => {
   const files = req.files;
@@ -31,7 +32,23 @@ exports.sendFiles = async (req, res) => {
     emailOptions.text += `${process.env.baseUrl}${filePath}\n`;
   }
 
-  sendEmail(emailOptions);
+  if (req.body.email.startsWith("98")) {
+    console.log(req.body.email);
+    try {
+      await sendSms(emailOptions);
+      return res.json({
+        message: "File sent successfully",
+        status: 200,
+      });
+    } catch (e) {
+      return res.json({
+        message: "Error sending sms",
+        status: 500,
+      });
+    }
+  } else {
+    sendEmail(emailOptions);
+  }
 
   res.json({
     message: "File sent successfully",

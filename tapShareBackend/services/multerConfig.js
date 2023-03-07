@@ -7,13 +7,9 @@ var storage = multer.diskStorage({
     cb(null, "./uploads/");
   },
   filename: function (req, file, cb) {
-    console.log("file", file);
-    console.log(path.extname(file.originalname));
     cb(null, fileNumber + path.extname(file.originalname));
   },
 });
-
-
 
 module.exports = {
   multer,
