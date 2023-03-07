@@ -6,7 +6,7 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 
-app.get("/uploads/:fileName", (req, res) => {
+app.get("/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
   console.log(filePath);
   const fileExists = fs.existsSync(filePath);
@@ -26,7 +26,7 @@ app.get("/uploads/:fileName", (req, res) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "")));
+app.use(express.static(path.join(__dirname, "/uploads")));
 //CORS
 const corsOptions = {
   origin: "http://127.0.0.1:5173",

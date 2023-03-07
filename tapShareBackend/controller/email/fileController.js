@@ -7,11 +7,13 @@ exports.sendFiles = async (req, res) => {
   const filePaths = [];
 
   for (var i = 0; i < files.length; i++) {
+    console.log("path", files[i].path);
     const newFile = await File.create({
       name: files[i].originalname,
-      path: files[i].path.replace(/\\/g, '/'), // replace backslash with forward slash
+      path: files[i].path.replace(/\\/g, "/").replace("uploads/", ""), // replace backslash with forward slash
       size: files[i].size,
     });
+    console.log(newFile);
 
     const savedFile = await newFile.save();
     if (savedFile) filePaths.push(newFile.path);
