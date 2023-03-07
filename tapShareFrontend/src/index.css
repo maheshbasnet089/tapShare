@@ -16,8 +16,8 @@ body{
 
 /* infinite alternate backwards; */
 .animate{
-    animation: ripple 2s ease-in infinite alternate;
-    -webkit-animation: ripple 2s ease-in infinite alternate;
+    animation: ripple 2.5s ease-in infinite ;
+    -webkit-animation: ripple 2.5s ease-in infinite ;
 }
 @keyframes ripple{
     0%{
