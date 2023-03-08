@@ -46,13 +46,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/uploads")));
 
 //CORS
-const corsOptions = {
-  origin: "*",
-  // origin: "http://127.0.0.1:5173",
-  // credentials: true, //access-control-allow-credentials:true
-  // optionSuccessStatus: 200,
+
+const corsOption = {
+  origin: "http://www.tapshare.xyz",
+  credentials: true,
+  preflightContinue: false,
 };
-app.use(cors(corsOptions));
+app.use(cors(corsOption));
+
 
 //require routes
 const fileRoute = require("./route/fileRoute");
@@ -64,6 +65,6 @@ mongoConnection(process.env.MONGO_URI);
 app.use("/api/v1", fileRoute);
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
+app.listen(1337, () => {
   console.log(`Server is running on port ${PORT}`);
 });
