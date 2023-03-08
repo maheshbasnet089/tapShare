@@ -108,7 +108,7 @@ function Home() {
           <div className="absolute to flex items-center bg-[lightgray] pl-[.8em] pr-[.5em] rounded shadow-md shadow-[#555] ">
             <input
               type="text"
-              placeholder="Enter email or phone to send"
+              placeholder="Enter email to send"
               onChange={(e) => setEmail(e.target.value)}
               className="h-[2.2em]  outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem]  placeholder:text-[#555] tracking-wide"
             />
