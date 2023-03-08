@@ -3,6 +3,8 @@ const sendEmail = require("../../services/sendEmail");
 const sendSms = require("../../services/sendSms");
 
 exports.sendFiles = async (req, res) => {
+  console.log(req.files)
+  console.log(req.body)
   const files = req.files;
   try {
     const filePaths = [];
