@@ -54,7 +54,6 @@ const corsOption = {
 };
 app.use(cors(corsOption));
 
-
 //require routes
 const fileRoute = require("./route/fileRoute");
 const File = require("./model/fileModel");
@@ -65,6 +64,6 @@ mongoConnection(process.env.MONGO_URI);
 app.use("/api/v1", fileRoute);
 
 const PORT = process.env.PORT || 4000;
-app.listen(1337, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
