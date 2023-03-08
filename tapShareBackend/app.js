@@ -6,11 +6,37 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 
-app.get("/:fileName", (req, res) => {
+//CORS
+const corsOptions = {
+  origin: "https://www.tapshare.xyz",
+  // origin: "http://127.0.0.1:5173",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+app.get("/:userId", async (req, res) => {
+  try {
+    const files = await File.find({ userId: req.params.userId });
+
+    res.json({
+      status: 200,
+      message: "Files fetched successfully",
+      files,
+    });
+  } catch (e) {
+    res.json({
+      status: 500,
+      message: e.message,
+    });
+  }
+});
+
+app.get("/u/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
-  console.log(filePath);
+
   const fileExists = fs.existsSync(filePath);
-  console.log(fileExists);
+
   if (fileExists) {
     res.download(filePath, req.params.fileName, (err) => {
       if (err) {
@@ -27,16 +53,10 @@ app.get("/:fileName", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/uploads")));
-//CORS
-const corsOptions = {
-  origin: "https://www.tapshare.xyz",
-  // origin: "http://127.0.0.1:5173",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+
 //require routes
 const fileRoute = require("./route/fileRoute");
+const File = require("./model/fileModel");
 mongoConnection(process.env.MONGO_URI);
 
 //parses the body data in json
@@ -44,6 +64,6 @@ mongoConnection(process.env.MONGO_URI);
 app.use("/api/v1", fileRoute);
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => {
+app.listen(1337, () => {
   console.log(`Server is running on port ${PORT}`);
 });

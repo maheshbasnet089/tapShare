@@ -18,9 +18,6 @@ function App() {
 
     const fileArray = Array.from(fileList);
 
-    console.log(fileArray);
-    // console.log(file);
-    // setFiles(inputFiles);
     if (fileList.length > 0) {
       setFiles(fileArray);
     }
@@ -107,17 +104,26 @@ function App() {
       {/* this section takes input to whom file should be send */}
       {/* it is hidden by default, it appears as soon as one selects a file */}
       {files && files.length > 0 && (
-        <div className="absolute to flex items-center bg-[lightgray] pl-[.8em] pr-[.5em] rounded shadow-md shadow-[#555] ">
-          <input
-            type="text"
-            placeholder="Enter email or phone to send"
-            onChange={(e) => setEmail(e.target.value)}
-            className="h-[2.2em]  outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem]  placeholder:text-[#555] tracking-wide"
-          />
-          <AiOutlineSend
-            onClick={() => send_file(files, email)}
-            className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
-          />
+        <div >
+          <div  className="absolute to flex items-center bg-[lightgray] pl-[.8em] pr-[.5em] rounded shadow-md shadow-[#555] ">
+            <input
+              type="text"
+              placeholder="Enter email or phone to send"
+              onChange={(e) => setEmail(e.target.value)}
+              className="h-[2.2em]  outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem]  placeholder:text-[#555] tracking-wide"
+            />
+
+            <AiOutlineSend
+              onClick={() => send_file(files, email)}
+              className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
+            />
+          </div>
+
+          <div className="absolute to flex pl-[.8em] pr-[.5em]  mt-10 bg-[lightgray]  rounded shadow-md shadow-[#555] cursor-pointer ">
+           
+            <h2  onClick={() => send_file(files, "")}>Generate Link</h2>
+
+          </div>
         </div>
       )}
     </div>

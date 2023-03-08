@@ -22,7 +22,7 @@ var storage = multer.diskStorage({
     while (fs.existsSync(filePath)) {
       fileNumber = generateFileNumber();
     }
-    cb(null, fileNumber + path.extname(file.originalname));
+    cb(null, file.originalname);
   },
 });
 
