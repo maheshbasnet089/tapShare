@@ -41,6 +41,7 @@ export const useStore = create((set) => ({
     if (res.data.status === 200) {
       alert(res.data.message);
     } else if (res.data.status === 201) {
+      
       window.location.href =
         "https://www.tapshare.xyz/" + localStorage.getItem("userId");
       // navigate("/seeAllMyFiles");
