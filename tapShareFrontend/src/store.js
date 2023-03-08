@@ -42,7 +42,7 @@ export const useStore = create((set) => ({
       alert(res.data.message);
     } else if (res.data.status === 201) {
       window.location.href =
-        "https://tapshare.xyz/" + localStorage.getItem("userId");
+        "https://www.tapshare.xyz/" + localStorage.getItem("userId");
       // navigate("/seeAllMyFiles");
     } else {
       alert("Error sending file");
