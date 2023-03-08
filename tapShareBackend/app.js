@@ -5,7 +5,6 @@ require("dotenv").config();
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
-const ejs = require("ejs");
 
 //CORS
 const corsOptions = {
@@ -17,10 +16,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.get("/:userId", async (req, res) => {
-
   try {
     const files = await File.find({ userId: req.params.userId });
-   
+
     res.json({
       status: 200,
       message: "Files fetched successfully",
@@ -32,15 +30,13 @@ app.get("/:userId", async (req, res) => {
       message: e.message,
     });
   }
-
-
 });
 
 app.get("/u/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
 
   const fileExists = fs.existsSync(filePath);
- 
+
   if (fileExists) {
     res.download(filePath, req.params.fileName, (err) => {
       if (err) {
@@ -57,8 +53,6 @@ app.get("/u/:fileName", (req, res) => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/uploads")));
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
 
 //require routes
 const fileRoute = require("./route/fileRoute");
