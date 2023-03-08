@@ -15,12 +15,28 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
+app.get("/:userId", async (req, res) => {
+  try {
+    const files = await File.find({ userId: req.params.userId });
 
-app.get("/:fileName", (req, res) => {
+    res.json({
+      status: 200,
+      message: "Files fetched successfully",
+      files,
+    });
+  } catch (e) {
+    res.json({
+      status: 500,
+      message: e.message,
+    });
+  }
+});
+
+app.get("/u/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
-  console.log(filePath);
+
   const fileExists = fs.existsSync(filePath);
-  console.log(fileExists);
+
   if (fileExists) {
     res.download(filePath, req.params.fileName, (err) => {
       if (err) {
