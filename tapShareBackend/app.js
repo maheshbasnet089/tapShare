@@ -14,9 +14,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-app.get("/hello", (req, res) => {
-  res.send("hellow");
-});
+
 
 app.get("/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
