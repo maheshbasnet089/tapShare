@@ -41,6 +41,11 @@ app.get("/u/:fileName", (req, res) => {
   }
 });
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "/uploads")));
+
 //CORS
 const corsOptions = {
   origin: "https://www.tapshare.xyz",
@@ -49,9 +54,6 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "/uploads")));
 
 //require routes
 const fileRoute = require("./route/fileRoute");
