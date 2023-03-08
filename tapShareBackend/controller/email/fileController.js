@@ -8,13 +8,15 @@ exports.sendFiles = async (req, res) => {
     const filePaths = [];
 
     for (var i = 0; i < files.length; i++) {
-      console.log("path", files[i].path);
       const newFile = await File.create({
+        userId: req.body.userId,
         name: files[i].originalname,
-        path: files[i].path.replace(/\\/g, "/").replace("uploads/", ""), // replace backslash with forward slash
+        path:
+          process.env.baseUrl +
+          "u/" +
+          files[i].path.replace(/\\/g, "/").replace("uploads/", ""), // replace backslash with forward slash
         size: files[i].size,
       });
-      console.log(newFile);
 
       const savedFile = await newFile.save();
       if (savedFile) filePaths.push(newFile.path);
@@ -22,24 +24,17 @@ exports.sendFiles = async (req, res) => {
     // send email here
     const emailOptions = {
       to: req.body.email,
-      subject: "New files received",
-      text: "New files received",
+      subject: "New File Received from TapShare ",
+      text: "Tapshare is a simple, secure, and reliable file sharing platform that allows users to quickly and easily send large files over the internet.Give it a  try today at https://www.tapshare.xyz/ . For more Info visit https://github.com/maheshbasnet089/tapShare",
     };
 
-    const fileLinksForSsr = [];
-
     // Add file paths as links in the email body
-    emailOptions.text += "\nFile paths:\n";
+    emailOptions.text += "\n\nShared Files(tap to download):\n";
     for (const filePath of filePaths) {
-      emailOptions.text += `${process.env.baseUrl}${filePath}\n`;
-      fileLinksForSsr.push(`${process.env.baseUrl}${filePath}`);
+      emailOptions.text += `${filePath}\n`;
     }
 
-    console.log(fileLinksForSsr);
-    console.log(req.body.email);
-
     if (req.body.email.startsWith("98")) {
-      console.log(req.body.email);
       try {
         await sendSms(emailOptions);
         return res.json({
@@ -60,10 +55,9 @@ exports.sendFiles = async (req, res) => {
         status: 200,
       });
     } else if (req.body.email === "" || req.body.email === null) {
-      console.log("inside else if");
-
       return res.json({
-        generatedLinks: fileLinksForSsr,
+        userId: req.body.userId,
+
         message: "Link generated",
         status: 201,
       });
@@ -74,7 +68,6 @@ exports.sendFiles = async (req, res) => {
       });
     }
   } catch (e) {
-    console.log(e);
     res.json({
       errorMessage: e.message,
       message: "Error sending file",

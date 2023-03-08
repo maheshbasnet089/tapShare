@@ -6,7 +6,6 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const ejs = require("ejs");
-const ssrRoute = require("./route/ssrRoute");
 
 //CORS
 const corsOptions = {
@@ -17,39 +16,31 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.get("/:folderNumber", (req, res) => {
-  const folderPath = path.join(__dirname, "uploads", req.params.folderNumber);
-  console.log(folderPath, "folderPath");
+app.get("/:userId", async (req, res) => {
 
-  fs.readdir(folderPath, (err, files) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send("Server error");
-    } else {
-      const filePaths = files.map((file) => path.join(folderPath, file));
+  try {
+    const files = await File.find({ userId: req.params.userId });
+   
+    res.json({
+      status: 200,
+      message: "Files fetched successfully",
+      files,
+    });
+  } catch (e) {
+    res.json({
+      status: 500,
+      message: e.message,
+    });
+  }
 
-      const uploadsFolder = "uploads";
 
-      const sanitizedFilePaths = filePaths.map((filePath) => {
-        const startIndex = filePath.indexOf(uploadsFolder);
-        return filePath.substring(startIndex);
-      });
-      const urls = sanitizedFilePaths.map((filePath) => {
-        return `${process.env.baseUrl}${filePath}`
-          .replace(/\\/g, "/")
-          .replace("uploads/", ""); // replace backslash with forward slash;
-      });
-
-      res.json(urls);
-    }
-  });
 });
 
-app.get("/:fileName", (req, res) => {
+app.get("/u/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
 
   const fileExists = fs.existsSync(filePath);
-  console.log(fileExists);
+ 
   if (fileExists) {
     res.download(filePath, req.params.fileName, (err) => {
       if (err) {
@@ -71,12 +62,12 @@ app.set("views", path.join(__dirname, "views"));
 
 //require routes
 const fileRoute = require("./route/fileRoute");
+const File = require("./model/fileModel");
 mongoConnection(process.env.MONGO_URI);
 
 //parses the body data in json
 
 app.use("/api/v1", fileRoute);
-app.use("/", ssrRoute);
 
 const PORT = process.env.PORT || 4000;
 app.listen(1337, () => {
