@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path=":id" element={<SeeFiles />} />
+        <Route path="/a/:id" element={<SeeFiles />} />
       </Routes>
     </BrowserRouter>
     {/* </StyledEngineProvider> */}
