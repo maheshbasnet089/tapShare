@@ -41,7 +41,6 @@ app.get("/u/:fileName", (req, res) => {
   }
 });
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/uploads")));
@@ -65,6 +64,6 @@ mongoConnection(process.env.MONGO_URI);
 app.use("/api/v1", fileRoute);
 
 const PORT = process.env.PORT || 4000;
-app.listen(1337, () => {
+app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
