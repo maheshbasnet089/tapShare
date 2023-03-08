@@ -5,14 +5,24 @@ import { useNavigate } from "react-router-dom";
 
 export const useStore = create((set) => ({
   send_file: async (file, email) => {
-    function generateFileNumber() {
-      const fileNumber = Math.floor(1000 + Math.random() * 9000);
-      console.log(fileNumber);
-      return fileNumber;
+    function generateUserId() {
+      const userId = Math.floor(1000 + Math.random() * 9000);
+
+      return userId;
     }
-    generateFileNumber();
+
+    if (
+      localStorage.getItem("userId") == null ||
+      localStorage.getItem("userId") == "" ||
+      localStorage.getItem("userId") == undefined
+    ) {
+      const userId = generateUserId();
+      localStorage.setItem("userId", userId);
+    }
+
     const formData = new FormData();
     formData.append("email", email);
+    formData.append("userId", localStorage.getItem("userId"));
 
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
@@ -31,14 +41,12 @@ export const useStore = create((set) => ({
     if (res.data.status === 200) {
       alert(res.data.message);
     } else if (res.data.status === 201) {
-      alert(res.data.message);
-      console.log(res.data);
-      // window.location.href = "http://localhost:3000/seeAllMyFiles";
+      window.location.href =
+        "http://127.0.0.1:5173/" + localStorage.getItem("userId");
       // navigate("/seeAllMyFiles");
     } else {
       alert("Error sending file");
     }
 
-    // console.log(res.data);
   },
 }));
