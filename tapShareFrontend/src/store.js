@@ -30,7 +30,7 @@ export const useStore = create((set) => ({
 
     const res = await axios.post(
       // "http://localhost:1337/api/v1/sendFile",
-      "https://www.tapshare.onrender.com/api/v1/sendFile",
+      "https://tapshare.onrender.com/api/v1/sendFile",
       formData,
       {
         headers: {
@@ -42,7 +42,7 @@ export const useStore = create((set) => ({
       alert(res.data.message);
     } else if (res.data.status === 201) {
       window.location.href =
-        "https://www.tapshare.xyz/" + localStorage.getItem("userId");
+        "https://tapshare.xyz/" + localStorage.getItem("userId");
       // navigate("/seeAllMyFiles");
     } else {
       alert("Error sending file");
