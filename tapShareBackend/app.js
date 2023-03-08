@@ -48,7 +48,7 @@ app.use(express.static(path.join(__dirname, "/uploads")));
 //CORS
 
 const corsOption = {
-  origin: "https://www.tapshare.xyz",
+  origin: "https://tapshare.xyz",
   credentials: true,
   preflightContinue: false,
 };
