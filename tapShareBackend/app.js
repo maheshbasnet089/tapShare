@@ -47,10 +47,10 @@ app.use(express.static(path.join(__dirname, "/uploads")));
 
 //CORS
 const corsOptions = {
-  origin: "https://www.tapshare.xyz",
+  origin: "*",
   // origin: "http://127.0.0.1:5173",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
+  // credentials: true, //access-control-allow-credentials:true
+  // optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
