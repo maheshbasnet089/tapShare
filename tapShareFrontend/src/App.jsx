@@ -118,8 +118,13 @@ function App() {
             onClick={() => send_file(files, email)}
             className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
           />
+          <button>
+        
+        <h2 onClick={() => send_file(files, "")}>generate link</h2>
+        </button>
         </div>
       )}
+      
     </div>
   );
 }
