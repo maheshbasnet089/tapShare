@@ -8,9 +8,9 @@ const fs = require("fs");
 
 //CORS
 const corsOptions = {
-  origin: "https://www.tapshare.xyz",
+  origin: "https://tapshare.xyz",
   // origin: "http://127.0.0.1:5173",
-  credentials: true, //access-control-allow-credentials:true
+  // credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
