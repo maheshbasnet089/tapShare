@@ -7,7 +7,8 @@ const SeeFiles = () => {
   const [files, setFiles] = React.useState([]); // [state, setState]
 
   const fetchFiles = async function fetchFiles() {
-    const res = await axios.get(`https://tapshare.onrender.com/${id}`);
+    // const res = await axios.get(`https://tapshare.onrender.com/${id}`);
+    const res = await axios.get(`http://localhost:1337/${id}`);
 
     if (res.data.status === 200) {
       setFiles(res.data.files);
