@@ -1,7 +1,7 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import './SeeFiles.css'
+import "./SeeFiles.css";
 import { IoMdDownload } from "react-icons/io";
 import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 
@@ -10,15 +10,16 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { frontendUrlDev, frontendUrlProd } from "./config";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '1px solid #000',
+  bgcolor: "background.paper",
+  border: "1px solid #000",
   boxShadow: 24,
   p: 3,
 };
@@ -26,10 +27,9 @@ const style = {
 const QR =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png";
 
-
 const SeeFiles = () => {
-//model START
-   const [open, setOpen] = React.useState(false);
+  //model START
+  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -87,116 +87,171 @@ const SeeFiles = () => {
       }, 2000);
     });
   });
+  const [remainingTime, setRemainingTime] = useState(
+    parseInt(localStorage.getItem("remainingTime"), 10) || 24 * 60 * 60
+  ); // retrieve remaining time from localStorage or set it to 24 hours in seconds
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRemainingTime((prevTime) => prevTime - 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("remainingTime", remainingTime.toString());
+  }, [remainingTime]);
+
+  // convert remaining time in seconds to hours, minutes, and seconds
+  const hours = Math.floor(remainingTime / 3600);
+  const minutes = Math.floor((remainingTime % 3600) / 60);
+  const seconds = remainingTime % 60;
 
   // copy link JS END
   return (
     <div>
-      <div className="css-container sender">
-        <h3 className="card-links-title title">All done! 👏</h3>
-        <div className="css-alert css-alert-success">
-          <h5 className="css-alert-text">File Uploaded (10.9 MB)</h5>
-        </div>
-        <div className="card-links">
-          {files.map((file) => {
-            return (
-              <div className="css-form-control" key={file._id}>
-                <label>The share this file, copy this link:</label>
-                <div className="form-row">
-                  <input
-                    type="text"
-                    name="link"
-                    id="link"
-                    className="input-links"
-                    value={file.path}
-                    readOnly
-                  />
-                  <button className="css-btn-primary btn-copy-links btn-with-icon">
-                    Copy{" "}
-                    <span className="btn-icon">
-                      <MdContentCopy />
-                    </span>
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+      {localStorage.getItem("userId") === id ? (
+        <div className="css-container sender">
+          <h3 className="card-links-title title">Keep tapping! 👏</h3>
+          {/* <div className="css-alert css-alert-success">
+           <h5 className="css-alert-text">File Uploaded (10.9 MB)</h5>
+         </div> */}
+          <div className="css-alert css-alert-success">
+            <h6 className="css-alert-text">
+               Expires In: {hours}h {minutes}m{" "}
+              {seconds}s
+            </h6>
+          </div>
+          <div className="card-links">
+            <div className="css-form-control">
+              <label style={{ textAlign: "center", marginBottom: "10px" }}>
+                The share <b>All</b> files, copy this link:
+              </label>
 
-          <div
-            className="main-control-wrap"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "30px",
-              flexWrap: "wrap",
-            }}
-          >
-            <span>
-              <a href="#">
-                <button className="css-btn-primary btn-primary-reverse">
-                  Share Another
-                </button>
-              </a>
-            </span>
-            <span>
-              <a href="#">
-                <button
-                  className="css-btn-primary btn-with-icon"
-                  onClick={handleOpen}
-                >
-                  {" "}
-                  Share QR{" "}
+              <div className="form-row">
+                <input
+                  type="text"
+                  name="link"
+                  id="link"
+                  className="input-links"
+                  value={"https://tapshare.xyz/" + id}
+                  readOnly
+                />
+                <button className="css-btn-primary btn-copy-links btn-with-icon">
+                  Copy{" "}
                   <span className="btn-icon">
-                    <MdOutlineQrCode />
-                  </span>{" "}
+                    <MdContentCopy />
+                  </span>
                 </button>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Receiver side START  */}
-
-      <div className="css-container">
-        <h3 className="card-links-title title">All done! 👏</h3>
-        <div className="css-alert css-alert-success">
-          <h5 className="css-alert-text">File Received (10.99 MB)</h5>
-        </div>
-        <div className="card-links">
-          {files.map((file) => {
-            return (
-              <div className="css-form-control" key={file._id}>
-                <label>
-                  The download this file, click on the download button
-                </label>
-                <div className="form-row">
-                  <input
-                    type="text"
-                    name="link"
-                    id="link"
-                    className="input-links"
-                    value={file.path}
-                    readOnly
-                  />
-                  <button className="css-btn-primary btn-copy-links btn-with-icon">
-                    Download
-                    <span className="btn-icon">
-                      <IoMdDownload />
-                    </span>
-                  </button>
-                </div>
               </div>
-            );
-          })}
+            </div>
+          </div>
+          <div className="card-links">
+            <label>
+              The share <b>Single</b> file, copy below link:
+            </label>
+            {files.map((file) => {
+              {
+                console.log(file);
+              }
+              return (
+                <div className="css-form-control" key={file._id}>
+                  <div className="form-row">
+                    <input
+                      type="text"
+                      name="link"
+                      id="link"
+                      className="input-links"
+                      value={file.name}
+                      readOnly
+                    />
+                    <button className="css-btn-primary btn-copy-links btn-with-icon">
+                      Copy{" "}
+                      <span className="btn-icon">
+                        <MdContentCopy />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
 
-          <div>
-            <a href="#">
-              <button className="css-btn-primary">Share your file</button>
-            </a>
+            <div
+              className="main-control-wrap"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "30px",
+                flexWrap: "wrap",
+              }}
+            >
+              <span>
+                <a href={frontendUrlDev}>
+                  <button className="css-btn-primary btn-primary-reverse">
+                    Share Another
+                  </button>
+                </a>
+              </span>
+              <span>
+                <a href="#">
+                  <button
+                    className="css-btn-primary btn-with-icon"
+                    onClick={handleOpen}
+                  >
+                    {" "}
+                    Share QR{" "}
+                    <span className="btn-icon">
+                      <MdOutlineQrCode />
+                    </span>{" "}
+                  </button>
+                </a>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      {/* Receiver side END  */}
+      ) : (
+        <div className="css-container">
+          <h3 className="card-links-title title">Keep tapping! 👏</h3>
+          {/* <div className="css-alert css-alert-success">
+            <h5 className="css-alert-text">File Received (10.99 MB)</h5>
+          </div> */}
+          <label>The download this file, click on the download button</label>
+          <div className="card-links">
+            {files.map((file) => {
+              return (
+                <div className="css-form-control" key={file._id}>
+                  <div className="form-row">
+                    <input
+                      type="text"
+                      name="link"
+                      id="link"
+                      className="input-links"
+                      value={file.name}
+                      readOnly
+                    />
+
+                    <a href={file.path}>
+                      <button className="css-btn-primary btn-copy-links btn-with-icon">
+                        Download
+                        <span className="btn-icon">
+                          <IoMdDownload />
+                        </span>
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+
+            <div>
+              <a href={frontendUrlProd}>
+                <button className="css-btn-primary">Share your file</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* model  START*/}
       <Modal
@@ -206,7 +261,8 @@ const SeeFiles = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <img src={QR} />
+          {/* <img src={QR} /> */}
+          <h3 style={{ textAlign: "center" }}>Coming Soon, Keep tapping !</h3>
         </Box>
       </Modal>
       {/* modeal END  */}
