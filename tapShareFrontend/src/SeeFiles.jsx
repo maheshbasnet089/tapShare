@@ -161,7 +161,7 @@ const SeeFiles = () => {
                       name="link"
                       id="link"
                       className="input-links"
-                      value={file.name}
+                      value={file.path}
                       readOnly
                     />
                     <button className="css-btn-primary btn-copy-links btn-with-icon">
