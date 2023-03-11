@@ -230,7 +230,10 @@ const SeeFiles = () => {
                     />
 
                     <a href={file.path}>
-                      <button className="css-btn-primary btn-copy-links btn-with-icon">
+                      <button
+                        className="css-btn-primary btn-copy-links btn-with-icon"
+                        style={{ width: "100%" }}
+                      >
                         Download
                         <span className="btn-icon">
                           <IoMdDownload />
