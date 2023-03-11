@@ -148,7 +148,7 @@ const SeeFiles = () => {
           </div>
           <div className="card-links">
             <label>
-              The share <b>Single</b> file, copy below link:
+              To share <b>Single</b> file, copy below link:
             </label>
             {files.map((file) => {
               {
@@ -214,7 +214,7 @@ const SeeFiles = () => {
           {/* <div className="css-alert css-alert-success">
             <h5 className="css-alert-text">File Received (10.99 MB)</h5>
           </div> */}
-          <label>The download this file, click on the download button</label>
+          <label>To download this file, click on the download button</label>
           <div className="card-links">
             {files.map((file) => {
               return (

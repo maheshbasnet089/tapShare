@@ -124,7 +124,7 @@ function Home() {
           <div className="absolute to flex pl-[.8em] pr-[.5em]  mt-10 bg-[lightgray]  rounded shadow-md shadow-[#555] cursor-pointer ">
             {loading ? (
               <img
-                src="../src/assets/loader.gif"
+                src="loader.gif"
                 alt=""
                 srcset=""
                 height="20px"
