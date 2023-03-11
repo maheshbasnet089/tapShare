@@ -40,6 +40,7 @@ input:focus{
 .css-color-primary{
     color: var(--color-primary);
 }
+
 .css-color-primary-deep {
     color: var(--color-primary-deep);
 }
@@ -134,8 +135,32 @@ input:focus{
     border-bottom-left-radius: 0;
 
 }
+.btn-with-icon{ 
+                display: flex; 
+                align-items:center; 
+                justify-content:center; 
+                gap:8px;
+               
+            
+        
+}
+.btn-icon{
+    font-size: 19px;
+}
+.btn-primary-reverse{
+    height: 42px;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary-deep);
+    
+    background-color: transparent;
+}
+.btn-primary-reverse:hover{
+background-color: var(--color-primary-deep);
+color: var(--color-light);
+}
 
 @media only screen and (max-width: 900px) {
+  
 .css-alert {
         width: 95%;
     }
@@ -148,5 +173,29 @@ input:focus{
         width: 95%;
 
     }
+    .input-links{
+        border-top-right-radius: 5px;
+        border-bottom-left-radius: 0;
+    }
+    .btn-copy-links{
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 5px;
+        
+    }
+ .main-control-wrap{
+    flex-direction: column;
+    gap: 10px !important;
+ }
+ .btn-icon{
+    width: auto;
+ }
+ .main-control-wrap span{
+/* width: 100%; */
+ }
+  .main-control-wrap button {
+    width: 100%;
+    
+ }
 }
 
