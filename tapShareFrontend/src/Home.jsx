@@ -7,6 +7,8 @@ import { useStore } from "./store";
 function Home() {
   // store calls
   const send_file = useStore((state) => state.send_file);
+  const loading = useStore((state) => state.loading);
+
   // states
   const [files, setFiles] = useState(null);
   const [email, setEmail] = useState(null);
@@ -120,7 +122,17 @@ function Home() {
           </div>
 
           <div className="absolute to flex pl-[.8em] pr-[.5em]  mt-10 bg-[lightgray]  rounded shadow-md shadow-[#555] cursor-pointer ">
-            <h2 onClick={() => send_file(files, "")}>Generate Link</h2>
+            {loading ? (
+              <img
+                src="../src/assets/loader.gif"
+                alt=""
+                srcset=""
+                height="20px"
+                width="50px"
+              />
+            ) : (
+              <h2 onClick={() => send_file(files, "")}>Generate Link</h2>
+            )}
           </div>
         </div>
       )}

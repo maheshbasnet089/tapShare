@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 // import { baseUrl } from "./config";
 
 export const useStore = create((set) => ({
+  loading: false,
+
   send_file: async (file, email) => {
     function generateUserId() {
       const userId = Math.floor(1000 + Math.random() * 9000);
@@ -28,25 +30,32 @@ export const useStore = create((set) => ({
       formData.append("files", file[i]);
     }
 
-    const res = await axios.post(
-      "http://localhost:1337/api/v1/sendFile",
-      // "https://tapshare.onrender.com/api/v1/sendFile",
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+    try {
+      set({ loading: true });
+      const res = await axios.post(
+        "http://localhost:1337/api/v1/sendFile",
+        // "https://tapshare.onrender.com/api/v1/sendFile",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (res.data.status === 200) {
+        alert(res.data.message);
+      } else if (res.data.status === 201) {
+        window.location.href =
+          // "https://tapshare.xyz/" + localStorage.getItem("userId");
+          "http://127.0.0.1:5173/" + localStorage.getItem("userId");
+        // navigate("/seeAllMyFiles");
+      } else {
+        alert("Error sending file Try again");
       }
-    );
-    if (res.data.status === 200) {
-      alert(res.data.message);
-    } else if (res.data.status === 201) {
-      window.location.href =
-        // "https://tapshare.xyz/" + localStorage.getItem("userId");
-        "http://127.0.0.1:5173/" + localStorage.getItem("userId");
-      // navigate("/seeAllMyFiles");
-    } else {
-      alert("Error sending file");
+    } catch (error) {
+      alert("Error sending file Try again");
+    } finally {
+      set({ loading: false });
     }
   },
 }));
