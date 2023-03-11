@@ -5,4 +5,4 @@
 // export const baseUrl = "http://localhost:1337/api/v1";
 
 export const frontendUrlProd = "https://tapshare.xyz";
-export const frontendUrlDev = "http://127.0.0.1:5173";
+// export const frontendUrlDev = "http://127.0.0.1:5173";

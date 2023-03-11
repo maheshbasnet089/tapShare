@@ -10,7 +10,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import { frontendUrlDev, frontendUrlProd } from "./config";
+import { frontendUrlProd } from "./config";
 
 const style = {
   position: "absolute",
@@ -39,8 +39,8 @@ const SeeFiles = () => {
   const [files, setFiles] = React.useState([]); // [state, setState]
 
   const fetchFiles = async function fetchFiles() {
-    // const res = await axios.get(`https://tapshare.onrender.com/${id}`);
-    const res = await axios.get(`http://localhost:1337/${id}`);
+    const res = await axios.get(`https://tapshare.onrender.com/${id}`);
+    // const res = await axios.get(`http://localhost:1337/${id}`);
 
     if (res.data.status === 200) {
       setFiles(res.data.files);
@@ -119,8 +119,7 @@ const SeeFiles = () => {
          </div> */}
           <div className="css-alert css-alert-success">
             <h6 className="css-alert-text">
-               Expires In: {hours}h {minutes}m{" "}
-              {seconds}s
+              Expires In: {hours}h {minutes}m {seconds}s
             </h6>
           </div>
           <div className="card-links">
@@ -153,7 +152,6 @@ const SeeFiles = () => {
             </label>
             {files.map((file) => {
               {
-                console.log(file);
               }
               return (
                 <div className="css-form-control" key={file._id}>
@@ -187,7 +185,7 @@ const SeeFiles = () => {
               }}
             >
               <span>
-                <a href={frontendUrlDev}>
+                <a href={frontendUrlProd}>
                   <button className="css-btn-primary btn-primary-reverse">
                     Share Another
                   </button>
