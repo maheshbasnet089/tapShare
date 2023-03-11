@@ -15,13 +15,17 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
-app.get("/hello", (req, res) => {
-  res.send("hellow");
-});
 
 app.get("/:userId", async (req, res) => {
   try {
     const files = await File.find({ userId: req.params.userId });
+
+    if (!files) {
+      return res.json({
+        status: 404,
+        message: "No files found or link has been expired ",
+      });
+    }
 
     res.json({
       status: 200,
@@ -50,7 +54,7 @@ app.get("/u/:fileName", (req, res) => {
       }
     });
   } else {
-    res.status(404).send("File not found");
+    res.status(404).send("File not found or Link has expired");
   }
 });
 

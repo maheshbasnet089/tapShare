@@ -3,8 +3,7 @@ const sendEmail = require("../../services/sendEmail");
 const sendSms = require("../../services/sendSms");
 
 exports.sendFiles = async (req, res) => {
-  console.log(req.files)
-  console.log(req.body)
+
   const files = req.files;
   try {
     const filePaths = [];
@@ -21,8 +20,14 @@ exports.sendFiles = async (req, res) => {
       });
 
       const savedFile = await newFile.save();
+
       if (savedFile) filePaths.push(newFile.path);
+      setTimeout(async () => {
+        const file = await File.findByIdAndDelete(savedFile._id);
+        //  if()
+      }, 1000 * 60 * 60 * 24); // delete file after 24 hours
     }
+
     // send email here
     const emailOptions = {
       to: req.body.email,
