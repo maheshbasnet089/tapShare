@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import "./SeeFiles.css";
 import { IoMdDownload } from "react-icons/io";
@@ -7,10 +7,10 @@ import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 
 //model
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 import { frontendUrlProd } from "./config";
+import QRCode from "qrcode.react";
 
 const style = {
   position: "absolute",
@@ -22,13 +22,17 @@ const style = {
   border: "1px solid #000",
   boxShadow: 24,
   p: 3,
+  display : "flex",
+  justifyContent : "center",
+  alignItems : "center",
 };
 
-const QR =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png";
+
 
 const SeeFiles = () => {
   //model START
+  const currentUrl = window.location.href;
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -87,26 +91,6 @@ const SeeFiles = () => {
       }, 2000);
     });
   });
-  const [remainingTime, setRemainingTime] = useState(
-    parseInt(localStorage.getItem("remainingTime"), 10) || 24 * 60 * 60
-  ); // retrieve remaining time from localStorage or set it to 24 hours in seconds
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setRemainingTime((prevTime) => prevTime - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("remainingTime", remainingTime.toString());
-  }, [remainingTime]);
-
-  // convert remaining time in seconds to hours, minutes, and seconds
-  const hours = Math.floor(remainingTime / 3600);
-  const minutes = Math.floor((remainingTime % 3600) / 60);
-  const seconds = remainingTime % 60;
 
   // copy link JS END
   return (
@@ -119,7 +103,7 @@ const SeeFiles = () => {
          </div> */}
           <div className="css-alert css-alert-success">
             <h6 className="css-alert-text">
-              Expires In: {hours}h {minutes}m {seconds}s
+              Expires After : 15 minutes of inactivity
             </h6>
           </div>
           <div className="card-links">
@@ -261,9 +245,9 @@ const SeeFiles = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          {/* <img src={QR} /> */}
-          <h3 style={{ textAlign: "center" }}>Coming Soon, Keep tapping !</h3>
+        <Box sx={style} >
+          <QRCode value={currentUrl} size={356} />
+          {/* <h3 style={{ textAlign: "center" }}>Coming Soon, Keep tapping !</h3> */}
         </Box>
       </Modal>
       {/* modeal END  */}
