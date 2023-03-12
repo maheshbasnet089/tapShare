@@ -22,12 +22,10 @@ const style = {
   border: "1px solid #000",
   boxShadow: 24,
   p: 3,
-  display : "flex",
-  justifyContent : "center",
-  alignItems : "center",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 };
-
-
 
 const SeeFiles = () => {
   //model START
@@ -52,6 +50,11 @@ const SeeFiles = () => {
       alert(res.data.message);
     }
   };
+  function handleScan(data) {
+    if (data) {
+      window.location.href = data;
+    }
+  }
   React.useEffect(() => {
     fetchFiles();
   }, []);
@@ -245,8 +248,8 @@ const SeeFiles = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} >
-          <QRCode value={currentUrl} size={356} />
+        <Box sx={style}>
+          <QRCode value={currentUrl} size={356} onScan={handleScan} />
           {/* <h3 style={{ textAlign: "center" }}>Coming Soon, Keep tapping !</h3> */}
         </Box>
       </Modal>
