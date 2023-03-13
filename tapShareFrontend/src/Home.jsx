@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import { HiOutlineCursorClick } from "react-icons/hi";
 import { AiOutlineSend } from "react-icons/ai";
 import { useStore } from "./store";
+import "./index.css"
+
+
+import ClipLoader from "react-spinners/ClipLoader";
+
 function Home() {
   // store calls
   const send_file = useStore((state) => state.send_file);
   // states
   const [files, setFiles] = useState(null);
   const [email, setEmail] = useState(null);
+
 
   // handlers
   // handle file click
@@ -22,6 +28,15 @@ function Home() {
       setFiles(fileArray);
     }
   };
+  // handles loading/loader
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() =>{
+    setIsLoading(true)
+    setTimeout(() =>{
+      setIsLoading(false)
+    },8000)
+  })
+   
   return (
     <div className="relative overflow-hidden">
       {/* its the app bar section that contains logo at the top of the page */}
@@ -118,9 +133,9 @@ function Home() {
               className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
             />
           </div>
-
+          
           <div className="absolute to flex pl-[.8em] pr-[.5em]  mt-10 bg-[lightgray]  rounded shadow-md shadow-[#555] cursor-pointer ">
-            <h2 onClick={() => send_file(files, "")}>Generate Link</h2>
+            <h2 className="submit-btn" onClick={() => send_file(files, "")} >Generate Link</h2>
           </div>
         </div>
       )}
