@@ -79,3 +79,7 @@ body{
         -webkit-transform: scale(1.25);
 }
 }
+
+::-webkit-scrollbar{
+    width: 0;
+}
