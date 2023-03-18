@@ -17,7 +17,7 @@ function Home() {
     severity: undefined,
   });
   // Close Toaster
-  const getToasterValue = (value) => {
+  const closeToaster = (value) => {
     setToasterData({
       open: value,
       message: null,
@@ -35,7 +35,7 @@ function Home() {
   };
   return (
     <div className="relative overflow-hidden">
-      <Toaster data={toasterData} close={getToasterValue} />
+      <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}
       <AppBar />
       {/* app bar ends here */}
