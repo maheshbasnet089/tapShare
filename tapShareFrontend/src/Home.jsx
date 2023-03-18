@@ -7,9 +7,23 @@ import AppBar from "./components/app-bar";
 import AnimateStyle from "./components/animate-style";
 import SendFiles from "./components/send-files";
 import GenerateLink from "./components/generate-link";
+import Toaster from "./components/toaster";
 function Home() {
   // states
   const [files, setFiles] = useState(null);
+  const [toasterData, setToasterData] = useState({
+    open: false,
+    message: "",
+    severity: undefined,
+  });
+  // Close Toaster
+  const getToasterValue = (value) => {
+    setToasterData({
+      open: value,
+      message: null,
+      color: undefined,
+    });
+  };
   // handlers
   // handle file click
   const handleFileClick = (e) => {
@@ -21,6 +35,7 @@ function Home() {
   };
   return (
     <div className="relative overflow-hidden">
+      <Toaster data={toasterData} close={getToasterValue} />
       {/* its the app bar section that contains logo at the top of the page */}
       <AppBar />
       {/* app bar ends here */}
@@ -59,8 +74,8 @@ function Home() {
       {files && files.length > 0 && (
         <>
           <div className="absolute to flex items-center flex-col">
-            <ViewFiles files={files} />
-            <SendFiles files={files} />
+            <ViewFiles files={files} setFiles={setFiles} />
+            <SendFiles files={files} setToasterData={setToasterData} />
             <GenerateLink files={files} />
           </div>
         </>

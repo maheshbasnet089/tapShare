@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import { useStore } from "../utility/store";
 
-const SendFiles = ({ files }) => {
+const SendFiles = ({ files, setToasterData }) => {
   // store calls
   const send_file = useStore((state) => state.send_file);
   // states
@@ -18,7 +18,7 @@ const SendFiles = ({ files }) => {
         className="h-[2.2em] outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem] placeholder:text-[#555] tracking-wide focus:outline-none"
       />
       <AiOutlineSend
-        onClick={() => send_file(files, email)}
+        onClick={() => send_file(files, email, setToasterData)}
         className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
       />
     </div>

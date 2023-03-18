@@ -5,14 +5,13 @@ import { useNavigate } from "react-router-dom";
 
 export const useStore = create((set) => ({
   loading: false,
-
-  send_file: async (file, email) => {
+  files: [],
+  send_file: async (file, email, setToasterData) => {
     function generateUserId() {
       const userId = Math.floor(1000 + Math.random() * 9000);
 
       return userId;
     }
-
     if (
       localStorage.getItem("userId") == null ||
       localStorage.getItem("userId") == "" ||
@@ -43,17 +42,32 @@ export const useStore = create((set) => ({
         }
       );
       if (res.data.status === 200) {
-        alert(res.data.message);
+        // alert(res.data.message);
+        setToasterData({
+          open: true,
+          message: "files sent successfully",
+          severity: "success",
+        });
       } else if (res.data.status === 201) {
         window.location.href =
           "https://tapshare.xyz/" + localStorage.getItem("userId");
         // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
       } else {
-        alert("Error sending file Try again");
+        // alert("Error sending file Try again");
+        setToasterData({
+          open: true,
+          message: "Error sending files",
+          severity: "error",
+        });
       }
     } catch (error) {
-      alert("Error sending file Try again");
+      // alert("Error sending file Try again");
+      setToasterData({
+        open: true,
+        message: "Error sending files",
+        severity: "error",
+      });
     } finally {
       set({ loading: false });
     }
