@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 const sendEmail = async (options) => {
-  console.log(options);
+ 
   var transporter = nodemailer.createTransport({
     service: "gmail",
     // host: "smtp.gmail.com",

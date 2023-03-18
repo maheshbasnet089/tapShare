@@ -5,7 +5,6 @@ const twilio = require("twilio")(accountSid, authToken, {
 });
 
 const sendSms = async (options) => {
-  console.log(options, "options");
   return await twilio.messages.create({
     body: `Tapshare: ${options.text} `,
     from: process.env.TWILIO_NUMBER,
