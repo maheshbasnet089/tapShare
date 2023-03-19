@@ -1,6 +1,5 @@
 import * as React from "react";
-import Snackbar from "@mui/material/Snackbar";
-import Slide from "@mui/material/Slide";
+import { Snackbar, Slide } from "@mui/material";
 import MuiAlert from "@mui/material/Alert";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -9,24 +8,24 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
 }
-
-const Toaster = ({ props }) => {
+const Toaster = ({ data, close }) => {
+  const handleClose = () => {
+    close(false);
+  };
   return (
     <div>
       <Snackbar
         sx={{
-          display: props?.data.open ? "block" : "none",
+          display: data.open ? "block" : "none",
         }}
-        open={props?.data.open}
-        onClose={() => {
-          props?.close(false);
-        }}
-        TransitionComponent={TransitionLeft}
+        open={data.open}
         autoHideDuration={3000}
+        onClose={handleClose}
+        TransitionComponent={TransitionLeft}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
-        <Alert severity={`${props?.data.severity}`}>
-          {props?.data.message}
+        <Alert onClose={handleClose} severity={data.severity}>
+          {data.message}
         </Alert>
       </Snackbar>
     </div>

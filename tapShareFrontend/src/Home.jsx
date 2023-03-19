@@ -8,7 +8,11 @@ import AnimateStyle from "./components/animate-style";
 import SendFiles from "./components/send-files";
 import GenerateLink from "./components/generate-link";
 import Toaster from "./components/toaster";
+import { useStore } from "./utility/store";
 function Home() {
+  // store calls
+  const progress = useStore((state) => state.progress);
+  const loading = useStore((state) => state.loading);
   // states
   const [files, setFiles] = useState(null);
   const [toasterData, setToasterData] = useState({
@@ -21,7 +25,7 @@ function Home() {
     setToasterData({
       open: value,
       message: null,
-      color: undefined,
+      severity: undefined,
     });
   };
   // handlers
@@ -67,7 +71,9 @@ function Home() {
           />
         </IconButton>
         {/* this will show the progress of send -> its not functional at the moment*/}
-        {/* <p className="text-[#efefef] text-[.6rem] absolute top-[75%]">89%</p> */}
+        <p className="text-[#efefef] text-[.6rem] absolute top-[75%]">
+          {loading && progress && `${progress}%`}
+        </p>
       </div>
       {/* this section takes input to whom file should be send */}
       {/* it is hidden by default, it appears as soon as one selects a file */}
@@ -75,7 +81,11 @@ function Home() {
         <>
           <div className="absolute to flex items-center flex-col">
             <ViewFiles files={files} setFiles={setFiles} />
-            <SendFiles files={files} setToasterData={setToasterData} />
+            <SendFiles
+              files={files}
+              setToasterData={setToasterData}
+              setFiles={setFiles}
+            />
             <GenerateLink files={files} />
           </div>
         </>

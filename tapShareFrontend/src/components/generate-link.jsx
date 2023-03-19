@@ -7,7 +7,7 @@ const GenerateLink = ({ files }) => {
   return (
     <div className="flex pl-[.8em] pr-[.5em] w-fit mt-1 bg-[lightgray]  rounded shadow-md shadow-[#555] cursor-pointer ">
       {loading ? (
-        <img src="loader.gif" alt="" srcset="" height="20px" width="50px" />
+        <img src="loader.gif" alt="" srcSet="" height="20px" width="50px" />
       ) : (
         <h2
           className="hover:text-[#777676]"

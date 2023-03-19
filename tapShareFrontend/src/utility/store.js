@@ -5,11 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 export const useStore = create((set) => ({
   loading: false,
-  files: [],
-  send_file: async (file, email, setToasterData) => {
+  progress: 0,
+  send_file: async (file, email, setToasterData, setFiles) => {
     function generateUserId() {
       const userId = Math.floor(1000 + Math.random() * 9000);
-
       return userId;
     }
     if (
@@ -20,41 +19,43 @@ export const useStore = create((set) => ({
       const userId = generateUserId();
       localStorage.setItem("userId", userId);
     }
-
     const formData = new FormData();
     formData.append("email", email);
     formData.append("userId", localStorage.getItem("userId"));
-
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
     }
-
     try {
       set({ loading: true });
       const res = await axios.post(
-        // "http://localhost:1337/api/v1/sendFile",
-        "https://tapshare.onrender.com/api/v1/sendFile",
+        "http://localhost:1337/api/v1/sendFile",
+        // "https://tapshare.onrender.com/api/v1/sendFile",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+          onUploadProgress: (progressEvent) => {
+            const percentCompleted = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            set({ progress: percentCompleted });
+          },
         }
       );
       if (res.data.status === 200) {
-        // alert(res.data.message);
         setToasterData({
           open: true,
           message: "files sent successfully",
           severity: "success",
         });
+        setFiles(null);
       } else if (res.data.status === 201) {
         window.location.href =
           "https://tapshare.xyz/" + localStorage.getItem("userId");
         // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
       } else {
-        // alert("Error sending file Try again");
         setToasterData({
           open: true,
           message: "Error sending files",
@@ -62,7 +63,6 @@ export const useStore = create((set) => ({
         });
       }
     } catch (error) {
-      // alert("Error sending file Try again");
       setToasterData({
         open: true,
         message: "Error sending files",
