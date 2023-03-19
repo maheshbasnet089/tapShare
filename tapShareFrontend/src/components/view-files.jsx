@@ -10,7 +10,6 @@ import { BsFiletypePpt } from "react-icons/bs";
 import { AiOutlineFileExcel } from "react-icons/ai";
 
 const ViewFiles = ({ files, setFiles }) => {
-    console.log("🚀 ~ file: view-files.jsx:13 ~ ViewFiles ~ files:", files);
   // states
   const [coords, setCoords] = useState([]);
   // function that generates random numbers, x amd y, repeat files.length

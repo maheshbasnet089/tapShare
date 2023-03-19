@@ -37,8 +37,20 @@ function Home() {
       setFiles(fileArray);
     }
   };
+  // handles drag and drop
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const fileArray = Array.from(event.dataTransfer.files);
+    if (fileArray.length > 0) {
+      setFiles(fileArray);
+    }
+  };
   return (
-    <div className="relative overflow-hidden">
+    <div
+      className="relative overflow-hidden"
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={handleDrop}
+    >
       <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}
       <AppBar />
