@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 export const useStore = create((set) => ({
   loading: false,
   progress: 0,
+  files: [],
+  setFiles: (files) => set({ files }),
   send_file: async (file, email, setToasterData, setFiles) => {
     function generateUserId() {
       const userId = Math.floor(1000 + Math.random() * 9000);

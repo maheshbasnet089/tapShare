@@ -13,8 +13,10 @@ function Home() {
   // store calls
   const progress = useStore((state) => state.progress);
   const loading = useStore((state) => state.loading);
+  const files = useStore((state) => state.files);
+  const setFiles = useStore((state) => state.setFiles);
   // states
-  const [files, setFiles] = useState(null);
+  // const [files, setFiles] = useState([]);
   const [toasterData, setToasterData] = useState({
     open: false,
     message: "",
@@ -92,13 +94,12 @@ function Home() {
       {files && files.length > 0 && (
         <>
           <div className="absolute to flex items-center flex-col">
-            <ViewFiles files={files} setFiles={setFiles} />
-            <SendFiles
-              files={files}
-              setToasterData={setToasterData}
-              setFiles={setFiles}
-            />
-            <GenerateLink files={files} />
+            {/* shows the selected files, also allow to remove files (if wanted) */}
+            <ViewFiles />
+            {/* this section contains the input field that accepts email and sends files */}
+            <SendFiles setToasterData={setToasterData} />
+            {/* this section generates links */}
+            <GenerateLink />
           </div>
         </>
       )}
