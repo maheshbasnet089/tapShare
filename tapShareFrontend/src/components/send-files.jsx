@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { AiOutlineSend } from "react-icons/ai";
 import { useStore } from "../utility/store";
 
-const SendFiles = ({ files, setToasterData, setFiles }) => {
+const SendFiles = ({ setToasterData }) => {
   // store calls
   const send_file = useStore((state) => state.send_file);
+  const files = useStore((state) => state.files);
+  const setFiles = useStore((state) => state.setFiles);
   // states
   // email states -> email to whom one intends to send file/files
   const [email, setEmail] = useState(null);
-
   return (
     <div className="flex items-center bg-[lightgray] pl-[.8em] pr-[.5em] rounded shadow-md shadow-[#555] w-fit mt-2">
       <input
