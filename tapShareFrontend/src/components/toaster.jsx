@@ -19,7 +19,7 @@ const Toaster = ({ data, close }) => {
           display: data.open ? "block" : "none",
         }}
         open={data.open}
-        autoHideDuration={3000}
+        autoHideDuration={2000}
         onClose={handleClose}
         TransitionComponent={TransitionLeft}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}

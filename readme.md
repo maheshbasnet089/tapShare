@@ -17,13 +17,15 @@ Using TapShare is easy and straightforward. Here are the steps to follow:
 
 - Go to the TapShare website: https://tapshare.xyz
 - Tap on the middle icon button to upload the files you want to transfer. You can upload multiple files at once.
-- Choose whether you want to send the files to email or phone number. If you choose email, enter the recipient's email address. If you choose phone number, enter the recipient's phone number(e.g:981232345)
+- Choose whether you want to send the files to email or phone number. If you choose email, enter the recipient's email address. If you choose phone number, enter the recipient's phone number(e.g:981232345)(Note: for premium user only,contact us on upgrading to premium)
 - Click on the "Send" to initiate the file transfer. The recipient will receive a notification with a link to download the files.
 
 ## Upcoming Features
 
 - Facility of pasting code and sharing it too realtime
 - Establish secure shell connection (ssh) realtime between sender and receiver
+- Help centre
+- Apk version is launching soon
 
 ## Support
 
