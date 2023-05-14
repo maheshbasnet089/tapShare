@@ -22,10 +22,9 @@ Using TapShare is easy and straightforward. Here are the steps to follow:
 
 ## Upcoming Features
 
-- Facility of pasting code and sharing it too realtime
+- Facility of pasting code and sharing it realtime
 - Establish secure shell connection (ssh) realtime between sender and receiver
-- Help centre
-- Apk version is launching soon
+- PWA is coming soon
 
 ## Support
 
