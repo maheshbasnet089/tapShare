@@ -11,7 +11,9 @@
     font-family: 'Play', sans-serif, roboto;
 }
 body{
-    background:#6f6f6f ;
+    /* background:#6f6f6f ; */
+        /* background-color: #27374D */
+        background-color: #3C486B;
 }
 
 .animate{
@@ -59,3 +61,10 @@ body{
     -ms-transform: translate(-50%,-45%);
     -o-transform: translate(-50%,-45%);
 }
+
+
+/* home CSS START  */
+
+/* SEARCH  */
+
+                                
