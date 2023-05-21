@@ -12,7 +12,7 @@ export default defineConfig({
 
     VitePWA({
       registerType: "prompt",
-      includeAssets: ["favicon.ico", "apple-touch-icon.png", "tapShare.png"],
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "tapshare.png"],
       manifest: {
         name: "TapShare",
         short_name: "TapShare",
@@ -27,22 +27,22 @@ export default defineConfig({
             purpose: "any maskable",
           },
           {
-            src: "tapShare192.png",
+            src: "tapshare192.png",
             type: "image/png",
             sizes: "192x192",
           },
           {
-            src: "tapShare512.png",
+            src: "tapshare512.png",
             type: "image/png",
             sizes: "512x512",
           },
           {
-            src: "tapShare256.png",
+            src: "tapshare256.png",
             type: "image/png",
             sizes: "256x256",
           },
           {
-            src: "tapShare384.png",
+            src: "tapshare384.png",
             type: "image/png",
             sizes: "384x384",
           },
