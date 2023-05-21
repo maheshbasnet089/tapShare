@@ -11,7 +11,9 @@
     font-family: 'Play', sans-serif, roboto;
 }
 body{
-    background:#6f6f6f ;
+    /* background:#6f6f6f ; */
+        /* background-color: #27374D */
+        background-color: #3C486B;
 }
 
 /* infinite alternate backwards; */
@@ -57,29 +59,4 @@ body{
     -moz-transform: translate(-50%,-45%);
     -ms-transform: translate(-50%,-45%);
     -o-transform: translate(-50%,-45%);
-}
-.pointer{
-     animation: pointer-ripple 2s ease-in infinite alternate;
-     -webkit-animation: pointer-ripple 2s ease-in infinite alternate;
-}
-@keyframes pointer-ripple{
-    0%{
-        transform: scale(.95);
-        -webkit-transform: scale(.95);
-        -moz-transform: scale(.95);
-        -ms-transform: scale(.95);
-        -o-transform: scale(.95);
-}
-    100%{
-        transform: scale(1.25);
-        -webkit-transform: scale(1.25);
-        -moz-transform: scale(1.25);
-        -ms-transform: scale(1.25);
-        -o-transform: scale(1.25);
-        -webkit-transform: scale(1.25);
-}
-}
-
-::-webkit-scrollbar{
-    width: 0;
 }

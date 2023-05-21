@@ -9,14 +9,39 @@ import SendFiles from "./components/send-files";
 import GenerateLink from "./components/generate-link";
 import Toaster from "./components/toaster";
 import { useStore } from "./utility/store";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import { HiOutlineCursorClick, HiThumbUp } from "react-icons/hi";
+import { AiOutlineSend } from "react-icons/ai";
+import { RiFileSearchLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+// import { useStore } from "./store";
+
+const style = {
+  position: "absolute",
+  top: "20%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  borderRadius: "5px",
+  boxShadow: 24,
+  p: 4,
+  pt: 3,
+};
 function Home() {
   // store calls
   const progress = useStore((state) => state.progress);
   const loading = useStore((state) => state.loading);
   const files = useStore((state) => state.files);
   const setFiles = useStore((state) => state.setFiles);
+  const [search, setSearch] = useState("");
   // states
   // const [files, setFiles] = useState([]);
+  const navigate = useNavigate();
   const [toasterData, setToasterData] = useState({
     open: false,
     message: "",
@@ -47,6 +72,10 @@ function Home() {
       setFiles(fileArray);
     }
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div
       className="relative overflow-hidden"
@@ -59,7 +88,144 @@ function Home() {
       {/* app bar ends here */}
       {/* this section primarily exists for aesthetic purpose */}
       {/* select at least one file to see the animation */}
-      <AnimateStyle files={files} />
+      {/* <AnimateStyle files={files} /> */}
+      <nav className="fixed w-full" title="TapShare">
+        <div className="flex justify-center select-none w-full items-center p-[1em]">
+          <div
+            className="flex items-center justify-center gap-[.1rem] cursor-pointer"
+            title="TapShare"
+          >
+            <div className="flex justify-center items-center  bg-[rgba(0,0,0,0.2)] p-[2px] rounded-full">
+              <div className="flex justify-center bg-[rgba(0,0,0,0.4)] rounded-full ">
+                <BsHandIndexThumb className="text-[2rem] text-[#efefef] rounded-full bg-[rgba(0,0,0,.5)] p-[6px] m-[2px] pr-2" />
+              </div>
+            </div>
+            <p className="text-[1.5rem] text-[#efefef] font-semibold tracking-wide">
+              Share
+            </p>
+          </div>
+        </div>
+      </nav>
+
+      {/* SEARCH START */}
+      <div className="relative">
+        <div
+          className="flex justify-center items-center mt-28 absolute"
+          style={{
+            position: "absolute",
+
+            top: "50%",
+
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          <button
+            style={{
+              backgroundColor: "transparent",
+              border: "1px solid white",
+            }}
+            onClick={handleOpen}
+            type="button"
+            class="text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+          >
+            <span style={{ width: "20px", marginRight: "10px" }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-5.197-5.197A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                />
+              </svg>
+            </span>
+            Search Code
+          </button>
+
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
+                <TextField
+                  fullWidth
+                  id="standard-basic"
+                  label="Search"
+                  variant="standard"
+                  // type="number"
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <Button
+                  variant="contained"
+                  size="small"
+                  sx={{ height: "fit-content", backgroundColor: "#657ee4" }}
+                  onClick={() => navigate(`/${search}`)}
+                >
+                  Search
+                </Button>
+              </Box>
+              <Typography
+                variant="caption"
+                color="textSecondary"
+                sx={{ mt: 3, lineHeight: "0.1" }}
+              >
+                Enter the sender code (e.g., '3456') to search for files shared
+                by that sender.
+              </Typography>
+            </Box>
+          </Modal>
+        </div>
+      </div>
+
+      {/* SEARCH END  */}
+      {/* app bar ends here */}
+      {/* this section primarily exists for aesthetic purpose */}
+      {/* select at least one file to see the animation */}
+
+      <div
+        className={`w-full h-screen flex items-center justify-center ${
+          files && files.length > 0 && "animate"
+        } overflow-hidden`}
+      >
+        <div
+          className={`flex justify-center items-center  ${
+            files &&
+            files.length > 0 &&
+            "border border-[#9c9a9a] dark:border-[#efefef]"
+          } p-[5em] rounded-full`}
+        >
+          <div
+            className={`flex justify-center items-center  ${
+              files &&
+              files.length > 0 &&
+              "border border-[#bab9b9] dark:border-[#efefef]"
+            } p-[5em] rounded-full `}
+          >
+            <div
+              className={`flex justify-center items-center  ${
+                files && files.length > 0 && "border dark:border-[#efefef]"
+              } p-[5em] rounded-full `}
+            >
+              <div className="flex justify-center items-center  bg-[rgba(0,0,0,0.2)] p-[2em] rounded-full ">
+                <div className="flex justify-center items-center  bg-[#0000004d] p-[2em] rounded-full  overflow-hidden">
+                  <div className="flex justify-center items-center  bg-[rgba(0,0,0,.4)] p-[2em] rounded-full  overflow-hidden">
+                    <div className="h-[4em] w-[4em] bg-[rgba(0,0,0,.8)] rounded-full flex items-center justify-center  hover:bg-[rgba(0,0,0,0.3)]"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       {/* This section contains the input field that accepts file/files */}
       {/* select at least one file, to make the below section appear */}
       <div
