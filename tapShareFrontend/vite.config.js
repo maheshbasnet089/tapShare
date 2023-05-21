@@ -12,7 +12,7 @@ export default defineConfig({
 
     VitePWA({
       registerType: "prompt",
-      includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.png"],
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "tapShare.png"],
       manifest: {
         name: "TapShare",
         short_name: "TapShare",
