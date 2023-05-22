@@ -6,9 +6,9 @@ TapShare is a platform that enables users to transfer files, including zip files
 
 - Transfer files of various sizes and types, including zip files
 - No need to have gmail account or register
-- Send files via email or phone number
+- Send files to email or phone number
 - Simple and easy-to-use interface
-- No need to download any software or app
+- PWA app (140 kb)
 - Secure and private file transfers
 
 ## How to Use TapShare
@@ -24,7 +24,6 @@ Using TapShare is easy and straightforward. Here are the steps to follow:
 
 - Facility of pasting code and sharing it realtime
 - Establish secure shell connection (ssh) realtime between sender and receiver
-- PWA is coming soon
 
 ## Support
 
