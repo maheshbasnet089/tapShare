@@ -7,6 +7,26 @@ const path = require("path");
 const fs = require("fs");
 const File = require("./model/fileModel");
 
+const schedule = require('node-schedule');
+const http = require('http');
+
+// Define the URL of the web service endpoint
+const serviceEndpoint = 'http://tapshare.onrender.com/whoami';
+
+// Create a scheduled job that triggers an HTTP request every 10 minutes
+const job = schedule.scheduleJob('*/10 * * * *', function(){
+  // Send an HTTP GET request to the service endpoint
+  http.get(serviceEndpoint, (response) => {
+    // Log the response
+    console.log(`Ping to ${serviceEndpoint}: ${response.statusCode}`);
+    // Consume the response data to free up resources
+    response.resume();
+  }).on('error', (error) => {
+    // Handle any errors that occurred during the request
+    console.error(`Error pinging ${serviceEndpoint}: ${error.message}`);
+  });
+});
+
 //CORS
 const corsOptions = {
   origin: "https://tapshare.xyz",
@@ -15,6 +35,10 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
+app.get("/whoami",(req,res)=>{
+  res.send("I am tapshare.I am a platform that enables users to transfer files, including zip files, to email and phone number in a tap.")
+})
 
 app.get("/:userId", async (req, res) => {
   try {
@@ -59,6 +83,7 @@ app.get("/u/:fileName", (req, res) => {
     res.status(404).send("File not found or Link has expired");
   }
 });
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
