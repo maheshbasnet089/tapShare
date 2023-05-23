@@ -41,7 +41,7 @@ const SeeFiles = () => {
   const [files, setFiles] = React.useState([]); // [state, setState]
 
   const fetchFiles = async function fetchFiles() {
-    const res = await axios.get(`https://shark-app-u4nc5.ondigitalocean.app/${id}`);
+    const res = await axios.get(`https://oyster-app-2-t6ajw.ondigitalocean.app/${id}`);
     // const res = await axios.get(`http://localhost:1337/${id}`);
 
     if (res.data.status === 200) {

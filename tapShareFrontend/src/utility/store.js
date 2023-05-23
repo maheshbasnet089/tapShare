@@ -31,7 +31,7 @@ export const useStore = create((set) => ({
       set({ loading: true });
       const res = await axios.post(
         // "http://localhost:1337/api/v1/sendFile",
-        "https://shark-app-u4nc5.ondigitalocean.app/api/v1/sendFile",
+        "https://oyster-app-2-t6ajw.ondigitalocean.app/api/v1/sendFile",
         formData,
         {
           headers: {
