@@ -38,6 +38,7 @@ exports.sendFiles = async (req, res) => {
     // Add file paths as links in the email body
     emailOptions.text += "\n\nShared Files(tap to download):\n";
     for (const filePath of filePaths) {
+      console.log(filePath, "filePath")
       emailOptions.text += `${filePath}\n`;
     }
 
