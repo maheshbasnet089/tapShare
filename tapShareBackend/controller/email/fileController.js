@@ -6,7 +6,7 @@ const path = require("path");
 const schedule = require("node-schedule");
 // Function to schedule file deletion after 24 hours
 const scheduleDeletion = (fileId) => {
-  const deletionJob = schedule.scheduleJob("* * * * *", async () => {
+  const deletionJob = schedule.scheduleJob("* * */24 * *", async () => {
     try {
       const file = await File.findByIdAndDelete(fileId);
       if (file) {
