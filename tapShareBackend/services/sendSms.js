@@ -5,11 +5,15 @@ const twilio = require("twilio")(accountSid, authToken, {
 });
 
 const sendSms = async (options) => {
-  return await twilio.messages.create({
-    body: `Tapshare: ${options.text} `,
-    from: process.env.TWILIO_NUMBER,
-    to: "+977" + options.to,
-  });
+  try {
+    return await twilio.messages.create({
+      body: `Tapshare: ${options.text} `,
+      from: process.env.TWILIO_NUMBER,
+      to: "+977" + options.to,
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 module.exports = sendSms;

@@ -11,7 +11,7 @@ const schedule = require('node-schedule');
 const http = require('http');
 
 // Define the URL of the web service endpoint
-const serviceEndpoint = 'http://tapshare.onrender.com/whoami';
+const serviceEndpoint = 'https://shark-app-u4nc5.ondigitalocean.app/whoami';
 
 // Create a scheduled job that triggers an HTTP request every 10 minutes
 const job = schedule.scheduleJob('*/10 * * * *', function(){
