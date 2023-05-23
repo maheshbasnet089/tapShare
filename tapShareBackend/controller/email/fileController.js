@@ -28,7 +28,7 @@ exports.sendFiles = async (req, res) => {
       }, 1000 * 60 * 60 * 24); // delete file after 24 hours
     }
 
-    // send email here
+    // send email here test
     const emailOptions = {
       to: req.body.email,
       subject: "New File Received from TapShare ",
