@@ -47,10 +47,10 @@ app.get("/:userId", async (req, res) => {
 
 app.get("/u/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
-  console.log("File path:", filePath);
+ 
 
   const fileExists = fs.existsSync(filePath);
-  console.log("File exists:", fileExists);
+
 
   if (fileExists) {
     res.download(filePath, req.params.fileName, (err) => {
