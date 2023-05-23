@@ -106,7 +106,7 @@ const SeeFiles = () => {
          </div> */}
           <div className="css-alert css-alert-success">
             <h6 className="css-alert-text">
-              Expires After : 15 minutes of inactivity
+              Expires After : 24 hours 
             </h6>
           </div>
           <div className="card-links">
