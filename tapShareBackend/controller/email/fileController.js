@@ -1,9 +1,31 @@
 const File = require("../../model/fileModel");
 const sendEmail = require("../../services/sendEmail");
 const sendSms = require("../../services/sendSms");
+// Function to schedule file deletion after 24 hours
+const scheduleDeletion = (fileId) => {
+  const deletionJob = schedule.scheduleJob("* * * * *", async () => {
+    try {
+      const file = await File.findByIdAndDelete(fileId);
+      if (file) {
+        const filePath = path.join(
+          "uploads",
+          file.path.replace(process.env.baseUrl + "u/", "")
+        );
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.log("Error deleting file:", err);
+          } else {
+            console.log("File deleted successfully:", filePath);
+          }
+        });
+      }
+    } catch (error) {
+      console.log("Error deleting file:", error);
+    }
+  });
+};
 
 exports.sendFiles = async (req, res) => {
-
   const files = req.files;
   try {
     const filePaths = [];
@@ -21,11 +43,13 @@ exports.sendFiles = async (req, res) => {
 
       const savedFile = await newFile.save();
 
-      if (savedFile) filePaths.push(newFile.path);
-      setTimeout(async () => {
-        const file = await File.findByIdAndDelete(savedFile._id);
-        //  if()
-      }, 1000 * 60 * 60 * 24); // delete file after 24 hours
+      if (savedFile) {
+        filePaths.push(newFile.path);
+        scheduleDeletion(savedFile._id);
+      }
+
+
+      
     }
 
     // send email here test
@@ -38,7 +62,7 @@ exports.sendFiles = async (req, res) => {
     // Add file paths as links in the email body
     emailOptions.text += "\n\nShared Files(tap to download):\n";
     for (const filePath of filePaths) {
-      console.log(filePath, "filePath")
+      console.log(filePath, "filePath");
       emailOptions.text += `${filePath}\n`;
     }
 
