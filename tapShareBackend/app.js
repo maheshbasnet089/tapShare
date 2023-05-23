@@ -7,25 +7,6 @@ const path = require("path");
 const fs = require("fs");
 const File = require("./model/fileModel");
 
-const schedule = require('node-schedule');
-const http = require('http');
-
-// Define the URL of the web service endpoint
-const serviceEndpoint = 'https://oyster-app-2-t6ajw.ondigitalocean.app/whoami';
-
-// Create a scheduled job that triggers an HTTP request every 10 minutes
-const job = schedule.scheduleJob('*/10 * * * *', function(){
-  // Send an HTTP GET request to the service endpoint
-  http.get(serviceEndpoint, (response) => {
-    // Log the response
-    console.log(`Ping to ${serviceEndpoint}: ${response.statusCode}`);
-    // Consume the response data to free up resources
-    response.resume();
-  }).on('error', (error) => {
-    // Handle any errors that occurred during the request
-    console.error(`Error pinging ${serviceEndpoint}: ${error.message}`);
-  });
-});
 
 //CORS
 const corsOptions = {
