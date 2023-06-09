@@ -6,20 +6,22 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const File = require("./model/fileModel");
-
+const codeRoute = require("./route/codeRoute");
 
 //CORS
 const corsOptions = {
-  origin: "https://tapshare.xyz",
-  // origin: "http://127.0.0.1:5173",
+  // origin: "https://tapshare.xyz",
+  origin: "http://127.0.0.1:5173",
   // credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
-app.get("/whoami",(req,res)=>{
-  res.send("I am tapshare.I am a platform that enables users to transfer files, including zip files, to email and phone number in a tap.")
-})
+app.get("/whoami", (req, res) => {
+  res.send(
+    "I am tapshare.I am a platform that enables users to transfer files, including zip files, to email and phone number in a tap."
+  );
+});
 
 app.get("/:userId", async (req, res) => {
   try {
@@ -47,10 +49,8 @@ app.get("/:userId", async (req, res) => {
 
 app.get("/u/:fileName", (req, res) => {
   const filePath = path.join(__dirname, "uploads", req.params.fileName);
- 
 
   const fileExists = fs.existsSync(filePath);
-
 
   if (fileExists) {
     res.download(filePath, req.params.fileName, (err) => {
@@ -65,7 +65,6 @@ app.get("/u/:fileName", (req, res) => {
   }
 });
 
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/uploads")));
@@ -77,6 +76,7 @@ mongoConnection(process.env.MONGO_URI);
 //parses the body data in json
 
 app.use("/api/v1", fileRoute);
+app.use("/api/v1", codeRoute);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
