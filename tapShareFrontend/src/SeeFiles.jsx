@@ -9,7 +9,7 @@ import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 import Box from "@mui/material/Box";
 
 import Modal from "@mui/material/Modal";
-import { frontendUrlProd } from "./config";
+import { baseUrl, frontendUrlProd } from "./config";
 import QRCode from "qrcode.react";
 
 const style = {
@@ -41,7 +41,7 @@ const SeeFiles = () => {
   const [files, setFiles] = React.useState([]); // [state, setState]
 
   const fetchFiles = async function fetchFiles() {
-    const res = await axios.get(`https://oyster-app-2-t6ajw.ondigitalocean.app/${id}`);
+    const res = await axios.get(`${baseUrl}${id}`);
     // const res = await axios.get(`http://localhost:1337/${id}`);
 
     if (res.data.status === 200) {
@@ -55,7 +55,21 @@ const SeeFiles = () => {
       window.location.href = data;
     }
   }
+
+  const fetchCode = async () => {
+    const res = await axios.get(`${baseUrl}api/v1/code/${id}`);
+    if (res.data.status === 200) {
+      setFiles(res.data.code);
+    } else {
+      alert(res.data.message);
+    }
+  };
+
   React.useEffect(() => {
+    if (id.startsWith("f")) {
+      fetchCode();
+      return;
+    }
     fetchFiles();
   }, []);
 
@@ -98,16 +112,12 @@ const SeeFiles = () => {
   // copy link JS END
   return (
     <div>
-      {localStorage.getItem("userId") === id ? (
+      {localStorage.getItem("userId")?.endsWith(String(id).slice(-1)) ? (
         <div className="css-container sender">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
-          {/* <div className="css-alert css-alert-success">
-           <h5 className="css-alert-text">File Uploaded (10.9 MB)</h5>
-         </div> */}
+
           <div className="css-alert css-alert-success">
-            <h6 className="css-alert-text">
-              Expires After : 24 hours 
-            </h6>
+            <h6 className="css-alert-text">Expires After : 24 hours</h6>
           </div>
           <div className="card-links">
             <div className="css-form-control">
@@ -148,7 +158,7 @@ const SeeFiles = () => {
                       name="link"
                       id="link"
                       className="input-links"
-                      value={file.path}
+                      value={file.path ? file.path : file.title}
                       readOnly
                     />
                     <button className="css-btn-primary btn-copy-links btn-with-icon">
@@ -198,9 +208,7 @@ const SeeFiles = () => {
       ) : (
         <div className="css-container">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
-          {/* <div className="css-alert css-alert-success">
-            <h5 className="css-alert-text">File Received (10.99 MB)</h5>
-          </div> */}
+
           <label>To download this file, click on the download button</label>
           <div className="card-links">
             {files.map((file) => {
@@ -212,16 +220,16 @@ const SeeFiles = () => {
                       name="link"
                       id="link"
                       className="input-links"
-                      value={file.name}
+                      value={file.name ? file.name : file.title}
                       readOnly
                     />
 
-                    <a href={file.path}>
+                    <a href={file.path }>
                       <button
                         className="css-btn-primary btn-copy-links btn-with-icon"
                         style={{ width: "100%" }}
                       >
-                        Download
+                        {file.name ? "Download" : "Open"}
                         <span className="btn-icon">
                           <IoMdDownload />
                         </span>
@@ -241,7 +249,6 @@ const SeeFiles = () => {
         </div>
       )}
 
-      {/* model  START*/}
       <Modal
         open={open}
         onClose={handleClose}
@@ -250,10 +257,8 @@ const SeeFiles = () => {
       >
         <Box sx={style}>
           <QRCode value={currentUrl} size={356} onScan={handleScan} />
-          {/* <h3 style={{ textAlign: "center" }}>Coming Soon, Keep tapping !</h3> */}
         </Box>
       </Modal>
-      {/* modeal END  */}
     </div>
   );
 };
