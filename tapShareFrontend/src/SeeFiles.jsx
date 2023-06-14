@@ -9,7 +9,7 @@ import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 import Box from "@mui/material/Box";
 
 import Modal from "@mui/material/Modal";
-import { baseUrl, frontendUrlProd } from "./config";
+import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
 import QRCode from "qrcode.react";
 
 const style = {
@@ -212,6 +212,7 @@ const SeeFiles = () => {
           <label>To download this file, click on the download button</label>
           <div className="card-links">
             {files.map((file) => {
+              console.log(file);
               return (
                 <div className="css-form-control" key={file._id}>
                   <div className="form-row">
@@ -224,14 +225,14 @@ const SeeFiles = () => {
                       readOnly
                     />
 
-                    <a href={file.path }>
+                    <a href={file.path ? file.path : `/code/${file._id}`}>
                       <button
                         className="css-btn-primary btn-copy-links btn-with-icon"
                         style={{ width: "100%" }}
                       >
                         {file.name ? "Download" : "Open"}
                         <span className="btn-icon">
-                          <IoMdDownload />
+                          {file.name && <IoMdDownload />}
                         </span>
                       </button>
                     </a>
@@ -241,9 +242,15 @@ const SeeFiles = () => {
             })}
 
             <div>
-              <a href={frontendUrlProd}>
-                <button className="css-btn-primary">Share your file</button>
-              </a>
+              {id.startsWith("f") ? (
+                <a href={frontendUrlProdCode}>
+                  <button className="css-btn-primary">Share your Code</button>
+                </a>
+              ) : (
+                <a href={frontendUrlProd}>
+                  <button className="css-btn-primary">Share your file</button>
+                </a>
+              )}
             </div>
           </div>
         </div>

@@ -1,6 +1,13 @@
-import { Box, Button, Grid, TextField, TextareaAutosize, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  TextField,
+  TextareaAutosize,
+  Typography,
+} from "@mui/material";
 import axios from "axios";
-import React, { useRef ,useState} from "react";
+import React, { useRef, useState } from "react";
 import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
@@ -10,11 +17,9 @@ import { styled, useTheme } from "@mui/material/styles";
 import { IoMdDownload } from "react-icons/io";
 import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 import IosShareIcon from "@mui/icons-material/IosShare";
-import "../Global/AddCode.css"
-
+import "../Global/AddCode.css";
 
 import Paper from "@mui/material/Paper";
-
 
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
@@ -22,8 +27,7 @@ const Item = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: "white",
-  padding:'10px 0'
-
+  padding: "10px 0",
 }));
 
 const CodeWrap = styled(Box)(({ theme }) => ({
@@ -35,11 +39,7 @@ const CodeWrap = styled(Box)(({ theme }) => ({
   padding: "15px",
 }));
 
-
-
-
 const AddCode = () => {
-
   const navigate = useNavigate();
   function generateUserId() {
     const userId = Math.floor(1000 + Math.random() * 9000);
@@ -53,13 +53,16 @@ const AddCode = () => {
     const userId = generateUserId();
     localStorage.setItem("userId", userId);
   }
+
   const handleSubmit = async (e) => {
-    alert('click');
+    // alert("click");
     e.preventDefault();
     const formData = new FormData(e.target);
 
     formData.append("userId", "f" + localStorage.getItem("userId"));
     const data = Object.fromEntries(formData);
+    console.log(data);
+
     const response = await axios.post(`${baseUrl}api/v1/code`, data);
     if (response.data.status == 200) {
       navigate("/" + response.data.code.userId);
@@ -67,29 +70,29 @@ const AddCode = () => {
     console.log(response.data);
     console.log(data);
   };
-        const theme = useTheme();
+  const theme = useTheme();
 
-    const inputRef = useRef(null);
-      const [isCopied, setIsCopied] = useState(false);
-          const handleCopyClick = (e) => {
-            e.preventDefault();
-            if (inputRef.current) {
-              inputRef.current.select();
-              document.execCommand("copy");
+  const inputRef = useRef(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const handleCopyClick = (e) => {
+    e.preventDefault();
+    if (inputRef.current) {
+      inputRef.current.select();
+      document.execCommand("copy");
 
-              setIsCopied(true);
+      setIsCopied(true);
 
-              // Reset the button text after 2 seconds
-              setTimeout(() => {
-                setIsCopied(false);
-              }, 2000);
-            }
-          };
+      // Reset the button text after 2 seconds
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  };
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
-      <Box sx={{ width: "95%", pt: 4}}>
-        <form action="" onSubmit={(e) => handleSubmit(e)}>
-          <CodeWrap borderRadius={"5px 5px 0 0"} sx={{paddingTop:'20px'}}>
+      <Box sx={{ width: "95%", pt: 4 }}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <CodeWrap borderRadius={"5px 5px 0 0"} sx={{ paddingTop: "20px" }}>
             {/* <Typography variant="body1" sx={{ mb: 2 }}>
               TAP CODE
             </Typography> */}
@@ -97,6 +100,7 @@ const AddCode = () => {
               <Button
                 variant="outlined"
                 size="small"
+                onClick={() => window.location.reload()}
                 sx={{
                   color: "white",
                   display: "flex",
@@ -110,9 +114,10 @@ const AddCode = () => {
               </Button>
               <TextField
                 id="outlined-basic"
-                name="text"
-                label="Give this code a title.."
+                name="title"
+                label="Give  a title.."
                 variant="outlined"
+                required
                 InputProps={{
                   style: {
                     color: "white",
@@ -143,7 +148,7 @@ const AddCode = () => {
               />
             </Box>
           </CodeWrap>
-     
+
           <Grid container spacing={2}>
             {/* <Grid item xs={3}>
               <Item>
@@ -172,6 +177,7 @@ const AddCode = () => {
                     <TextareaAutosize
                       aria-label="textarea"
                       minRows={18}
+                      name="text"
                       placeholder="Enter or paste your text/code here.."
                       style={{
                         width: "100%",
@@ -270,7 +276,7 @@ const AddCode = () => {
                       alignItems: "flex-end",
                     }}
                   >
-                    <div className="form-row" style={{ width: "100%" }}>
+                    {/* <div className="form-row" style={{ width: "100%" }}>
                       <input
                         ref={inputRef}
                         type="text"
@@ -281,11 +287,11 @@ const AddCode = () => {
                         style={{
                           backgroundColor: "transparent",
                           color: "white",
-                          letterSpacing:'1px'
+                          letterSpacing: "1px",
                         }}
                       />
                       <button
-                      // type="button"
+                        // type="button"
                         onClick={handleCopyClick}
                         className="css-btn-primary btn-copy-links btn-with-icon"
                       >
@@ -294,9 +300,9 @@ const AddCode = () => {
                           <MdContentCopy />
                         </span>
                       </button>
-                    </div>
+                    </div> */}
                   </Grid>
-                  <Grid item md={4}>
+                  {/* <Grid item md={4}>
                     <TextField
                       id="outlined-basic"
                       name="text"
@@ -347,7 +353,7 @@ const AddCode = () => {
                       <SendIcon sx={{ fontSize: "16px" }} />
                       Send
                     </Button>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </Box>
             </Grid>
