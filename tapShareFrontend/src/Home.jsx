@@ -185,7 +185,7 @@ function Home() {
                 color="textSecondary"
                 sx={{ mt: 3, lineHeight: "0.1" }}
               >
-                Enter the sender code (e.g., '3456') to search for files shared
+                Enter the sender code (e.g.'3456') to search for files/text shared
                 by that sender.
               </Typography>
             </Box>
