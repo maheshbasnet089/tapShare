@@ -202,7 +202,7 @@ function Home() {
             width: "100%",
 
             position: "absolute",
-            bottom: { xs: "30px", md: "70px" },
+            bottom: { xs: "110px", md: "80px" },
             left: "50%",
             transform: "translateX(-50%)",
             padding: "0 0px 0 0",

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./SeeFiles.css";
 import { IoMdDownload } from "react-icons/io";
 import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
@@ -30,7 +30,7 @@ const style = {
 const SeeFiles = () => {
   //model START
   const currentUrl = window.location.href;
-
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -38,6 +38,9 @@ const SeeFiles = () => {
   //model END
 
   const { id } = useParams();
+  // if (id.startsWith("f")) {
+  //   navigate("/");
+  // }
   const [files, setFiles] = React.useState([]); // [state, setState]
 
   const fetchFiles = async function fetchFiles() {
