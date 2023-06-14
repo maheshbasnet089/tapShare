@@ -61,14 +61,11 @@ const AddCode = () => {
 
     formData.append("userId", "f" + localStorage.getItem("userId"));
     const data = Object.fromEntries(formData);
-    console.log(data);
 
     const response = await axios.post(`${baseUrl}api/v1/code`, data);
     if (response.data.status == 200) {
       navigate("/" + response.data.code.userId);
     }
-    console.log(response.data);
-    console.log(data);
   };
   const theme = useTheme();
 
@@ -115,7 +112,7 @@ const AddCode = () => {
               <TextField
                 id="outlined-basic"
                 name="title"
-                label="Give  a title.."
+                placeholder="Enter a title"
                 variant="outlined"
                 required
                 InputProps={{
@@ -178,6 +175,7 @@ const AddCode = () => {
                       aria-label="textarea"
                       minRows={18}
                       name="text"
+                      required
                       placeholder="Enter or paste your text/code here.."
                       style={{
                         width: "100%",

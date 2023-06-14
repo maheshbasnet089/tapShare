@@ -83,7 +83,7 @@ function Home() {
       className="relative overflow-hidden"
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
-      style={{ maxHeight: "100vh"}}
+      style={{ maxHeight: "100vh" }}
     >
       <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}
@@ -115,11 +115,11 @@ function Home() {
         <div
           className="flex justify-center items-center mt-28 absolute"
           style={{
-            width:'100%',
+            width: "100%",
             // position: "absolute",
-            display: "flex",	
+            display: "flex",
             justifyContent: "center",
-          
+
             top: "50%",
 
             left: "50%",
@@ -173,6 +173,7 @@ function Home() {
                 <Button
                   variant="contained"
                   size="small"
+                  type="submit"
                   sx={{ height: "fit-content", backgroundColor: "#657ee4" }}
                   onClick={() => navigate(`/${search}`)}
                 >
@@ -195,47 +196,49 @@ function Home() {
       {/* SEARCH END  */}
       {/* app bar ends here */}
 
-      <Box
-        sx={{
-          width: "100%",
-        
-          position: "absolute",
-          bottom:{xs:"30px", md:"70px"},
-          left: "50%",
-          transform: "translateX(-50%)",
-          padding:'0 0px 0 0'  ,
-          display:'flex',
-          justifyContent: "center",
-        }}
-      >
-        <button
-          style={{
-            backgroundColor: "transparent",
-            border: "1px solid white",
+      { files.length == 0 && (
+        <Box
+          sx={{
+            width: "100%",
+
+            position: "absolute",
+            bottom: { xs: "30px", md: "70px" },
+            left: "50%",
+            transform: "translateX(-50%)",
+            padding: "0 0px 0 0",
+            display: "flex",
+            justifyContent: "center",
           }}
-          onClick={handleOpen}
-          type="button"
-          class="btn-add-code text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
         >
-          <span style={{ width: "20px", marginRight: "10px" }}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </span>
-          Add Text
-        </button>
-      </Box>
+          <button
+            style={{
+              backgroundColor: "transparent",
+              border: "1px solid white",
+            }}
+            onClick={() => navigate("/code")}
+            type="button"
+            class="btn-add-code text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+          >
+            <span style={{ width: "20px", marginRight: "10px" }}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+            </span>
+            Share Text
+          </button>
+        </Box>
+      )}
 
       {/* this section primarily exists for aesthetic purpose */}
       {/* select at least one file to see the animation */}
@@ -275,7 +278,6 @@ function Home() {
           </div>
         </div>
       </div>
-      <Box>fff</Box>
       {/* This section contains the input field that accepts file/files */}
       {/* select at least one file, to make the below section appear */}
       <div
