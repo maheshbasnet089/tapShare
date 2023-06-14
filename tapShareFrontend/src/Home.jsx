@@ -83,7 +83,7 @@ function Home() {
       className="relative overflow-hidden"
       onDragOver={(e) => e.preventDefault()}
       onDrop={handleDrop}
-      style={{ maxHeight: "100vh", border: "1px solid red" }}
+      style={{ maxHeight: "100vh"}}
     >
       <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}
@@ -115,8 +115,11 @@ function Home() {
         <div
           className="flex justify-center items-center mt-28 absolute"
           style={{
-            position: "absolute",
-
+            width:'100%',
+            // position: "absolute",
+            display: "flex",	
+            justifyContent: "center",
+          
             top: "50%",
 
             left: "50%",
@@ -150,37 +153,6 @@ function Home() {
             </span>
             Search Code
           </button>
-
-          {/* <button
-            style={{
-              backgroundColor: "transparent",
-              border: "1px solid white",
-              marginLeft:'10px',
-             
-              
-            }}
-            onClick={handleOpen}
-            type="button"
-            class="text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-          >
-            <span style={{ width: "20px", marginRight: "10px" }}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21 21l-5.197-5.197A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
-              </svg>
-            </span>
-            Add Text
-          </button> */}
 
           <Modal
             open={open}
@@ -222,6 +194,49 @@ function Home() {
 
       {/* SEARCH END  */}
       {/* app bar ends here */}
+
+      <Box
+        sx={{
+          width: "100%",
+        
+          position: "absolute",
+          bottom:{xs:"30px", md:"70px"},
+          left: "50%",
+          transform: "translateX(-50%)",
+          padding:'0 0px 0 0'  ,
+          display:'flex',
+          justifyContent: "center",
+        }}
+      >
+        <button
+          style={{
+            backgroundColor: "transparent",
+            border: "1px solid white",
+          }}
+          onClick={handleOpen}
+          type="button"
+          class="btn-add-code text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+        >
+          <span style={{ width: "20px", marginRight: "10px" }}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </span>
+          Add Text
+        </button>
+      </Box>
+
       {/* this section primarily exists for aesthetic purpose */}
       {/* select at least one file to see the animation */}
 

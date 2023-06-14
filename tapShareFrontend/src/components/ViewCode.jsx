@@ -27,7 +27,7 @@ const Item = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: "white",
-  padding: "10px 0",
+  // padding: "10px 0",
 }));
 
 const CodeWrap = styled(Box)(({ theme }) => ({
