@@ -1,6 +1,6 @@
 # TapShare 
 
-TapShare is a platform that enables users to transfer files, including zip files, to email and phone number in a tap. This readme file provides an overview of the platform, its features, and how to use it.
+TapShare is a platform that enables users to transfer files, including zip files,code,text to email and phone number in a tap. This readme file provides an overview of the platform, its features, and how to use it.
 
 ## Features
 
