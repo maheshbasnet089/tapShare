@@ -70,16 +70,23 @@ exports.getCode = async (req, res) => {
 };
 
 exports.getSingleCode = async (req, res) => {
-  const code = await Code.findById(req.params.id);
-  console.log(code);
-  if (code) {
-    return res.json({
-      status: 200,
-      code,
+  try {
+    const code = await Code.findById(req.params.id);
+
+    if (code) {
+      return res.json({
+        status: 200,
+        code,
+      });
+    }
+    res.json({
+      status: 404,
+      message: "Code Not Found",
+    });
+  } catch (error) {
+    res.json({
+      status: 404,
+      message: error.message,
     });
   }
-  res.json({
-    status: 404,
-    message: "Code Not Found",
-  });
 };

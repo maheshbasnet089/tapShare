@@ -48,20 +48,24 @@ app.get("/:userId", async (req, res) => {
 });
 
 app.get("/u/:fileName", (req, res) => {
-  const filePath = path.join(__dirname, "uploads", req.params.fileName);
+  try {
+    const filePath = path.join(__dirname, "uploads", req.params.fileName);
 
-  const fileExists = fs.existsSync(filePath);
+    const fileExists = fs.existsSync(filePath);
 
-  if (fileExists) {
-    res.download(filePath, req.params.fileName, (err) => {
-      if (err) {
-        console.log("Error downloading file:", err);
-      } else {
-        console.log("File downloaded successfully");
-      }
-    });
-  } else {
-    res.status(404).send("File not found or Link has expired");
+    if (fileExists) {
+      res.download(filePath, req.params.fileName, (err) => {
+        if (err) {
+          console.log("Error downloading file:", err);
+        } else {
+          console.log("File downloaded successfully");
+        }
+      });
+    } else {
+      res.status(404).send("File not found or Link has expired");
+    }
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
   }
 });
 
