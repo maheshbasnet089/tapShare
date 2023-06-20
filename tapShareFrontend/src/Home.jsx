@@ -161,32 +161,41 @@ function Home() {
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
-              <Box sx={{ display: "flex", gap: "10px", alignItems: "center" }}>
-                <TextField
-                  fullWidth
-                  id="standard-basic"
-                  label="Search"
-                  variant="standard"
-                  // type="number"
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-                <Button
-                  variant="contained"
-                  size="small"
-                  type="submit"
-                  sx={{ height: "fit-content", backgroundColor: "#657ee4" }}
-                  onClick={() => navigate(`/${search}`)}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  navigate(`/${search}`);
+                }}
+              >
+                <Box
+                  sx={{ display: "flex", gap: "10px", alignItems: "center" }}
                 >
-                  Search
-                </Button>
-              </Box>
+                  <TextField
+                    fullWidth
+                    id="standard-basic"
+                    label="Search"
+                    variant="standard"
+                    autoFocus
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  <Button
+                    variant="contained"
+                    size="small"
+                    type="submit"
+                    sx={{ height: "fit-content", backgroundColor: "#657ee4" }}
+                  >
+                    Search
+                  </Button>
+                </Box>
+              </form>
+
               <Typography
                 variant="caption"
                 color="textSecondary"
                 sx={{ mt: 3, lineHeight: "0.1" }}
               >
-                Enter the sender code (e.g.'3456') to search for files/text shared
-                by that sender.
+                Enter the sender code (e.g.'3456') to search for files/text
+                shared by that sender.
               </Typography>
             </Box>
           </Modal>
@@ -196,7 +205,7 @@ function Home() {
       {/* SEARCH END  */}
       {/* app bar ends here */}
 
-      { files.length == 0 && (
+      {files?.length == 0 && (
         <Box
           sx={{
             width: "100%",

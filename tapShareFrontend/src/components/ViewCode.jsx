@@ -50,7 +50,7 @@ const ViewCode = () => {
       setTitle(response.data.code.title);
       setText(response.data.code.text);
     } else {
-      alert(response.data.message);
+      alert("Something Went Wrong ! Try again ");
     }
   };
   React.useEffect(() => {

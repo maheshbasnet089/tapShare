@@ -50,7 +50,7 @@ const SeeFiles = () => {
     if (res.data.status === 200) {
       setFiles(res.data.files);
     } else {
-      alert(res.data.message);
+      alert("Something Went Wrong ! Try again ");
     }
   };
   function handleScan(data) {
@@ -64,7 +64,7 @@ const SeeFiles = () => {
     if (res.data.status === 200) {
       setFiles(res.data.code);
     } else {
-      alert(res.data.message);
+      alert("Something Went Wrong ! Try again ");
     }
   };
 
