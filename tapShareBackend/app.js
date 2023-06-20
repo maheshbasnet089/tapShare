@@ -8,7 +8,7 @@ const fs = require("fs");
 const File = require("./model/fileModel");
 const codeRoute = require("./route/codeRoute");
 
-//CORS
+//CORS config
 const corsOptions = {
   origin: "https://tapshare.xyz",
   // origin: "http://127.0.0.1:5173",
