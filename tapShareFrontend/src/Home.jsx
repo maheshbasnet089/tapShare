@@ -121,7 +121,7 @@ function Home() {
         User Id is Deleted !!!
       </div>
       <div className="absolute  bottom-10 z-40 right-8 sm:right-16">
-    // press for 2 second to remove userid
+    {/* // press for 2 second to remove userid */}
         <div
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
