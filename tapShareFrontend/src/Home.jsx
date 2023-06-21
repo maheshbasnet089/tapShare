@@ -78,7 +78,6 @@ function Home() {
   const [showToast, setShowToast] = useState(false)
   React.useEffect(() => {
     let timeoutId;
-
     if (isPressed) {
       timeoutId = setTimeout(() => {
         localStorage.removeItem("userId");
@@ -122,6 +121,7 @@ function Home() {
         User Id is Deleted !!!
       </div>
       <div className="absolute  bottom-10 z-40 right-8 sm:right-16">
+    // press for 2 second to remove userid
         <div
           onPointerDown={handlePointerDown}
           onPointerUp={handlePointerUp}
@@ -300,27 +300,23 @@ function Home() {
       {/* select at least one file to see the animation */}
 
       <div
-        className={`w-full h-screen flex items-center justify-center ${
-          files && files.length > 0 && "animate"
+        className={`w-full h-screen flex items-center justify-center ${files && files.length > 0 && "animate"
           } overflow-hidden`}
       >
         <div
-          className={`flex justify-center items-center  ${
-            files &&
+          className={`flex justify-center items-center  ${files &&
             files.length > 0 &&
             "border border-[#9c9a9a] dark:border-[#efefef]"
             } p-[5em] rounded-full`}
         >
           <div
-            className={`flex justify-center items-center  ${
-              files &&
+            className={`flex justify-center items-center  ${files &&
               files.length > 0 &&
               "border border-[#bab9b9] dark:border-[#efefef]"
               } p-[5em] rounded-full `}
           >
             <div
-              className={`flex justify-center items-center  ${
-                files && files.length > 0 && "border dark:border-[#efefef]"
+              className={`flex justify-center items-center  ${files && files.length > 0 && "border dark:border-[#efefef]"
                 } p-[5em] rounded-full `}
             >
               <div className="flex justify-center items-center  bg-[rgba(0,0,0,0.2)] p-[2em] rounded-full ">
@@ -353,8 +349,7 @@ function Home() {
             onChange={handleFileClick}
           />
           <BsHandIndexThumb
-            className={`text-[1.5rem] text-[#efefef] ${
-              files && files.length > 0 && "pointer"
+            className={`text-[1.5rem] text-[#efefef] ${files && files.length > 0 && "pointer"
               }`}
           />
         </IconButton>
