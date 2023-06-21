@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import * as React from "react";
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import IconButton from "@mui/material/IconButton";
 import { BsHandIndexThumb } from "react-icons/bs";
 import ViewFiles from "./components/view-files";
@@ -18,10 +20,7 @@ import { HiOutlineCursorClick, HiThumbUp } from "react-icons/hi";
 import { AiOutlineSend } from "react-icons/ai";
 import { RiFileSearchLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
-
-// import { useStore } from "./store";
-
+import FireSvg from "./assets/FireSvg";
 const style = {
   position: "absolute",
   top: "20%",
@@ -75,6 +74,36 @@ function Home() {
     }
   };
 
+  const [isPressed, setIsPressed] = useState(false);
+  const [showToast, setShowToast] = useState(false)
+  React.useEffect(() => {
+    let timeoutId;
+
+    if (isPressed) {
+      timeoutId = setTimeout(() => {
+        localStorage.removeItem("userId");
+        setShowToast(true)
+      }, 2000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId),
+        setTimeout(() => {
+          setShowToast(false);
+        }, 5000);
+    }
+  }, [isPressed]);
+
+
+  const handlePointerDown = () => {
+    setIsPressed(true);
+  };
+
+  const handlePointerUp = () => {
+    setIsPressed(false);
+  };
+
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -85,6 +114,24 @@ function Home() {
       onDrop={handleDrop}
       style={{ maxHeight: "100vh" }}
     >
+      {/* delete userId  */}
+      <div className={`${showToast ? "visible" : "invisible"} duration-200 absolute -bottom-10  -left-12 z-50`}>
+        <FireSvg />
+      </div>
+      <div className={` ${showToast ? "translate-y-full visible" : "invisible -translate-y-full"} rounded  cursor-pointer duration-300 absolute top-4 py-2 px-4 left-4  bg-red-300 text-slate-800`}>
+        User Id is Deleted !!!
+      </div>
+      <div className="absolute  bottom-10 z-40 right-8 sm:right-16">
+        <div
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
+          className={` hover:scale-105 active:animate-shake cursor-pointer after:animate-ping rounded-full bg-slate-500 p-4`}
+        >
+          <LocalFireDepartmentIcon className="text-red-400 " />
+        </div>
+      </div>
+      {/* end delete userId */}
+
       <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}
       <AppBar />
@@ -133,7 +180,7 @@ function Home() {
             }}
             onClick={handleOpen}
             type="button"
-            class="text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+            className="text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
           >
             <span style={{ width: "20px", marginRight: "10px" }}>
               <svg
@@ -144,9 +191,9 @@ function Home() {
                 <path
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M21 21l-5.197-5.197A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
                 />
               </svg>
@@ -226,7 +273,7 @@ function Home() {
             }}
             onClick={() => navigate("/code")}
             type="button"
-            class="btn-add-code text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+            className="btn-add-code text-white hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-white-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
           >
             <span style={{ width: "20px", marginRight: "10px" }}>
               <svg
@@ -255,26 +302,26 @@ function Home() {
       <div
         className={`w-full h-screen flex items-center justify-center ${
           files && files.length > 0 && "animate"
-        } overflow-hidden`}
+          } overflow-hidden`}
       >
         <div
           className={`flex justify-center items-center  ${
             files &&
             files.length > 0 &&
             "border border-[#9c9a9a] dark:border-[#efefef]"
-          } p-[5em] rounded-full`}
+            } p-[5em] rounded-full`}
         >
           <div
             className={`flex justify-center items-center  ${
               files &&
               files.length > 0 &&
               "border border-[#bab9b9] dark:border-[#efefef]"
-            } p-[5em] rounded-full `}
+              } p-[5em] rounded-full `}
           >
             <div
               className={`flex justify-center items-center  ${
                 files && files.length > 0 && "border dark:border-[#efefef]"
-              } p-[5em] rounded-full `}
+                } p-[5em] rounded-full `}
             >
               <div className="flex justify-center items-center  bg-[rgba(0,0,0,0.2)] p-[2em] rounded-full ">
                 <div className="flex justify-center items-center  bg-[#0000004d] p-[2em] rounded-full  overflow-hidden">
@@ -308,7 +355,7 @@ function Home() {
           <BsHandIndexThumb
             className={`text-[1.5rem] text-[#efefef] ${
               files && files.length > 0 && "pointer"
-            }`}
+              }`}
           />
         </IconButton>
 
