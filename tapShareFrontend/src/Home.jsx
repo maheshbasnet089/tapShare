@@ -1,12 +1,10 @@
 
 import { useState } from "react";
 import * as React from "react";
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import IconButton from "@mui/material/IconButton";
 import { BsHandIndexThumb } from "react-icons/bs";
 import ViewFiles from "./components/view-files";
 import AppBar from "./components/app-bar";
-import AnimateStyle from "./components/animate-style";
 import SendFiles from "./components/send-files";
 import GenerateLink from "./components/generate-link";
 import Toaster from "./components/toaster";
@@ -16,11 +14,20 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
+import DeleteUserIdComp from "./components/DeleteUserIdComp";
+
 import { HiOutlineCursorClick, HiThumbUp } from "react-icons/hi";
 import { AiOutlineSend } from "react-icons/ai";
 import { RiFileSearchLine } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
 import FireSvg from "./assets/FireSvg";
+import FieButtonWrap from "./assets/FireButtonWrap";
+import Flame from './assets/giphy.gif'
+import FireSound from './assets/fire.mp3'
+import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
+import { Tooltip } from "@mui/material";
+import AnimateStyle from "./components/animate-style";
+
 const style = {
   position: "absolute",
   top: "20%",
@@ -74,33 +81,45 @@ function Home() {
     }
   };
 
-  const [isPressed, setIsPressed] = useState(false);
-  const [showToast, setShowToast] = useState(false)
-  React.useEffect(() => {
-    let timeoutId;
-    if (isPressed) {
-      timeoutId = setTimeout(() => {
-        localStorage.removeItem("userId");
-        setShowToast(true)
-      }, 2000);
-    }
+  // const [isPressed, setIsPressed] = useState(false);
+  // const [showToast, setShowToast] = useState(false)
 
-    return () => {
-      clearTimeout(timeoutId),
-        setTimeout(() => {
-          setShowToast(false);
-        }, 5000);
-    }
-  }, [isPressed]);
+  // const audioRef = React.useRef(null);
+  // const timeoutIdRef = React.useRef(null);
 
+  // React.useEffect(() => {
+  //   audioRef.current = new Audio(FireSound);
 
-  const handlePointerDown = () => {
-    setIsPressed(true);
-  };
+  //   return () => {
+  //     clearTimeout(timeoutIdRef.current);
+  //     setTimeout(() => {
+  //       setShowToast(false);
+  //       if (audioRef.current) {
+  //         audioRef.current.pause();
+  //         audioRef.current.currentTime = 0;
+  //       }
+  //     }, 3000);
+  //   };
+  // }, []);
 
-  const handlePointerUp = () => {
-    setIsPressed(false);
-  };
+  // const handlePointerDown = () => {
+  //   setIsPressed(true);
+  //   timeoutIdRef.current = setTimeout(() => {
+  //     localStorage.removeItem("userId");
+  //     setShowToast(true);
+  //     if (audioRef.current) {
+  //       audioRef.current.play();
+  //     }
+  //     setTimeout(() => {
+  //       setShowToast(false);
+  //     }, 3000);
+  //   }, 2000);
+  // };
+
+  // const handlePointerUp = () => {
+  //   setIsPressed(false);
+  //   clearTimeout(timeoutIdRef.current);
+  // };
 
 
   const [open, setOpen] = React.useState(false);
@@ -114,22 +133,30 @@ function Home() {
       style={{ maxHeight: "100vh" }}
     >
       {/* delete userId  */}
-      <div className={`${showToast ? "visible" : "invisible"} duration-200 absolute -bottom-10  -left-12 z-50`}>
-        <FireSvg />
-      </div>
-      <div className={` ${showToast ? "translate-y-full visible" : "invisible -translate-y-full"} rounded  cursor-pointer duration-300 absolute top-4 py-2 px-4 left-4  bg-red-300 text-slate-800`}>
+      <DeleteUserIdComp />
+      {/* <div className={` ${showToast ? "-translate-x-4 sm:-translate-x-8 visible" : "invisible translate-x-full"} rounded z-50  cursor-pointer duration-300 fixed top-4 right-4 py-2 px-4  bg-blue-600 text-slate-100`}>
         User Id is Deleted !!!
       </div>
-      <div className="absolute  bottom-10 z-40 right-8 sm:right-16">
-    {/* // press for 2 second to remove userid */}
-        <div
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
-          className={` hover:scale-105 active:animate-shake cursor-pointer after:animate-ping rounded-full bg-slate-500 p-4`}
-        >
-          <LocalFireDepartmentIcon className="text-red-400 " />
-        </div>
+
+      <div className={`${showToast ? "visible" : "invisible"} absolute   bottom-12 z-30 -right-[21.8rem] sm:-right-[19.7rem]`}>
+
+        <img src={Flame} style={{ webkitUserDrag: "none" }} className="h-[30%] w-[30%] select-none user" />
       </div>
+
+      <div style={{ webkitUserDrag: "none" }} className="absolute appearance-none outline-none select-none  bottom-10 z-30 right-8 sm:right-16">
+
+        <Tooltip placement="left" className="max-sm:hide" title="Press for 2 second to remove user id">
+          <div
+            style={{ webkitUserDrag: "none" }}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+            className={`${showToast ? "bg-red-400/70" : "active:bg-slate-500/60"} select-none hover:scale-105  cursor-pointer after:animate-ping rounded-full bg-slate-500 p-4`}
+          >
+            <LocalFireDepartmentIcon style={{ webkitUserDrag: "none" }} className="select-none text-red-400 z-50 " />
+          </div>
+        </Tooltip>
+      </div> */}
+
       {/* end delete userId */}
 
       <Toaster data={toasterData} close={closeToaster} />
