@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -16,7 +16,8 @@ export default defineConfig({
       manifest: {
         name: "TapShare",
         short_name: "TapShare",
-        description: "TapShare is a platform that enables users to transfer files, including zip files, to email and phone number in a tap",
+        description:
+          "TapShare is a platform that enables users to transfer files, including zip files, to email and phone number in a tap",
         theme_color: "#c3C486B",
         start_url: "/",
         icons: [
@@ -54,7 +55,7 @@ export default defineConfig({
             urlPattern: ({ url }) => {
               return url.pathname.startsWith("/api");
             },
-            handler: "NetworkFirst",
+            handler: "NetworkOnly",
             options: {
               cacheName: "api-cache",
               cacheableResponse: {

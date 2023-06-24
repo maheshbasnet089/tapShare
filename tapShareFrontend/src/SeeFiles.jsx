@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./SeeFiles.css";
 import { IoMdDownload } from "react-icons/io";
 import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
@@ -30,7 +30,7 @@ const style = {
 const SeeFiles = () => {
   //model START
   const currentUrl = window.location.href;
-
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -38,6 +38,9 @@ const SeeFiles = () => {
   //model END
 
   const { id } = useParams();
+  // if (id.startsWith("f")) {
+  //   navigate("/");
+  // }
   const [files, setFiles] = React.useState([]); // [state, setState]
 
   const fetchFiles = async function fetchFiles() {
@@ -47,7 +50,7 @@ const SeeFiles = () => {
     if (res.data.status === 200) {
       setFiles(res.data.files);
     } else {
-      alert(res.data.message);
+      alert("Something Went Wrong ! Try again ");
     }
   };
   function handleScan(data) {
@@ -61,7 +64,7 @@ const SeeFiles = () => {
     if (res.data.status === 200) {
       setFiles(res.data.code);
     } else {
-      alert(res.data.message);
+      alert("Something Went Wrong ! Try again ");
     }
   };
 
@@ -116,13 +119,20 @@ const SeeFiles = () => {
         <div className="css-container sender">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
 
-          <div className="css-alert css-alert-success">
-            <h6 className="css-alert-text">Expires After : 24 hours</h6>
+          <div
+            className="css-alert css-alert-success"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <h6 className="css-alert-text">Expires After : 24 hrs</h6>
+            <span className="css-alert-text  ">
+              Code : <span style={{ color: "gold" }}>{id}</span>{" "}
+            </span>
           </div>
           <div className="card-links">
             <div className="css-form-control">
               <label style={{ textAlign: "center", marginBottom: "10px" }}>
-                The share <b>All</b> files, copy this link:
+                The share <b>All</b> {id.startsWith("f") ? "codes" : "files"},
+                copy this link:
               </label>
 
               <div className="form-row">
@@ -145,7 +155,8 @@ const SeeFiles = () => {
           </div>
           <div className="card-links">
             <label>
-              To share <b>Single</b> file, copy below link:
+              To share <b>Single</b> {id.startsWith("f") ? "code" : "file"},
+              copy below link:
             </label>
             {files.map((file) => {
               {
@@ -158,7 +169,11 @@ const SeeFiles = () => {
                       name="link"
                       id="link"
                       className="input-links"
-                      value={file.path ? file.path : file.title}
+                      value={
+                        file.path
+                          ? file.path
+                          : `${frontendUrlProd}/code/${file._id}`
+                      }
                       readOnly
                     />
                     <button className="css-btn-primary btn-copy-links btn-with-icon">
@@ -209,10 +224,13 @@ const SeeFiles = () => {
         <div className="css-container">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
 
-          <label>To download this file, click on the download button</label>
+          <label>
+            To {id.startsWith("f") ? "open" : "download"} this{" "}
+            {id.startsWith("f") ? "code" : "download"}, click on the{" "}
+            {id.startsWith("f") ? "open" : "download"} button
+          </label>
           <div className="card-links">
             {files.map((file) => {
-              console.log(file);
               return (
                 <div className="css-form-control" key={file._id}>
                   <div className="form-row">

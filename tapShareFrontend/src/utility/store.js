@@ -46,6 +46,7 @@ export const useStore = create((set) => ({
         }
       );
       if (res.data.status === 200) {
+    
         setToasterData({
           open: true,
           message: "files sent successfully",

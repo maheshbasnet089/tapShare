@@ -32,7 +32,7 @@ const ViewFiles = () => {
     <>
       <div className="flex gap-x-[.75em] overflow-y-scroll max-w-[23em] sm:max-w-[35em] items-center">
         {/* displays the selected files -> if there are many files then ihe div turn to scrollable  horizontally */}
-        {showFiles.length > 0 &&
+        {showFiles?.length > 0 &&
           showFiles.map((file, index) => {
             return (
               <div

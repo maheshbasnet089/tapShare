@@ -8,10 +8,10 @@ const fs = require("fs");
 const File = require("./model/fileModel");
 const codeRoute = require("./route/codeRoute");
 
-//CORS
+//CORS config
 const corsOptions = {
   origin: "https://tapshare.xyz",
-  // origin: "http://127.0.0.1:5174",
+  // origin: "http://127.0.0.1:5173",
   // credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -48,20 +48,24 @@ app.get("/:userId", async (req, res) => {
 });
 
 app.get("/u/:fileName", (req, res) => {
-  const filePath = path.join(__dirname, "uploads", req.params.fileName);
+  try {
+    const filePath = path.join(__dirname, "uploads", req.params.fileName);
 
-  const fileExists = fs.existsSync(filePath);
+    const fileExists = fs.existsSync(filePath);
 
-  if (fileExists) {
-    res.download(filePath, req.params.fileName, (err) => {
-      if (err) {
-        console.log("Error downloading file:", err);
-      } else {
-        console.log("File downloaded successfully");
-      }
-    });
-  } else {
-    res.status(404).send("File not found or Link has expired");
+    if (fileExists) {
+      res.download(filePath, req.params.fileName, (err) => {
+        if (err) {
+          console.log("Error downloading file:", err);
+        } else {
+          console.log("File downloaded successfully");
+        }
+      });
+    } else {
+      res.status(404).send("File not found or Link has expired");
+    }
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
   }
 });
 

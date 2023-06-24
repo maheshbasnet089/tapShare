@@ -46,12 +46,11 @@ const ViewCode = () => {
   const { id } = useParams();
   const fetchCode = async () => {
     const response = await axios.get(`${baseUrl}api/v1/code/single/${id}`);
-    console.log(response);
     if (response.data.status == 200) {
       setTitle(response.data.code.title);
       setText(response.data.code.text);
     } else {
-      alert(response.data.message);
+      alert("Something Went Wrong ! Try again ");
     }
   };
   React.useEffect(() => {
