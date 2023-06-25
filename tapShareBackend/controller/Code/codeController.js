@@ -1,13 +1,16 @@
 const Code = require("../../model/textModel");
 const schedule = require("node-schedule");
 const scheduleDeletion = (codeId) => {
-  const deletionJob = schedule.scheduleJob("* * */24 * *", async () => {
-    try {
-      const code = await Code.findByIdAndDelete(codeId);
-    } catch (error) {
-      console.log("Error deleting code:", error);
+  const deletionJob = schedule.scheduleJob(
+    new Date(Date.now() + 24 * 60 * 60 * 1000),
+    async () => {
+      try {
+        const code = await Code.findByIdAndDelete(codeId);
+      } catch (error) {
+        console.log("Error deleting code:", error);
+      }
     }
-  });
+  );
 };
 exports.createCode = async (req, res) => {
   try {

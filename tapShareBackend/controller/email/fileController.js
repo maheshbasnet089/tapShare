@@ -6,26 +6,30 @@ const path = require("path");
 const schedule = require("node-schedule");
 // Function to schedule file deletion after 24 hours
 const scheduleDeletion = (fileId) => {
-  const deletionJob = schedule.scheduleJob("* * */24 * *", async () => {
-    try {
-      const file = await File.findByIdAndDelete(fileId);
-      if (file) {
-        const filePath = path.join(
-          "uploads",
-          file.path.replace(process.env.baseUrl + "u/", "")
-        );
-        fs.unlink(filePath, (err) => {
-          if (err) {
-            console.log("Error deleting file:", err);
-          } else {
-            console.log("File deleted successfully:", filePath);
-          }
-        });
+  const deletionJob = schedule.scheduleJob(
+    new Date(Date.now() + 24 * 60 * 60 * 1000),
+    async () => {
+      console.log("schedule called");
+      try {
+        const file = await File.findByIdAndDelete(fileId);
+        if (file) {
+          const filePath = path.join(
+            "uploads",
+            file.path.replace(process.env.baseUrl + "u/", "")
+          );
+          fs.unlink(filePath, (err) => {
+            if (err) {
+              console.log("Error deleting file:", err);
+            } else {
+              console.log("File deleted successfully:", filePath);
+            }
+          });
+        }
+      } catch (error) {
+        console.log("Error deleting file:", error);
       }
-    } catch (error) {
-      console.log("Error deleting file:", error);
     }
-  });
+  );
 };
 
 exports.sendFiles = async (req, res) => {
@@ -47,8 +51,9 @@ exports.sendFiles = async (req, res) => {
       const savedFile = await newFile.save();
 
       if (savedFile) {
+        console.log(savedFile, "ss");
         filePaths.push(newFile.path);
-        // scheduleDeletion(savedFile._id);
+        scheduleDeletion(savedFile._id);
       }
     }
 
