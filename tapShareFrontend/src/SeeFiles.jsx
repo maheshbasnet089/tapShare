@@ -9,7 +9,8 @@ import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 import Box from "@mui/material/Box";
 
 import Modal from "@mui/material/Modal";
-import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
+// import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
+import { baseUrl, frontendUrlDev } from "./config";
 import QRCode from "qrcode.react";
 
 const style = {
@@ -172,7 +173,7 @@ const SeeFiles = () => {
                       value={
                         file.path
                           ? file.path
-                          : `${frontendUrlProd}/code/${file._id}`
+                          : `${baseUrl}/code/${file._id}`
                       }
                       readOnly
                     />
@@ -197,7 +198,12 @@ const SeeFiles = () => {
               }}
             >
               <span>
-                <a href={frontendUrlProd}>
+                {/* <a href={frontendUrlProd}>
+                  <button className="css-btn-primary btn-primary-reverse">
+                    Share Another
+                  </button>
+                </a> */}
+                <a href={baseUrl}>
                   <button className="css-btn-primary btn-primary-reverse">
                     Share Another
                   </button>
