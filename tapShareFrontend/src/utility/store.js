@@ -10,7 +10,7 @@ export const useStore = create((set) => ({
   setFiles: (files) => set({ files }),
   send_file: async (file, email, setToasterData, setFiles) => {
     function generateUserId() {
-      const userId = Math.floor(1000 + Math.random() * 9000);
+      const userId = Math.floor(100000 + Math.random() * 900000);
       return userId;
     }
     if (
