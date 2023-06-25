@@ -17,17 +17,6 @@ import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import DeleteUserIdComp from "./components/DeleteUserIdComp";
 
-import { HiOutlineCursorClick, HiThumbUp } from "react-icons/hi";
-import { AiOutlineSend } from "react-icons/ai";
-import { RiFileSearchLine } from "react-icons/ri";
-import FireSvg from "./assets/FireSvg";
-import FieButtonWrap from "./assets/FireButtonWrap";
-import Flame from './assets/giphy.gif'
-import FireSound from './assets/fire.mp3'
-import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import { Tooltip } from "@mui/material";
-import AnimateStyle from "./components/animate-style";
-
 const style = {
   position: "absolute",
   top: "20%",
@@ -81,48 +70,10 @@ function Home() {
     }
   };
 
-  // const [isPressed, setIsPressed] = useState(false);
-  // const [showToast, setShowToast] = useState(false)
-
-  // const audioRef = React.useRef(null);
-  // const timeoutIdRef = React.useRef(null);
-
-  // React.useEffect(() => {
-  //   audioRef.current = new Audio(FireSound);
-
-  //   return () => {
-  //     clearTimeout(timeoutIdRef.current);
-  //     setTimeout(() => {
-  //       setShowToast(false);
-  //       if (audioRef.current) {
-  //         audioRef.current.pause();
-  //         audioRef.current.currentTime = 0;
-  //       }
-  //     }, 3000);
-  //   };
-  // }, []);
-
-  // const handlePointerDown = () => {
-  //   setIsPressed(true);
-  //   timeoutIdRef.current = setTimeout(() => {
-  //     localStorage.removeItem("userId");
-  //     setShowToast(true);
-  //     if (audioRef.current) {
-  //       audioRef.current.play();
-  //     }
-  //     setTimeout(() => {
-  //       setShowToast(false);
-  //     }, 3000);
-  //   }, 2000);
-  // };
-
-  // const handlePointerUp = () => {
-  //   setIsPressed(false);
-  //   clearTimeout(timeoutIdRef.current);
-  // };
 
 
-  const [open, setOpen] = React.useState(false);
+
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
@@ -134,30 +85,6 @@ function Home() {
     >
       {/* delete userId  */}
       <DeleteUserIdComp />
-      {/* <div className={` ${showToast ? "-translate-x-4 sm:-translate-x-8 visible" : "invisible translate-x-full"} rounded z-50  cursor-pointer duration-300 fixed top-4 right-4 py-2 px-4  bg-blue-600 text-slate-100`}>
-        User Id is Deleted !!!
-      </div>
-
-      <div className={`${showToast ? "visible" : "invisible"} absolute   bottom-12 z-30 -right-[21.8rem] sm:-right-[19.7rem]`}>
-
-        <img src={Flame} style={{ webkitUserDrag: "none" }} className="h-[30%] w-[30%] select-none user" />
-      </div>
-
-      <div style={{ webkitUserDrag: "none" }} className="absolute appearance-none outline-none select-none  bottom-10 z-30 right-8 sm:right-16">
-
-        <Tooltip placement="left" className="max-sm:hide" title="Press for 2 second to remove user id">
-          <div
-            style={{ webkitUserDrag: "none" }}
-            onPointerDown={handlePointerDown}
-            onPointerUp={handlePointerUp}
-            className={`${showToast ? "bg-red-400/70" : "active:bg-slate-500/60"} select-none hover:scale-105  cursor-pointer after:animate-ping rounded-full bg-slate-500 p-4`}
-          >
-            <LocalFireDepartmentIcon style={{ webkitUserDrag: "none" }} className="select-none text-red-400 z-50 " />
-          </div>
-        </Tooltip>
-      </div> */}
-
-      {/* end delete userId */}
 
       <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}
