@@ -48,11 +48,8 @@ exports.sendFiles = async (req, res) => {
 
       if (savedFile) {
         filePaths.push(newFile.path);
-        scheduleDeletion(savedFile._id);
+        // scheduleDeletion(savedFile._id);
       }
-
-
-      
     }
 
     // send email here test
