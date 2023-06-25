@@ -100,8 +100,8 @@ const DeleteUserIdComp = () => {
           >
             <div
               style={{ WebkitUserDrag: "none" }}
-              title="Hold to clear session"
-              onPointerDown={handlePointerDown}
+              title="Click to clear session"
+              onClick={handlePointerDown}
               onPointerUp={handlePointerUp}
               className={`${
                 showToast
