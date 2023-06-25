@@ -49,38 +49,38 @@ export default defineConfig({
           },
         ],
       },
-      workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => {
-              return url.pathname.startsWith("/api");
-            },
-            handler: "NetworkOnly",
-            options: {
-              cacheName: "api-cache",
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
-      },
-      onUpdateReady: () => {
-        // Prompt the user to update the app
-        const result = window.confirm(
-          "A new version of the app is available. Do you want to update?"
-        );
-        if (result) {
-          // Skip waiting for the user to explicitly reload the app
-          window.location.reload();
-        }
-      },
-      onUpdated: () => {
-        // Notify the user that the app has been updated
-        alert(
-          "The app has been updated. Please reload to see the latest version."
-        );
-      },
+      // workbox: {
+      //   runtimeCaching: [
+      //     {
+      //       urlPattern: ({ url }) => {
+      //         return url.pathname.startsWith("/api");
+      //       },
+      //       handler: "NetworkOnly",
+      //       options: {
+      //         cacheName: "api-cache",
+      //         cacheableResponse: {
+      //           statuses: [0, 200],
+      //         },
+      //       },
+      //     },
+      //   ],
+      // },
+      // onUpdateReady: () => {
+      //   // Prompt the user to update the app
+      //   const result = window.confirm(
+      //     "A new version of the app is available. Do you want to update?"
+      //   );
+      //   if (result) {
+      //     // Skip waiting for the user to explicitly reload the app
+      //     window.location.reload();
+      //   }
+      // },
+      // onUpdated: () => {
+      //   // Notify the user that the app has been updated
+      //   alert(
+      //     "The app has been updated. Please reload to see the latest version."
+      //   );
+      // },
     }),
   ],
 });
