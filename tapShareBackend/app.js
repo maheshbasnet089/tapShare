@@ -11,7 +11,7 @@ const codeRoute = require("./route/codeRoute");
 //CORS config
 const corsOptions = {
   // origin: "https://tapshare.xyz",
-  origin: "http://127.0.0.1:5174",
+  origin: "http://127.0.0.1:5173",
   // credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };

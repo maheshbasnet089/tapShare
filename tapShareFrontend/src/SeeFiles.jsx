@@ -77,47 +77,27 @@ const SeeFiles = () => {
     fetchFiles();
   }, []);
 
-  // copy link JS START
-  const copyButtons = document.querySelectorAll(".sender .btn-copy-links");
 
-  copyButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Get the input element next to the clicked button
-      const input = button.parentNode.querySelector(".input-links");
 
-      // Create a new temporary input element
-      const tempInput = document.createElement("input");
-
-      // Set the value of the temporary input element to the value of the original input element
-      tempInput.value = input.value;
-
-      // Append the temporary input element to the document
-      document.body.appendChild(tempInput);
-
-      // Select the text in the temporary input element
-      tempInput.select();
-
-      // Copy the selected text to the clipboard using the Clipboard API
-      navigator.clipboard.writeText(tempInput.value);
-
-      // Remove the temporary input element from the document
-      document.body.removeChild(tempInput);
-
-      // Change the text of the copy button to indicate that the text has been copied
-      button.innerHTML = "Copied!";
-
-      // Set a timeout to change the text of the copy button back to 'Copy' after 2 seconds
-      setTimeout(() => {
-        button.innerHTML = " Copy";
-      }, 2000);
-    });
-  });
 
   // copy link JS END
+
+  const copyToClipboard = (text) => {
+    alert()
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        console.log("Text copied to clipboard");
+      })
+      .catch((error) => {
+        console.error("Error copying text to clipboard:", error);
+      });
+  };
+
   return (
     <div>
       {localStorage.getItem("userId")?.endsWith(String(id).slice(-1)) ? (
-        <div className="css-container sender">
+        <div className="css-container">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
 
           <div
@@ -145,7 +125,10 @@ const SeeFiles = () => {
                   value={"https://tapshare.xyz/" + id}
                   readOnly
                 />
-                <button className="css-btn-primary btn-copy-links btn-with-icon">
+                <button
+                  className="css-btn-primary btn-copy-links btn-with-icon"
+                  onClick={() => copyToClipboard("https://tapshare.xyz/" + id)}
+                >
                   Copy{" "}
                   <span className="btn-icon">
                     <MdContentCopy />
@@ -171,13 +154,16 @@ const SeeFiles = () => {
                       id="link"
                       className="input-links"
                       value={
-                        file.path
-                          ? file.path
-                          : `${baseUrl}/code/${file._id}`
+                        file.path ? file.path : `${baseUrl}/code/${file._id}`
                       }
                       readOnly
                     />
-                    <button className="css-btn-primary btn-copy-links btn-with-icon">
+                    <button
+                      className="css-btn-primary btn-copy-links btn-with-icon"
+                      onClick={() =>
+                        copyToClipboard("https://tapshare.xyz/" + id)
+                      }
+                    >
                       Copy{" "}
                       <span className="btn-icon">
                         <MdContentCopy />
@@ -267,11 +253,11 @@ const SeeFiles = () => {
 
             <div>
               {id.startsWith("f") ? (
-                <a href={frontendUrlProdCode}>
+                <a href={baseUrl}>
                   <button className="css-btn-primary">Share your Code</button>
                 </a>
               ) : (
-                <a href={frontendUrlProd}>
+                <a href={baseUrl}>
                   <button className="css-btn-primary">Share your file</button>
                 </a>
               )}
