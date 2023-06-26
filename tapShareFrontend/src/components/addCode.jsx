@@ -12,6 +12,7 @@ import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import SendIcon from "@mui/icons-material/Send";
+import Loader from "./../assets/loading.gif";
 
 import { styled, useTheme } from "@mui/material/styles";
 import { IoMdDownload } from "react-icons/io";
@@ -40,6 +41,7 @@ const CodeWrap = styled(Box)(({ theme }) => ({
 }));
 
 const AddCode = () => {
+  const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
   function generateUserId() {
     const userId = Math.floor(100000 + Math.random() * 900000);
@@ -56,7 +58,10 @@ const AddCode = () => {
 
   const handleSubmit = async (e) => {
     // alert("click");
+    setLoading(true);
+
     e.preventDefault();
+
     const formData = new FormData(e.target);
 
     formData.append("userId", "f" + localStorage.getItem("userId"));
@@ -64,6 +69,8 @@ const AddCode = () => {
 
     const response = await axios.post(`${baseUrl}api/v1/code`, data);
     if (response.data.status == 200) {
+      setLoading(false);
+
       navigate("/" + response.data.code.userId);
     }
   };
@@ -259,8 +266,20 @@ const AddCode = () => {
                         gap: "3px",
                       }}
                     >
-                      <IosShareIcon sx={{ fontSize: "16px" }} />
-                      Share Code
+                      {loading ? (
+                        <img
+                          src={Loader}
+                          alt="loader"
+                          srcSet=""
+                          className="h-[2.25em] w-[6em] object-cover"
+                        />
+                      ) : (
+                        <>
+                          <IosShareIcon sx={{ fontSize: "16px" }} />
+                          <Typography>Share Text</Typography>
+                        </>
+                      )}
+                      {/* Share Text */}
                     </Button>
                   </Grid>
                   <Grid
