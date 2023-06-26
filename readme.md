@@ -40,6 +40,9 @@ If you have any questions or issues with TapShare, you can contact the support t
 
 We welcome contributions from the community to make TapShare even better. If you have an idea for a new feature, or if you find a bug, please submit a pull request or create an issue on our GitHub repository: https://github.com/maheshbasnet089/tapShare
 
+Note : Uncomment the baseUrl of config.js file 
+
+
 ## Conclusion
 
 TapShare is a simple and easy-to-use platform for transferring files of all sizes and types. Whether you want to send files to email or phone number, TapShare makes it easy and secure. Give it a try today!
