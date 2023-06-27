@@ -25,7 +25,6 @@ import Paper from "@mui/material/Paper";
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
   ...theme.typography.body2,
-  padding: theme.spacing(1),
   textAlign: "center",
   color: "white",
   padding: "10px 0",

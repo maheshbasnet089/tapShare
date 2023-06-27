@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./SeeFiles.css";
 import { IoMdDownload } from "react-icons/io";
@@ -9,7 +9,8 @@ import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 import Box from "@mui/material/Box";
 
 import Modal from "@mui/material/Modal";
-import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
+// import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
+import { baseUrl, frontendUrlDev, frontendUrlProd } from "./config";
 import QRCode from "qrcode.react";
 
 const style = {
@@ -76,47 +77,50 @@ const SeeFiles = () => {
     fetchFiles();
   }, []);
 
-  // copy link JS START
-  const copyButtons = document.querySelectorAll(".sender .btn-copy-links");
+  // copy link START
+  const [shareAllStatus, setShareAllStatus] = useState("Copy"); //for shareAll links
 
-  copyButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      // Get the input element next to the clicked button
-      const input = button.parentNode.querySelector(".input-links");
+  const copyShareAll = (txt) => {
+    setShareAllStatus("Copied");
 
-      // Create a new temporary input element
-      const tempInput = document.createElement("input");
+    setTimeout(() => {
+      setShareAllStatus("Copy");
+    }, 2500);
 
-      // Set the value of the temporary input element to the value of the original input element
-      tempInput.value = input.value;
+    navigator.clipboard.writeText(txt);
 
-      // Append the temporary input element to the document
-      document.body.appendChild(tempInput);
+    return;
+  };
 
-      // Select the text in the temporary input element
-      tempInput.select();
+  const [copiedStatus, setCopiedStatus] = useState({}); //for multiple links
 
-      // Copy the selected text to the clipboard using the Clipboard API
-      navigator.clipboard.writeText(tempInput.value);
+  const copyToClipboard = (text, fileId) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setCopiedStatus((prevStatus) => ({
+          ...prevStatus,
+          [fileId]: true,
+        }));
 
-      // Remove the temporary input element from the document
-      document.body.removeChild(tempInput);
+        setTimeout(() => {
+          setCopiedStatus((prevStatus) => ({
+            ...prevStatus,
+            [fileId]: false,
+          }));
+        }, 2500);
+      })
+      .catch((error) => {
+        console.error("Error copying text to clipboard:", error);
+      });
+  };
 
-      // Change the text of the copy button to indicate that the text has been copied
-      button.innerHTML = "Copied!";
+  //copy link END
 
-      // Set a timeout to change the text of the copy button back to 'Copy' after 2 seconds
-      setTimeout(() => {
-        button.innerHTML = " Copy";
-      }, 2000);
-    });
-  });
-
-  // copy link JS END
   return (
     <div>
       {localStorage.getItem("userId")?.endsWith(String(id).slice(-1)) ? (
-        <div className="css-container sender">
+        <div className="css-container">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
 
           <div
@@ -144,8 +148,11 @@ const SeeFiles = () => {
                   value={"https://tapshare.xyz/" + id}
                   readOnly
                 />
-                <button className="css-btn-primary btn-copy-links btn-with-icon">
-                  Copy{" "}
+                <button
+                  className="css-btn-primary btn-copy-links btn-with-icon"
+                  onClick={() => copyShareAll("https://tapshare.xyz/" + id)}
+                >
+                  {shareAllStatus}{" "}
                   <span className="btn-icon">
                     <MdContentCopy />
                   </span>
@@ -172,16 +179,36 @@ const SeeFiles = () => {
                       value={
                         file.path
                           ? file.path
-                          : `${frontendUrlProd}/code/${file._id}`
+                          : `https://tapshare.xyz/code/${file._id}`
                       }
                       readOnly
                     />
-                    <button className="css-btn-primary btn-copy-links btn-with-icon">
-                      Copy{" "}
-                      <span className="btn-icon">
-                        <MdContentCopy />
-                      </span>
-                    </button>
+                    {file.path ? (
+                      <button
+                        className="css-btn-primary btn-copy-links btn-with-icon"
+                        onClick={() => copyToClipboard(file.path, file._id)}
+                      >
+                        {copiedStatus[file._id] ? "Copied" : "Copy"}{" "}
+                        <span className="btn-icon">
+                          <MdContentCopy />
+                        </span>
+                      </button>
+                    ) : (
+                      <button
+                        className="css-btn-primary btn-copy-links btn-with-icon"
+                        onClick={() =>
+                          copyToClipboard(
+                            "https://tapshare.xyz/code/" + file._id,
+                            file._id
+                          )
+                        }
+                      >
+                        {copiedStatus[file._id] ? "Copied" : "Copy"}{" "}
+                        <span className="btn-icon">
+                          <MdContentCopy />
+                        </span>
+                      </button>
+                    )}
                   </div>
                 </div>
               );
@@ -202,6 +229,11 @@ const SeeFiles = () => {
                     Share Another
                   </button>
                 </a>
+                {/* <a href={frontendUrlProd}>
+                  <button className="css-btn-primary btn-primary-reverse">
+                    Share Another
+                  </button>
+                </a> */}
               </span>
               <span>
                 <a href="#">
@@ -261,11 +293,11 @@ const SeeFiles = () => {
 
             <div>
               {id.startsWith("f") ? (
-                <a href={frontendUrlProdCode}>
+                <a href={baseUrl}>
                   <button className="css-btn-primary">Share your Code</button>
                 </a>
               ) : (
-                <a href={frontendUrlProd}>
+                <a href={baseUrl}>
                   <button className="css-btn-primary">Share your file</button>
                 </a>
               )}

@@ -21,7 +21,7 @@ export const useStore = create((set) => ({
     ) {
       const userId = generateUserId();
       localStorage.setItem("userId", userId);
-      set({ fireButton: true })
+      set({ fireButton: true });
     }
     const formData = new FormData();
     formData.append("email", email);
@@ -48,7 +48,6 @@ export const useStore = create((set) => ({
         }
       );
       if (res.data.status === 200) {
-
         setToasterData({
           open: true,
           message: "files sent successfully",
@@ -57,8 +56,8 @@ export const useStore = create((set) => ({
         setFiles(null);
       } else if (res.data.status === 201) {
         window.location.href =
-          "https://tapshare.xyz/" + localStorage.getItem("userId");
-          // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
+          // "https://tapshare.xyz/" + localStorage.getItem("userId");
+          "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
       } else {
         setToasterData({
@@ -75,7 +74,6 @@ export const useStore = create((set) => ({
       });
       // window.location.href =
       // "https://ngr-np-obscure-waddle-rwqqq5gpgw6hwj7x-5173.preview.app.github.dev/" + localStorage.getItem("userId");
-   
     } finally {
       set({ loading: false });
     }

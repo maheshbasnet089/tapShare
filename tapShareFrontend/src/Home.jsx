@@ -200,6 +200,10 @@ function Home() {
               </Typography>
             </Box>
           </Modal>
+
+          {/*  */}
+
+
         </div>
       </div>
 
@@ -210,7 +214,6 @@ function Home() {
         <Box
           sx={{
             width: "100%",
-
             position: "absolute",
             bottom: { xs: "110px", md: "80px" },
             left: "50%",
@@ -218,6 +221,7 @@ function Home() {
             padding: "0 0px 0 0",
             display: "flex",
             justifyContent: "center",
+      
           }}
         >
           <button
