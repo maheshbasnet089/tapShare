@@ -56,8 +56,8 @@ export const useStore = create((set) => ({
         setFiles(null);
       } else if (res.data.status === 201) {
         window.location.href =
-          // "https://tapshare.xyz/" + localStorage.getItem("userId");
-          "http://127.0.0.1:5173/" + localStorage.getItem("userId");
+          "https://tapshare.xyz/" + localStorage.getItem("userId");
+        // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
       } else {
         setToasterData({

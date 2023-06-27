@@ -12,8 +12,7 @@ const DeleteUserIdComp = () => {
     const audioRef = useRef(null);
     const timeoutIdRef = useRef(null);
     const [showButton, setShowButton] = useState(false);
-    // console.log("show button", showButton)
-    // console.log("fire button", fireButton)
+
 
     const handlePointerDown = () => {
         setIsPressed(true);
