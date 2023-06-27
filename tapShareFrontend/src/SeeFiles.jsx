@@ -83,7 +83,7 @@ const SeeFiles = () => {
   // copy link JS END
 
   const copyToClipboard = (text) => {
-    alert()
+    // alert()
     navigator.clipboard
       .writeText(text)
       .then(() => {
@@ -93,6 +93,7 @@ const SeeFiles = () => {
         console.error("Error copying text to clipboard:", error);
       });
   };
+
 
   return (
     <div>
@@ -160,8 +161,7 @@ const SeeFiles = () => {
                     />
                     <button
                       className="css-btn-primary btn-copy-links btn-with-icon"
-                      onClick={() =>
-                        copyToClipboard("https://tapshare.xyz/" + id)
+                      onClick={() => copyToClipboard("https://tapshare.xyz/" + file._id)
                       }
                     >
                       Copy{" "}
