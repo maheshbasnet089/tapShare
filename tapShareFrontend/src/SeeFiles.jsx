@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React ,{useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "./SeeFiles.css";
 import { IoMdDownload } from "react-icons/io";
@@ -80,20 +80,47 @@ const SeeFiles = () => {
 
 
 
-  // copy link JS END
+  // copy link START
+  const [shareAllStatus, setShareAllStatus] = useState("Copy");//for shareAll links
 
-  const copyToClipboard = (text) => {
-    // alert()
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        console.log("Text copied to clipboard");
-      })
-      .catch((error) => {
-        console.error("Error copying text to clipboard:", error);
-      });
-  };
+  const copyShareAll = (txt)=>{
+ setShareAllStatus("Copied");
 
+    setTimeout(()=>{
+    setShareAllStatus("Copy");
+
+    },2500)
+
+ navigator.clipboard
+       .writeText(txt);
+
+       return ;
+  }
+
+   const [copiedStatus, setCopiedStatus] = useState({});//for multiple links
+
+   const copyToClipboard = (text, fileId) => {
+     navigator.clipboard
+       .writeText(text)
+       .then(() => {
+         setCopiedStatus((prevStatus) => ({
+           ...prevStatus,
+           [fileId]: true,
+         }));
+
+         setTimeout(() => {
+           setCopiedStatus((prevStatus) => ({
+             ...prevStatus,
+             [fileId]: false,
+           }));
+         }, 2500);
+       })
+       .catch((error) => {
+         console.error("Error copying text to clipboard:", error);
+       });
+   };
+
+   //copy link END
 
   return (
     <div>
@@ -128,9 +155,9 @@ const SeeFiles = () => {
                 />
                 <button
                   className="css-btn-primary btn-copy-links btn-with-icon"
-                  onClick={() => copyToClipboard("https://tapshare.xyz/" + id)}
+                  onClick={() => copyShareAll("https://tapshare.xyz/" + id)}
                 >
-                  Copy{" "}
+                  {shareAllStatus}{" "}
                   <span className="btn-icon">
                     <MdContentCopy />
                   </span>
@@ -161,10 +188,14 @@ const SeeFiles = () => {
                     />
                     <button
                       className="css-btn-primary btn-copy-links btn-with-icon"
-                      onClick={() => copyToClipboard("https://tapshare.xyz/" + file._id)
+                      onClick={() =>
+                        copyToClipboard(
+                          "https://tapshare.xyz/" + file._id,
+                          file._id
+                        )
                       }
                     >
-                      Copy{" "}
+                      {copiedStatus[file._id] ? "Copied" : "Copy"}{" "}
                       <span className="btn-icon">
                         <MdContentCopy />
                       </span>
