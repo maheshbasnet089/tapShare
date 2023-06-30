@@ -256,9 +256,9 @@ const SeeFiles = () => {
         <div className="css-container">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
 
-          <label>
+          <label className="text-sky-300 font-mono">            {/* // or we can also give =>  text-slate-300 */}
             To {id.startsWith("f") ? "open" : "download"} this{" "}
-            {id.startsWith("f") ? "code" : "download"}, click on the{" "}
+            {id.startsWith("f") ? "code" : "file"}, click on the{" "}
             {id.startsWith("f") ? "open" : "download"} button
           </label>
           <div className="card-links">
