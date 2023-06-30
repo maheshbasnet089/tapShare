@@ -89,7 +89,7 @@ function Home() {
       {/* select at least one file to see the animation */}
       {/* <AnimateStyle files={files} /> */}
 
-      {/* removed dublicated navbar  */}
+      {/* removed duplicate navbar  */}
 
       {/* SEARCH START */}
       <div className="relative">
