@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
@@ -70,9 +69,6 @@ function Home() {
     }
   };
 
-
-
-
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -83,7 +79,6 @@ function Home() {
       onDrop={handleDrop}
       style={{ maxHeight: "100vh" }}
     >
-      {/* delete userId  */}
       <DeleteUserIdComp />
 
       <Toaster data={toasterData} close={closeToaster} />
@@ -93,23 +88,8 @@ function Home() {
       {/* this section primarily exists for aesthetic purpose */}
       {/* select at least one file to see the animation */}
       {/* <AnimateStyle files={files} /> */}
-      <nav className="fixed w-full" title="TapShare">
-        <div className="flex justify-center select-none w-full items-center p-[1em]">
-          <div
-            className="flex items-center justify-center gap-[.1rem] cursor-pointer"
-            title="TapShare"
-          >
-            <div className="flex justify-center items-center  bg-[rgba(0,0,0,0.2)] p-[2px] rounded-full">
-              <div className="flex justify-center bg-[rgba(0,0,0,0.4)] rounded-full ">
-                <BsHandIndexThumb className="text-[2rem] text-[#efefef] rounded-full bg-[rgba(0,0,0,.5)] p-[6px] m-[2px] pr-2" />
-              </div>
-            </div>
-            <p className="text-[1.5rem] text-[#efefef] font-semibold tracking-wide">
-              Share
-            </p>
-          </div>
-        </div>
-      </nav>
+
+      {/* removed duplicate navbar  */}
 
       {/* SEARCH START */}
       <div className="relative">
@@ -195,15 +175,13 @@ function Home() {
                 color="textSecondary"
                 sx={{ mt: 3, lineHeight: "0.1" }}
               >
-                Enter the sender code (e.g.'3456') to search for files/text
+                Enter the sender code (e.g.'345678') to search for files/text
                 shared by that sender.
               </Typography>
             </Box>
           </Modal>
 
           {/*  */}
-
-
         </div>
       </div>
 
@@ -221,7 +199,6 @@ function Home() {
             padding: "0 0px 0 0",
             display: "flex",
             justifyContent: "center",
-      
           }}
         >
           <button
@@ -258,24 +235,28 @@ function Home() {
       {/* select at least one file to see the animation */}
 
       <div
-        className={`w-full h-screen flex items-center justify-center ${files && files.length > 0 && "animate"
-          } overflow-hidden`}
+        className={`w-full h-screen flex items-center justify-center ${
+          files && files.length > 0 && "animate"
+        } overflow-hidden`}
       >
         <div
-          className={`flex justify-center items-center  ${files &&
+          className={`flex justify-center items-center  ${
+            files &&
             files.length > 0 &&
             "border border-[#9c9a9a] dark:border-[#efefef]"
-            } p-[5em] rounded-full`}
+          } p-[5em] rounded-full`}
         >
           <div
-            className={`flex justify-center items-center  ${files &&
+            className={`flex justify-center items-center  ${
+              files &&
               files.length > 0 &&
               "border border-[#bab9b9] dark:border-[#efefef]"
-              } p-[5em] rounded-full `}
+            } p-[5em] rounded-full `}
           >
             <div
-              className={`flex justify-center items-center  ${files && files.length > 0 && "border dark:border-[#efefef]"
-                } p-[5em] rounded-full `}
+              className={`flex justify-center items-center  ${
+                files && files.length > 0 && "border dark:border-[#efefef]"
+              } p-[5em] rounded-full `}
             >
               <div className="flex justify-center items-center  bg-[rgba(0,0,0,0.2)] p-[2em] rounded-full ">
                 <div className="flex justify-center items-center  bg-[#0000004d] p-[2em] rounded-full  overflow-hidden">
@@ -306,9 +287,13 @@ function Home() {
             multiple="multiple"
             onChange={handleFileClick}
           />
-          <BsHandIndexThumb
-            className={`text-[1.5rem] text-[#efefef] ${files && files.length > 0 && "pointer"
-              }`}
+
+          <img
+            src="/tapShare.png"
+            className={`text-[1.5rem] text-[#efefef] ${
+              files && files.length > 0 && "pointer"
+            }`}
+            alt="tap to share file"
           />
         </IconButton>
 
