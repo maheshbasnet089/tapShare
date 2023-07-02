@@ -10,7 +10,12 @@ import Box from "@mui/material/Box";
 
 import Modal from "@mui/material/Modal";
 // import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
-import { baseUrl, frontendUrlDev, frontendUrlProd } from "./config";
+import {
+  baseUrl,
+  frontendUrlDev,
+  frontendUrlProd,
+  frontendUrlProdCode,
+} from "./config";
 import QRCode from "qrcode.react";
 
 const style = {
@@ -256,7 +261,9 @@ const SeeFiles = () => {
         <div className="css-container">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
 
-          <label className="text-sky-300 font-mono">            {/* // or we can also give =>  text-slate-300 */}
+          <label className="text-sky-300 font-mono">
+            {" "}
+            {/* // or we can also give =>  text-slate-300 */}
             To {id.startsWith("f") ? "open" : "download"} this{" "}
             {id.startsWith("f") ? "code" : "file"}, click on the{" "}
             {id.startsWith("f") ? "open" : "download"} button
@@ -293,11 +300,11 @@ const SeeFiles = () => {
 
             <div>
               {id.startsWith("f") ? (
-                <a href={baseUrl}>
+                <a href={frontendUrlProdCode}>
                   <button className="css-btn-primary">Share your Code</button>
                 </a>
               ) : (
-                <a href={baseUrl}>
+                <a href={frontendUrlProd}>
                   <button className="css-btn-primary">Share your file</button>
                 </a>
               )}
