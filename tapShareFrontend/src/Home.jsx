@@ -77,7 +77,7 @@ function Home() {
       onDrop={handleDrop}
       style={{ maxHeight: "100vh" }}
     >
-      <DeleteUserIdComp />
+      <DeleteUserId />
 
       <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}
