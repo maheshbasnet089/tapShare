@@ -13,6 +13,7 @@ import { useStore } from "../utility/store";
 const ViewFiles = () => {
   // store calls
   const files = useStore((state) => state.files);
+  const loading = useStore((state) => state.loading);
   const setFiles = useStore((state) => state.setFiles);
   // states
   const [showFiles, setShowFiles] = useState([]);
@@ -63,11 +64,15 @@ const ViewFiles = () => {
                     .toString()
                     .substring(0, 5)}...`}</p>
                   {/* change '5' to higher, to show more characters in tha name of the file */}
-                  <MdOutlineCancel
-                    title={`remove ${file.name.toString().substring(0, 5)}...`}
-                    className="text-[1.4rem] text-[#f65a69] cursor-pointer"
-                    onClick={() => removeClick(file.name)}
-                  />
+                  {!loading && (
+                    <MdOutlineCancel
+                      title={`remove ${file.name
+                        .toString()
+                        .substring(0, 5)}...`}
+                      className="text-[1.4rem] text-[#f65a69] cursor-pointer"
+                      onClick={() => removeClick(file.name)}
+                    />
+                  )}
                 </div>
               </div>
             );
