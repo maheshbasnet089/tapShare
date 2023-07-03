@@ -115,4 +115,4 @@ const DeleteUserId = () => {
   );
 };
 
-export default DeleteUserIdComp;
+export default DeleteUserId;
