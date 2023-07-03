@@ -2,6 +2,20 @@ import { create } from "zustand";
 import axios from "axios";
 import { baseUrl } from "../config";
 
+function generateUserId() {
+  //set epoch timestamp + some random text to prevent duplicate userId
+  let userId = parseInt(Date.now()).toString().slice(2);
+  let randomString = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
+  for (let i = 0; i <= 5; i++) {
+    userId =
+      randomString[(Math.random() * (randomString.length - 1)).toFixed(0)] +
+      userId;
+    userId +=
+      randomString[(Math.random() * (randomString.length - 1)).toFixed(0)];
+  }
+  return userId;
+}
+
 export const useStore = create((set) => ({
   loading: false,
   progress: 0,
@@ -9,10 +23,6 @@ export const useStore = create((set) => ({
   files: [],
   setFiles: (files) => set({ files }),
   send_file: async (file, email, setToasterData, setFiles) => {
-    function generateUserId() {
-      const userId = Math.floor(100000 + Math.random() * 900000);
-      return userId;
-    }
     if (
       localStorage.getItem("userId") == null ||
       localStorage.getItem("userId") == "" ||
