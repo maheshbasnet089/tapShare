@@ -3,7 +3,7 @@ import FireSound from "../assets/fire.mp3";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import { useStore } from "../utility/store";
 
-const DeleteUserIdComp = () => {
+const DeleteUserId = () => {
   const fireButton = useStore((state) => state.fireButton);
   const [isPressed, setIsPressed] = useState(false);
   const [showToast, setShowToast] = useState(false);
