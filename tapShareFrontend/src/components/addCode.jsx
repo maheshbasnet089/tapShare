@@ -16,7 +16,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import generateUserId from "../utility/generateUserId";
 
 import IosShareIcon from "@mui/icons-material/IosShare";
-import "../Global/AddCode.css";
+import "../global/AddCode.css";
 
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
