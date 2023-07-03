@@ -12,7 +12,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-import DeleteUserIdComp from "./components/deleteUserIdComp";
+import DeleteUserId from "./components/deleteUserId";
 
 const style = {
   position: "absolute",
