@@ -224,10 +224,6 @@ input:focus {
         width: auto;
     }
 
-    .main-control-wrap span {
-        /* width: 100%; */
-    }
-
     .main-control-wrap button {
         width: 100%;
 
