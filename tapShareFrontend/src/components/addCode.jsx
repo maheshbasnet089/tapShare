@@ -12,8 +12,8 @@ import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import Loader from "./../assets/loading.gif";
-
 import { styled, useTheme } from "@mui/material/styles";
+import generateUserId from "../utility/generateUserId";
 
 import IosShareIcon from "@mui/icons-material/IosShare";
 import "../Global/AddCode.css";
@@ -38,10 +38,6 @@ const CodeWrap = styled(Box)(({ theme }) => ({
 const AddCode = () => {
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
-  function generateUserId() {
-    const userId = Math.floor(100000 + Math.random() * 900000);
-    return userId;
-  }
   if (
     localStorage.getItem("userId") == null ||
     localStorage.getItem("userId") == "" ||
@@ -52,25 +48,18 @@ const AddCode = () => {
   }
 
   const handleSubmit = async (e) => {
-    // alert("click");
-    setLoading(true);
-
     e.preventDefault();
-
+    setLoading(true);
     const formData = new FormData(e.target);
-
     formData.append("userId", "f" + localStorage.getItem("userId"));
     const data = Object.fromEntries(formData);
-
     const response = await axios.post(`${baseUrl}api/v1/code`, data);
     if (response.data.status == 200) {
       setLoading(false);
-
       navigate("/" + response.data.code.userId);
     }
   };
   const theme = useTheme();
-
   const inputRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
   const handleCopyClick = (e) => {

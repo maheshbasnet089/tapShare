@@ -10,7 +10,7 @@ import { baseUrl } from "../config";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { styled, useTheme } from "@mui/material/styles";
-import "../Global/AddCode.css";
+import "../global/AddCode.css";
 
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
