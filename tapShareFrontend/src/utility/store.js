@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../config";
 
 export const useStore = create((set) => ({

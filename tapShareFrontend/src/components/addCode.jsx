@@ -11,16 +11,12 @@ import React, { useRef, useState } from "react";
 import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import SendIcon from "@mui/icons-material/Send";
 import Loader from "./../assets/loading.gif";
 
 import { styled, useTheme } from "@mui/material/styles";
-import { IoMdDownload } from "react-icons/io";
-import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
+
 import IosShareIcon from "@mui/icons-material/IosShare";
 import "../Global/AddCode.css";
-
-import Paper from "@mui/material/Paper";
 
 const Item = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",

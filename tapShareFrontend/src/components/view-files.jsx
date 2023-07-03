@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect} from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { AiOutlineFileWord } from "react-icons/ai";
 import { AiOutlineFilePdf } from "react-icons/ai";
 import { AiOutlineFileImage } from "react-icons/ai";
-import { BiMoviePlay } from "react-icons/bi";
-import { BsFileEarmarkMusic } from "react-icons/bs";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { BsFiletypePpt } from "react-icons/bs";
 import { AiOutlineFileExcel } from "react-icons/ai";
