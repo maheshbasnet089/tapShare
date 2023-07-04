@@ -47,6 +47,6 @@ Note : Uncomment the baseUrl of config.js file
 
 TapShare is a simple and easy-to-use platform for transferring files of all sizes and types. Whether you want to send files to email or phone number, TapShare makes it easy and secure. Give it a try today! 
 ## Connect with us
-<a href="https://www.linkedin.com/company/tapshare089"><img align="left" src=""https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="tapShare | tapShare | LinkedIn" /></a>
+<a href="https://www.linkedin.com/company/tapshare089"><img align="left" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="tapShare | tapShare | LinkedIn" /></a>
 <a href="https://www.facebook.com/profile.php?id=100093945937193"><img align="left" src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="TapShare|TapShare" /></a>
 </br>
