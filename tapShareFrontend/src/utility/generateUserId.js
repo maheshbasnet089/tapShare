@@ -10,4 +10,4 @@ export default function generateUserId() {
   }
   return userId;
 }
-console.log(generateUserId());
+
