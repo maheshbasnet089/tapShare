@@ -20,6 +20,7 @@ export const useStore = create((set) => ({
       set({ fireButton: true });
     }
     const formData = new FormData();
+    console.log(email);
     formData.append("email", email);
     formData.append("userId", localStorage.getItem("userId"));
     for (let i = 0; i < file.length; i++) {
@@ -52,8 +53,8 @@ export const useStore = create((set) => ({
         setFiles(null);
       } else if (res.data.status === 201) {
         window.location.href =
-          "https://tapshare.xyz/" + localStorage.getItem("userId");
-        // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
+          // "https://tapshare.xyz/" + localStorage.getItem("userId");
+          "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
       } else {
         setToasterData({
