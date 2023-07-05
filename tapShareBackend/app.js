@@ -7,6 +7,9 @@ const path = require("path");
 const fs = require("fs");
 const File = require("./model/fileModel");
 const codeRoute = require("./route/codeRoute");
+const ejs = require("ejs");
+
+app.set("view engine", "ejs");
 
 //CORS config
 const corsOptions = {
@@ -62,10 +65,15 @@ app.get("/u/:fileName", (req, res) => {
         }
       });
     } else {
-      res.status(404).send("File not found or Link has expired");
+      res
+        .status(404)
+        .render("linkExpire", { message: "Opps!, Link Expired", status: 404 });
     }
   } catch (error) {
-    res.status(500).send("Internal Server Error");
+    res.status(500).render("linkExpire", {
+      message: "Opps!, Something Went Wrong",
+      status: 500,
+    });
   }
 });
 
