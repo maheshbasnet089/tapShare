@@ -51,7 +51,6 @@ exports.sendFiles = async (req, res) => {
       const savedFile = await newFile.save();
 
       if (savedFile) {
-        
         filePaths.push(newFile.path);
         scheduleDeletion(savedFile._id);
       }
@@ -67,12 +66,12 @@ exports.sendFiles = async (req, res) => {
     // Add file paths as links in the email body
     emailOptions.text += "\n\nShared Files(tap to download):\n";
     for (const filePath of filePaths) {
-      
       emailOptions.text += `${filePath}\n`;
     }
 
     if (req.body.email.startsWith("98")) {
       try {
+        
         await sendSms(emailOptions);
         return res.json({
           message: "File sent successfully",
