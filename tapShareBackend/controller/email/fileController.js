@@ -78,8 +78,10 @@ exports.sendFiles = async (req, res) => {
           status: 200,
         });
       } catch (e) {
+       
         return res.json({
           message: "Error sending sms",
+          longMessage: e.message,
           status: 500,
         });
       }
