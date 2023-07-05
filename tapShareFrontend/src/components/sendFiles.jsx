@@ -4,6 +4,7 @@ import { useStore } from "../utility/store";
 
 const SendFiles = ({ setToasterData }) => {
   // store calls
+  const loading = useStore((state) => state.loading);
   const send_file = useStore((state) => state.send_file);
   const files = useStore((state) => state.files);
   const setFiles = useStore((state) => state.setFiles);
@@ -17,11 +18,14 @@ const SendFiles = ({ setToasterData }) => {
         placeholder="Enter email to send"
         onChange={(e) => setEmail(e.target.value)}
         className="h-[2.2em] outline-none bg-[lightgray] text-[1.2rem] text-[#585858] min-w-[17em] placeholder:text-[1rem] placeholder:text-[#555] tracking-wide focus:outline-none"
+        disabled={loading}
       />
-      <AiOutlineSend
-        onClick={() => send_file(files, email, setToasterData, setFiles)}
-        className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
-      />
+      {!loading && (
+        <AiOutlineSend
+          onClick={() => send_file(files, email, setToasterData, setFiles)}
+          className="text-[#555] text-[1.75rem] cursor-pointer hover:text-[#777676]"
+        />
+      )}
     </div>
   );
 };

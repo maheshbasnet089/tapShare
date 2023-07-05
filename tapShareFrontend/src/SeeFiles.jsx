@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./SeeFiles.css";
+import "./styles/seeFiles.css";
 import { IoMdDownload } from "react-icons/io";
 import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 

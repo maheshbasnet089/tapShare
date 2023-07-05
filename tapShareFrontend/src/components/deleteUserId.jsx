@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import Flame from "../assets/giphy.gif";
 import FireSound from "../assets/fire.mp3";
-import { Tooltip } from "@mui/material";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import { useStore } from "../utility/store";
 
-const DeleteUserIdComp = () => {
+const DeleteUserId = () => {
   const fireButton = useStore((state) => state.fireButton);
   const [isPressed, setIsPressed] = useState(false);
   const [showToast, setShowToast] = useState(false);
@@ -117,4 +115,4 @@ const DeleteUserIdComp = () => {
   );
 };
 
-export default DeleteUserIdComp;
+export default DeleteUserId;

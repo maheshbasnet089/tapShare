@@ -1,11 +1,9 @@
 import { useState } from "react";
-import * as React from "react";
 import IconButton from "@mui/material/IconButton";
-import { BsHandIndexThumb } from "react-icons/bs";
-import ViewFiles from "./components/view-files";
-import AppBar from "./components/app-bar";
-import SendFiles from "./components/send-files";
-import GenerateLink from "./components/generate-link";
+import ViewFiles from "./components/viewFiles";
+import AppBar from "./components/appBar";
+import SendFiles from "./components/sendFiles";
+import GenerateLink from "./components/generateLink";
 import Toaster from "./components/toaster";
 import { useStore } from "./utility/store";
 import Button from "@mui/material/Button";
@@ -14,7 +12,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
-import DeleteUserIdComp from "./components/DeleteUserIdComp";
+import DeleteUserId from "./components/deleteUserId";
 
 const style = {
   position: "absolute",
@@ -79,7 +77,7 @@ function Home() {
       onDrop={handleDrop}
       style={{ maxHeight: "100vh" }}
     >
-      <DeleteUserIdComp />
+      <DeleteUserId />
 
       <Toaster data={toasterData} close={closeToaster} />
       {/* its the app bar section that contains logo at the top of the page */}

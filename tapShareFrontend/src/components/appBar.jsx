@@ -1,5 +1,4 @@
 import React from "react";
-import { BsHandIndexThumb } from "react-icons/bs";
 
 const AppBar = () => {
   return (

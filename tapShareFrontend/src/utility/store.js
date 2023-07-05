@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../config";
+import generateUserId from "./generateUserId";
 
 export const useStore = create((set) => ({
   loading: false,
@@ -10,10 +10,6 @@ export const useStore = create((set) => ({
   files: [],
   setFiles: (files) => set({ files }),
   send_file: async (file, email, setToasterData, setFiles) => {
-    function generateUserId() {
-      const userId = Math.floor(100000 + Math.random() * 900000);
-      return userId;
-    }
     if (
       localStorage.getItem("userId") == null ||
       localStorage.getItem("userId") == "" ||
