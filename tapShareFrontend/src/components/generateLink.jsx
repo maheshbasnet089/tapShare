@@ -15,7 +15,7 @@ const GenerateLink = () => {
         {loading ? (
           <img
             src={Loader}
-            alt="loader"
+           
             srcSet=""
             className="h-[2.25em] w-[6em] object-cover"
           />

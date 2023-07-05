@@ -13,7 +13,7 @@ const AppBar = () => {
               <img
                 src="/tapShare.png"
                 className="w-8 backdrop-blur-lg rounded-full"
-                alt="tapshare"
+                
               />
             </div>
           </div>

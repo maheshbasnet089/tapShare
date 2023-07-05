@@ -291,7 +291,7 @@ function Home() {
             className={`text-[1.5rem] text-[#efefef] ${
               files && files.length > 0 && "pointer"
             }`}
-            alt="tap to share file"
+       
           />
         </IconButton>
 
