@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { AiOutlineFileWord } from "react-icons/ai";
 import { AiOutlineFilePdf } from "react-icons/ai";
@@ -20,7 +20,7 @@ const ViewFiles = () => {
     let result = files.filter((file) => {
       return file.name !== fileName;
     });
-    await setShowFiles(result);
+    setShowFiles(result);
     await setFiles(result);
   };
 
@@ -67,7 +67,7 @@ const ViewFiles = () => {
                       title={`remove ${file.name
                         .toString()
                         .substring(0, 5)}...`}
-                      className="text-[1.4rem] text-[#f65a69] cursor-pointer"
+                      className="text-[1.4rem] text-red-400 hover:text-red-500 active:text-red-400 cursor-pointer transition ease-in duration-150"
                       onClick={() => removeClick(file.name)}
                     />
                   )}

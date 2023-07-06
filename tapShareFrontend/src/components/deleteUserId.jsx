@@ -81,7 +81,7 @@ const DeleteUserId = () => {
       <div
         className={`${
           showToast ? "visible" : "invisible"
-        } absolute    sm:bottom-12 bottom-[4.8rem] z-40 -right-[21.8rem] sm:-right-[19.7rem]`}
+        } absolute  sm:bottom-12 bottom-[1.4rem] z-40 -right-[22.8rem] sm:-right-[19.7rem]`}
       >
         <img
           src="/giphy.gif"
@@ -92,7 +92,7 @@ const DeleteUserId = () => {
 
       <div
         style={{ WebkitUserDrag: "none" }}
-        className={`absolute appearance-none outline-none select-none  bottom-16  sm:bottom-10 z-40 right-8 sm:right-16`}
+        className={`absolute appearance-none outline-none select-none  bottom-4 sm:bottom-10 z-40 right-4 sm:right-16`}
       >
         <div
           style={{ WebkitUserDrag: "none" }}
