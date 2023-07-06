@@ -12,10 +12,28 @@ export default defineConfig({
 
     VitePWA({
       registerType: "autoUpdate",
-      // workbox: {
-      //   clientsClaim: true,
-      //   skipWaiting: true,
-      // },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => {
+              return url.pathname.startsWith("/api");
+            },
+            handler: "CacheFirst",
+            options: {
+              cacheName: "api-cache-v=2",
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
+      },
+      onUpdate: {
+        immediate: true,
+        onUpdated: () => {
+          window.location.reload();
+        },
+      },
       includeAssets: [
         "tapShare.ico",
         "apple-touch-icon.png",
@@ -606,65 +624,7 @@ export default defineConfig({
             type: "image/png",
             sizes: "1024x1024",
           },
-
-          // {
-          //   src: "tapShare-192x192.png",
-          //   sizes: "192x192",
-          //   type: "image/png",
-          // },
-          // {
-          //   src: "tapShare-512x512.png",
-          //   sizes: "512x512",
-          //   type: "image/png",
-          // },
-          // {
-          //   src: "tapshare256.png",
-          //   type: "image/png",
-          //   sizes: "256x256",
-          // },
-          // {
-          //   src: "tapshare-384x384.png",
-          //   type: "image/png",
-          //   sizes: "384x384",
-          // },
-          // {
-          //   src: "tapshare-384x384.png",
-          //   type: "image/png",
-          //   sizes: "384x384",
-          // },
         ],
-      },
-      workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => {
-              return url.pathname.startsWith("/api");
-            },
-            handler: "CacheFirst",
-            options: {
-              cacheName: "api-cache",
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-        ],
-      },
-      onUpdateReady: () => {
-        // Prompt the user to update the app
-        const result = window.confirm(
-          "A new version of the app is available. Do you want to update?"
-        );
-        if (result) {
-          // Skip waiting for the user to explicitly reload the app
-          window.location.reload();
-        }
-      },
-      onUpdated: () => {
-        // Notify the user that the app has been updated
-        alert(
-          "The app has been updated. Please reload to see the latest version."
-        );
       },
     }),
   ],
