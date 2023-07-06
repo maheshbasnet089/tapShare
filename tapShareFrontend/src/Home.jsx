@@ -2,8 +2,8 @@ import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import ViewFiles from "./components/viewFiles";
 import AppBar from "./components/appBar";
-import SendFiles from "./components/sendFiles";
-import GenerateLink from "./components/generateLink";
+import ReceiverEmailInputField from "./components/receiverEmailInputField";
+import UploadFiles from "./components/uploadFiles";
 import Toaster from "./components/toaster";
 import { useStore } from "./utility/store";
 import Button from "@mui/material/Button";
@@ -291,7 +291,6 @@ function Home() {
             className={`text-[1.5rem] text-[#efefef] ${
               files && files.length > 0 && "pointer"
             }`}
-       
           />
         </IconButton>
 
@@ -304,13 +303,17 @@ function Home() {
       {/* it is hidden by default, it appears as soon as one selects a file */}
       {files && files.length > 0 && (
         <>
-          <div className="absolute to flex items-center flex-col">
+          <div className="absolute to flex flex-col w-full">
             {/* shows the selected files, also allow to remove files (if wanted) */}
-            <ViewFiles />
-            {/* this section contains the input field that accepts email and sends files */}
-            <SendFiles setToasterData={setToasterData} />
-            {/* this section generates links */}
-            <GenerateLink />
+            <div className="flex justify-center">
+              <ViewFiles />
+            </div>
+            {/* this section contains the input field that accepts email */}
+            <ReceiverEmailInputField />
+            {/* this section generates links or send email*/}
+            <div className="flex justify-center">
+              <UploadFiles setToasterData={setToasterData} />
+            </div>
           </div>
         </>
       )}
