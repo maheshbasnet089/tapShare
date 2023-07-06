@@ -44,7 +44,7 @@ export default defineConfig({
         short_name: "TapShare",
         background_color: "#000000",
         description:
-          "TapShare is a platform that enables users to transfer files, including zip files, to email and phone number in a tap",
+          "TapShare is a platform that enables users to transfer files/codes, including zip files, to email and phone number in a tap",
         theme_color: "#3C486B",
         start_url: "/",
         icons: [
