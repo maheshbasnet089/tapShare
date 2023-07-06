@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "../utility/store";
-import Loader from "../assets/loading.gif";
+import UploadingAnimation from "./uploadingAnimation";
 const GenerateLink = () => {
   // store calls
   const send_file = useStore((state) => state.send_file);
@@ -9,12 +9,9 @@ const GenerateLink = () => {
   return (
     <>
       {loading ? (
-        <img
-          src={Loader}
-          srcSet=""
-          className="h-[2.25em] w-[6em] object-cover"
-        />
+        <UploadingAnimation />
       ) : (
+        // </div>
         <button
           role="button"
           className="bg-blue-500 p-0 text-gray-50 rounded-full text-center mt-4 font-semibold hover:bg-blue-600 ease-in transition-all duration-300 hover:scale-110"
