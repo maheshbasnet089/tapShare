@@ -30,7 +30,7 @@ export default function ReceiverEmailInputField() {
         type="text"
         placeholder="Email or phone number of receiver"
         onChange={handleEmailChange}
-        className="bg-gray-100 h-10 placeholder:text-xs sm:placeholder:text-lg max-w-[400px] w-full px-4 rounded-full"
+        className="bg-gray-600 h-12 placeholder:text-xs sm:placeholder:text-lg max-w-[400px] w-full px-5 rounded-full focus:outline-[3px] focus:outline-blue-500 text-gray-100 font-bold placeholder:text-gray-400 focus:bg-gray-800 transition-all ease-linear duration-200"
         value={receiverEmail}
         disabled={loading}
       />
