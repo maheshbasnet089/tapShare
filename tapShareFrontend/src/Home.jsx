@@ -287,7 +287,7 @@ function Home() {
           />
 
           <img
-            src="/tapShare.png"
+            src="/tapShare-194x194.png"
             className={`text-[1.5rem] text-[#efefef] ${
               files && files.length > 0 && "pointer"
             }`}
