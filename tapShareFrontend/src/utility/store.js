@@ -8,6 +8,10 @@ export const useStore = create((set) => ({
   progress: 0,
   fireButton: false,
   files: [],
+  receiverEmail: "",
+  isReceiverValid: false,
+  setIsReceiverValid: (isValid) => set({ isReceiverValid: isValid }),
+  setReceiverEmail: (email) => set({ receiverEmail: email }),
   setFiles: (files) => set({ files }),
   send_file: async (file, email, setToasterData, setFiles) => {
     if (
@@ -20,7 +24,7 @@ export const useStore = create((set) => ({
       set({ fireButton: true });
     }
     const formData = new FormData();
-    
+
     formData.append("email", email);
     formData.append("userId", localStorage.getItem("userId"));
     for (let i = 0; i < file.length; i++) {
