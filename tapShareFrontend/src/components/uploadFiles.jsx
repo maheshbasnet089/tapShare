@@ -13,7 +13,9 @@ export default function UploadFiles({ setToasterData }) {
   return (
     <>
       {loading ? (
-        <UploadingAnimation />
+        <div className="w-fit h-fit mt-4">
+          <UploadingAnimation />
+        </div>
       ) : (
         <>
           {!isReceiverValid && (
