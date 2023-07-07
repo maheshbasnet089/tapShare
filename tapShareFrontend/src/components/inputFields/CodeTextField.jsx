@@ -1,7 +1,7 @@
 {
   /** type should be readOnly or readWrite */
 }
-export default function CodeTextField({ text, setText, type }) {
+export default function CodeTextField({ text, setText, type}) {
   return (
     <textarea
       name="text"

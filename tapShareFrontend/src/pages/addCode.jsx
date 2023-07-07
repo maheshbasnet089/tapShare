@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
-import "../styles/addCode.css";
 import { useStore } from "../utility/store";
 import storeUser from "../utility/storeUser";
 import CodeTitleField from "../components/inputFields/CodeTitleField";
@@ -54,6 +53,7 @@ export default function AddCode() {
     }
     storeUser();
   }, []);
+  
   return (
     <>
       <div className="px-2 py-2">
