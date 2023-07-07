@@ -1,11 +1,13 @@
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SearchCode() {
   const navigate = useNavigate();
   const [isSearchOpen, setSearchOpen] = useState(false);
-  const handleOpenSearch = () => setSearchOpen(true);
+  const handleOpenSearch = () => {
+    setSearchOpen(true);
+  };
   const handleCloseSearch = () => setSearchOpen(false);
   const [search, setSearch] = useState("");
   const handleSubmit = (e) => {
@@ -60,7 +62,7 @@ export default function SearchCode() {
           aria-labelledby="modal-modal-search"
           aria-describedby="modal-modal-search-code"
         >
-          <div className="w-full justify-center flex pt-12">
+          <div className="w-full justify-center flex pt-12 focus:outline-none">
             <div className="bg-[#f6f6f6] w-full max-w-[450px] p-0 rounded-2xl h-[210px]">
               <form onSubmit={handleSubmit} className="w-full pt-2 px-4">
                 <h1 className="text-center py-2 text-xl font-semibold select-none">
@@ -74,6 +76,7 @@ export default function SearchCode() {
                   className="w-full h-12 rounded-xl px-2 text-center bg-gray-50 outline-none focus:outline-2 focus:outline-blue-500 border-2 border-blue-400 focus:border-0 transition-all duration-150 ease-out focus:bg-gray-100 mb-1"
                   required
                   title="Enter the code shared by sender"
+                  autoFocus
                 />
                 <button className="w-full bg-blue-500 text-md my-2 text-white hover:bg-blue-600 active:bg-blue-400">
                   Search
