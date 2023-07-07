@@ -1,14 +1,14 @@
 import { Box, Button, Grid, TextField, TextareaAutosize } from "@mui/material";
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
 import { styled, useTheme } from "@mui/material/styles";
-import generateUserId from "../utility/generateUserId";
 import "../styles/addCode.css";
 import { useStore } from "../utility/store";
 import UploadingAnimation from "../components/animated/uploadingAnimation";
+import storeUser from "../utility/storeUser";
 
 const CodeWrap = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
@@ -23,15 +23,6 @@ const AddCode = () => {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const navigate = useNavigate();
-  if (
-    localStorage.getItem("userId") == null ||
-    localStorage.getItem("userId") == "" ||
-    localStorage.getItem("userId") == undefined
-  ) {
-    const userId = generateUserId();
-    localStorage.setItem("userId", userId);
-  }
-
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -51,6 +42,12 @@ const AddCode = () => {
   };
   const theme = useTheme();
   const inputRef = useRef(null);
+  useEffect(() => {
+    {
+      /** This function creates and store user Id, if it doesnot exist */
+    }
+    storeUser();
+  });
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box sx={{ width: "95%", pt: 4 }}>

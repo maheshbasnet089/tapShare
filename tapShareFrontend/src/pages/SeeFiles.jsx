@@ -40,13 +40,7 @@ const SeeFiles = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  //model END
-
   const { id } = useParams();
-  // if (id.startsWith("f")) {
-  //   navigate("/");
-  // }
   const [files, setFiles] = React.useState([]); // [state, setState]
 
   const fetchFiles = async function fetchFiles() {
