@@ -6,7 +6,7 @@ import DeleteUserId from "../components/buttons/deleteUserId";
 import ShareTextButtonHome from "../components/buttons/shareTextButtonHome";
 import AnimateStyle from "../components/animated/animateStyle";
 import SearchCode from "../components/inputFields/searchCode";
-import HomePageFilesOptions from "../components/misc/HomePageFilesOptions";
+import HomePageFilesOptions from "../components/misc/homePageFilesOptions";
 import FilesInput from "../components/inputFields/filesInput";
 function Home() {
   const files = useStore((state) => state.files);
