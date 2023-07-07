@@ -51,19 +51,6 @@ const AddCode = () => {
   };
   const theme = useTheme();
   const inputRef = useRef(null);
-  // const [isCopied, setIsCopied] = useState(false);
-  // const handleCopyClick = (e) => {
-  //   e.preventDefault();
-  //   if (inputRef.current) {
-  //     inputRef.current.select();
-  //     document.execCommand("copy");
-  //     setIsCopied(true);
-  //     // Reset the button text after 2 seconds
-  //     setTimeout(() => {
-  //       setIsCopied(false);
-  //     }, 2000);
-  //   }
-  // };
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box sx={{ width: "95%", pt: 4 }}>

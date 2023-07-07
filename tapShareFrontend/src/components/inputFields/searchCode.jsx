@@ -63,7 +63,7 @@ export default function SearchCode() {
           <div className="w-full justify-center flex pt-12">
             <div className="bg-[#f6f6f6] w-full max-w-[450px] p-0 rounded-2xl h-[210px]">
               <form onSubmit={handleSubmit} className="w-full pt-2 px-4">
-                <h1 className="text-center py-2 text-xl font-semibold">
+                <h1 className="text-center py-2 text-xl font-semibold select-none">
                   Search Files or Text
                 </h1>
                 <input
@@ -80,7 +80,7 @@ export default function SearchCode() {
                 </button>
               </form>
 
-              <h2 className="text-slate-500 text-xs font-semibold w-full px-5 py-2 text-justify">
+              <h2 className="text-slate-500 text-xs font-semibold w-full px-5 py-2 text-justify select-none">
                 Enter the sender code (e.g.'345678') to search for files/text
                 shared by that sender.
               </h2>
