@@ -10,6 +10,7 @@ export const useStore = create((set) => ({
   files: [],
   receiverEmail: "",
   isReceiverValid: false,
+  setLoading: (isLoading) => set({ loading: isLoading }),
   setIsReceiverValid: (isValid) => set({ isReceiverValid: isValid }),
   setReceiverEmail: (email) => set({ receiverEmail: email }),
   setFiles: (files) => set({ files }),

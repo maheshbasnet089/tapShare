@@ -1,30 +1,14 @@
-import {
-  Box,
-  Button,
-  Grid,
-  TextField,
-  TextareaAutosize,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Grid, TextField, TextareaAutosize } from "@mui/material";
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
-import Loader from "./../assets/loading.gif";
 import { styled, useTheme } from "@mui/material/styles";
 import generateUserId from "../utility/generateUserId";
-
-import IosShareIcon from "@mui/icons-material/IosShare";
 import "../styles/addCode.css";
-
-const Item = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
-  ...theme.typography.body2,
-  textAlign: "center",
-  color: "white",
-  padding: "10px 0",
-}));
+import { useStore } from "../utility/store";
+import UploadingAnimation from "./uploadingAnimation";
 
 const CodeWrap = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
@@ -36,7 +20,8 @@ const CodeWrap = styled(Box)(({ theme }) => ({
 }));
 
 const AddCode = () => {
-  const [loading, setLoading] = React.useState(false);
+  const loading = useStore((state) => state.loading);
+  const setLoading = useStore((state) => state.setLoading);
   const navigate = useNavigate();
   if (
     localStorage.getItem("userId") == null ||
@@ -48,42 +33,42 @@ const AddCode = () => {
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const formData = new FormData(e.target);
-    formData.append("userId", "f" + localStorage.getItem("userId"));
-    const data = Object.fromEntries(formData);
-    const response = await axios.post(`${baseUrl}api/v1/code`, data);
-    if (response.data.status == 200) {
+    try {
+      e.preventDefault();
+      setLoading(true);
+      const formData = new FormData(e.target);
+      formData.append("userId", "f" + localStorage.getItem("userId"));
+      const data = Object.fromEntries(formData);
+      const response = await axios.post(`${baseUrl}api/v1/code`, data);
+      if (response.data.status == 200) {
+        setLoading(false);
+        navigate("/" + response.data.code.userId);
+      }
+    } catch (e) {
+    } finally {
       setLoading(false);
-      navigate("/" + response.data.code.userId);
     }
   };
   const theme = useTheme();
   const inputRef = useRef(null);
-  const [isCopied, setIsCopied] = useState(false);
-  const handleCopyClick = (e) => {
-    e.preventDefault();
-    if (inputRef.current) {
-      inputRef.current.select();
-      document.execCommand("copy");
-
-      setIsCopied(true);
-
-      // Reset the button text after 2 seconds
-      setTimeout(() => {
-        setIsCopied(false);
-      }, 2000);
-    }
-  };
+  // const [isCopied, setIsCopied] = useState(false);
+  // const handleCopyClick = (e) => {
+  //   e.preventDefault();
+  //   if (inputRef.current) {
+  //     inputRef.current.select();
+  //     document.execCommand("copy");
+  //     setIsCopied(true);
+  //     // Reset the button text after 2 seconds
+  //     setTimeout(() => {
+  //       setIsCopied(false);
+  //     }, 2000);
+  //   }
+  // };
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box sx={{ width: "95%", pt: 4 }}>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form onSubmit={handleSubmit}>
           <CodeWrap borderRadius={"5px 5px 0 0"} sx={{ paddingTop: "20px" }}>
-            {/* <Typography variant="body1" sx={{ mb: 2 }}>
-              TAP CODE
-            </Typography> */}
             <Box sx={{ display: "flex", gap: 2 }}>
               <Button
                 variant="outlined"
@@ -138,14 +123,6 @@ const AddCode = () => {
           </CodeWrap>
 
           <Grid container spacing={2}>
-            {/* <Grid item xs={3}>
-              <Item>
-                {" "}
-                <Typography variant="body2">History</Typography>
-              </Item>
-              <Item sx={{ color: "#bbb" }}>Code for api fetch</Item>
-              <Item sx={{ color: "#bbb" }}>Code for api fetch</Item>
-            </Grid> */}
             <Grid item xs={12}>
               <Box
                 sx={{
@@ -160,8 +137,8 @@ const AddCode = () => {
                   color: "white",
                 }}
               >
-                <Grid container spacing={2} sx={{ pb: 2 }}>
-                  <Grid item xs={12}>
+                <Grid container spacing={1} sx={{ pb: 0 }}>
+                  <Grid item xs={10}>
                     <TextareaAutosize
                       aria-label="textarea"
                       minRows={18}
@@ -179,53 +156,6 @@ const AddCode = () => {
                       }}
                     />
                   </Grid>
-                  {/* <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    md={3}
-                    sx={{
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      gap: "25px",
-                      mt: 2,
-                    }}
-                  >
-                    <TextField
-                      id="outlined-basic"
-                      name="text"
-                      label="Give this code a title.."
-                      variant="outlined"
-                      InputProps={{
-                        style: {
-                          color: "white",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: {
-                          color: "white",
-                        },
-                      }}
-                      sx={{
-                        width: "100%",
-                        color: "white",
-                        "& .MuiOutlinedInput-root": {
-                          "& fieldset": {
-                            borderColor: "white",
-                          },
-                          "&:hover fieldset": {
-                            borderColor: "white",
-                          },
-                        },
-                        "& .MuiInputLabel-root": {
-                          "&:hover": {
-                            color: "white",
-                          },
-                        },
-                      }}
-                      size="small"
-                    />
-                  </Grid> */}
                   <Grid
                     item
                     xs={12}
@@ -235,36 +165,23 @@ const AddCode = () => {
                       display: "flex",
                       justifyContent: "flex-start",
                       gap: 1,
-                      mt: 2,
                     }}
                   >
-                    <Button
-                      variant="contained"
-                      size="small"
-                      type="submit"
-                      sx={{
-                        width: "100%",
-                        color: "white",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "3px",
-                      }}
-                    >
+                    <div className="h-[100px] px-2 flex items-center">
                       {loading ? (
-                        <img
-                          src={Loader}
-                          alt="loader"
-                          srcSet=""
-                          className="h-[2.25em] w-[6em] object-cover"
-                        />
+                        <UploadingAnimation />
                       ) : (
                         <>
-                          <IosShareIcon sx={{ fontSize: "16px" }} />
-                          <Typography>Share Text</Typography>
+                          <button
+                            role="submit"
+                            className="bg-blue-500 p-0 text-gray-50 rounded-full text-center font-semibold hover:bg-blue-600 ease-in transition-all duration-300 hover:scale-110 cursor-pointer"
+                            title="Share this text"
+                          >
+                            Share Now
+                          </button>
                         </>
                       )}
-                      {/* Share Text */}
-                    </Button>
+                    </div>
                   </Grid>
                   <Grid
                     item
@@ -276,85 +193,7 @@ const AddCode = () => {
                       display: "flex",
                       alignItems: "flex-end",
                     }}
-                  >
-                    {/* <div className="form-row" style={{ width: "100%" }}>
-                      <input
-                        ref={inputRef}
-                        type="text"
-                        name="link"
-                        id="link"
-                        className="input-links"
-                        // value={file.path ? file.path : file.title}
-                        style={{
-                          backgroundColor: "transparent",
-                          color: "white",
-                          letterSpacing: "1px",
-                        }}
-                      />
-                      <button
-                        // type="button"
-                        onClick={handleCopyClick}
-                        className="css-btn-primary btn-copy-links btn-with-icon"
-                      >
-                        {isCopied ? "Copied" : "Copy"}
-                        <span className="btn-icon">
-                          <MdContentCopy />
-                        </span>
-                      </button>
-                    </div> */}
-                  </Grid>
-                  {/* <Grid item md={4}>
-                    <TextField
-                      id="outlined-basic"
-                      name="text"
-                      label="Enter receiver email to send this code.."
-                      variant="outlined"
-                      InputProps={{
-                        style: {
-                          color: "white",
-                        },
-                      }}
-                      InputLabelProps={{
-                        style: {
-                          color: "white",
-                        },
-                      }}
-                      sx={{
-                        width: "100%",
-                        color: "white",
-                        "& .MuiOutlinedInput-root": {
-                          "& fieldset": {
-                            borderColor: "white",
-                          },
-                          "&:hover fieldset": {
-                            borderColor: "white",
-                          },
-                        },
-                        "& .MuiInputLabel-root": {
-                          "&:hover": {
-                            color: "white",
-                          },
-                        },
-                      }}
-                      size="small"
-                    />
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      sx={{
-                        width: "100%",
-                        color: "white",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "5px",
-                      }}
-                    >
-                      <SendIcon sx={{ fontSize: "16px" }} />
-                      Send
-                    </Button>
-                  </Grid> */}
+                  ></Grid>
                 </Grid>
               </Box>
             </Grid>
