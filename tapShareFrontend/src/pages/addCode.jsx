@@ -4,14 +4,13 @@ import { baseUrl } from "../config";
 import { useNavigate } from "react-router-dom";
 import "../styles/addCode.css";
 import { useStore } from "../utility/store";
-import UploadingAnimation from "../components/animated/uploadingAnimation";
 import storeUser from "../utility/storeUser";
 import { VscNewFile } from "react-icons/vsc";
 import CodeTitleField from "../components/inputFields/CodeTitleField";
 import CancelButton from "../components/buttons/CancelButton";
 import CodeTextField from "../components/inputFields/CodeTextField";
 import ShareCodeButton from "../components/buttons/ShareCodeButton";
-const AddCode = () => {
+export default function AddCode() {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const navigate = useNavigate();
@@ -92,6 +91,4 @@ const AddCode = () => {
       </div>
     </>
   );
-};
-
-export default AddCode;
+}
