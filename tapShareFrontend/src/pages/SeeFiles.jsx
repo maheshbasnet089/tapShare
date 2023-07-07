@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./styles/seeFiles.css";
+import "../styles/seeFiles.css";
 import { IoMdDownload } from "react-icons/io";
 import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 
@@ -15,7 +15,7 @@ import {
   frontendUrlDev,
   frontendUrlProd,
   frontendUrlProdCode,
-} from "./config";
+} from "../config";
 import QRCode from "qrcode.react";
 
 const style = {

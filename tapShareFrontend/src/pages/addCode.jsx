@@ -8,7 +8,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import generateUserId from "../utility/generateUserId";
 import "../styles/addCode.css";
 import { useStore } from "../utility/store";
-import UploadingAnimation from "./uploadingAnimation";
+import UploadingAnimation from "../components/animated/uploadingAnimation";
 
 const CodeWrap = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#02162a" : "#02162a",
