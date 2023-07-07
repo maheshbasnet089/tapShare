@@ -1,7 +1,6 @@
 import Modal from "@mui/material/Modal";
-import { useRef, useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 export default function SearchCode() {
   const navigate = useNavigate();
   const [isSearchOpen, setSearchOpen] = useState(false);
@@ -16,6 +15,16 @@ export default function SearchCode() {
       navigate(`/${search}`);
     }
   };
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (isSearchOpen) {
+      const timeoutId = setTimeout(() => {
+        clearTimeout(timeoutId);
+        inputRef.current?.focus();
+        console.log(inputRef.current);
+      }, 100);
+    }
+  }, [isSearchOpen]);
   return (
     <div className="relative">
       <div
@@ -76,13 +85,13 @@ export default function SearchCode() {
                   className="w-full h-12 rounded-xl px-2 text-center bg-gray-50 outline-none focus:outline-2 focus:outline-blue-500 border-2 border-blue-400 focus:border-0 transition-all duration-150 ease-out focus:bg-gray-100 mb-1"
                   required
                   title="Enter the code shared by sender"
-                  autoFocus
+                  autoFocus={true}
+                  ref={inputRef}
                 />
                 <button className="w-full bg-blue-500 text-md my-2 text-white hover:bg-blue-600 active:bg-blue-400">
                   Search
                 </button>
               </form>
-
               <h2 className="text-slate-500 text-xs font-semibold w-full px-5 py-2 text-justify select-none">
                 Enter the sender code (e.g.'345678') to search for files/text
                 shared by that sender.
