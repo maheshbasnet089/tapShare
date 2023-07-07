@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 import "../styles/addCode.css";
 import { useStore } from "../utility/store";
 import storeUser from "../utility/storeUser";
-import { VscNewFile } from "react-icons/vsc";
 import CodeTitleField from "../components/inputFields/CodeTitleField";
 import CancelButton from "../components/buttons/CancelButton";
 import CodeTextField from "../components/inputFields/CodeTextField";
 import ShareCodeButton from "../components/buttons/ShareCodeButton";
+import NewCodeButton from "../components/buttons/NewCodeButton";
 export default function AddCode() {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
@@ -58,14 +58,7 @@ export default function AddCode() {
     <>
       <div className="px-2 py-2">
         <div className="flex justify-end pt-2">
-          <button
-            className="flex bg-gray-200 gap-2 items-center rounded-xl uppercase font-bold hover:bg-white transition-all ease-in-out duration-100 h-10 w-[170px] text-slate-700 hover:text-slate-800 active:bg-gray-300"
-            role="button"
-            title="Share new text"
-            onClick={handleNewCode}
-          >
-            <VscNewFile className="text-2xl" /> New Code
-          </button>
+          <NewCodeButton handleNewCode={handleNewCode} />
         </div>
         <div>
           <form

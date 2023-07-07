@@ -2,7 +2,6 @@
   /** type should be readOnly or readWrite */
 }
 export default function CodeTitleField({ setTitle, title, type }) {
-  console.log(type);
   return (
     <input
       type="text"
