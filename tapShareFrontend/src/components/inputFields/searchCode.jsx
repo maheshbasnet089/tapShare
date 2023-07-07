@@ -21,7 +21,6 @@ export default function SearchCode() {
       const timeoutId = setTimeout(() => {
         clearTimeout(timeoutId);
         inputRef.current?.focus();
-        console.log(inputRef.current);
       }, 100);
     }
   }, [isSearchOpen]);
