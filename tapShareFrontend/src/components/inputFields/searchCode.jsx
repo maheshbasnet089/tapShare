@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export default function SearchCode() {
   const navigate = useNavigate();
   const [isSearchOpen, setSearchOpen] = useState(false);
+  const inputRef = useRef(null);
   const handleOpenSearch = () => {
     setSearchOpen(true);
   };
@@ -15,7 +16,6 @@ export default function SearchCode() {
       navigate(`/${search}`);
     }
   };
-  const inputRef = useRef(null);
   useEffect(() => {
     if (isSearchOpen) {
       const timeoutId = setTimeout(() => {
