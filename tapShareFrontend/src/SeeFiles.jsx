@@ -132,9 +132,9 @@ const SeeFiles = () => {
             className="css-alert css-alert-success"
             style={{ display: "flex", justifyContent: "space-between" }}
           >
-            <h6 className="css-alert-text">Expires After : 24 hrs</h6>
+            <h6 className="css-alert-text" >Expires After : 24 hrs</h6>
             <span className="css-alert-text  ">
-              Code : <span style={{ color: "gold" }}>{id}</span>{" "}
+              Code : <span style={{ color: "crimson" }}>{id}</span>{" "}
             </span>
           </div>
           <div className="card-links">
