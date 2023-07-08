@@ -1,7 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React ,{useState} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "./styles/seeFiles.css";
+import "./styles/SeeFiles.css";
 import { IoMdDownload } from "react-icons/io";
 import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 
@@ -10,12 +10,7 @@ import Box from "@mui/material/Box";
 
 import Modal from "@mui/material/Modal";
 // import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
-import {
-  baseUrl,
-  frontendUrlDev,
-  frontendUrlProd,
-  frontendUrlProdCode,
-} from "./config";
+import { baseUrl, frontendUrlDev } from "./config";
 import QRCode from "qrcode.react";
 
 const style = {
@@ -82,45 +77,50 @@ const SeeFiles = () => {
     fetchFiles();
   }, []);
 
+
+
+
   // copy link START
-  const [shareAllStatus, setShareAllStatus] = useState("Copy"); //for shareAll links
+  const [shareAllStatus, setShareAllStatus] = useState("Copy");//for shareAll links
 
-  const copyShareAll = (txt) => {
-    setShareAllStatus("Copied");
+  const copyShareAll = (txt)=>{
+ setShareAllStatus("Copied");
 
-    setTimeout(() => {
-      setShareAllStatus("Copy");
-    }, 2500);
+    setTimeout(()=>{
+    setShareAllStatus("Copy");
 
-    navigator.clipboard.writeText(txt);
+    },2500)
 
-    return;
-  };
+ navigator.clipboard
+       .writeText(txt);
 
-  const [copiedStatus, setCopiedStatus] = useState({}); //for multiple links
+       return ;
+  }
 
-  const copyToClipboard = (text, fileId) => {
-    navigator.clipboard
-      .writeText(text)
-      .then(() => {
-        setCopiedStatus((prevStatus) => ({
-          ...prevStatus,
-          [fileId]: true,
-        }));
+   const [copiedStatus, setCopiedStatus] = useState({});//for multiple links
 
-        setTimeout(() => {
-          setCopiedStatus((prevStatus) => ({
-            ...prevStatus,
-            [fileId]: false,
-          }));
-        }, 2500);
-      })
-      .catch((error) => {
-        console.error("Error copying text to clipboard:", error);
-      });
-  };
+   const copyToClipboard = (text, fileId) => {
+     navigator.clipboard
+       .writeText(text)
+       .then(() => {
+         setCopiedStatus((prevStatus) => ({
+           ...prevStatus,
+           [fileId]: true,
+         }));
 
-  //copy link END
+         setTimeout(() => {
+           setCopiedStatus((prevStatus) => ({
+             ...prevStatus,
+             [fileId]: false,
+           }));
+         }, 2500);
+       })
+       .catch((error) => {
+         console.error("Error copying text to clipboard:", error);
+       });
+   };
+
+   //copy link END
 
   return (
     <div>
@@ -182,38 +182,24 @@ const SeeFiles = () => {
                       id="link"
                       className="input-links"
                       value={
-                        file.path
-                          ? file.path
-                          : `https://tapshare.xyz/code/${file._id}`
+                        file.path ? file.path : `${baseUrl}/code/${file._id}`
                       }
                       readOnly
                     />
-                    {file.path ? (
-                      <button
-                        className="css-btn-primary btn-copy-links btn-with-icon"
-                        onClick={() => copyToClipboard(file.path, file._id)}
-                      >
-                        {copiedStatus[file._id] ? "Copied" : "Copy"}{" "}
-                        <span className="btn-icon">
-                          <MdContentCopy />
-                        </span>
-                      </button>
-                    ) : (
-                      <button
-                        className="css-btn-primary btn-copy-links btn-with-icon"
-                        onClick={() =>
-                          copyToClipboard(
-                            "https://tapshare.xyz/code/" + file._id,
-                            file._id
-                          )
-                        }
-                      >
-                        {copiedStatus[file._id] ? "Copied" : "Copy"}{" "}
-                        <span className="btn-icon">
-                          <MdContentCopy />
-                        </span>
-                      </button>
-                    )}
+                    <button
+                      className="css-btn-primary btn-copy-links btn-with-icon"
+                      onClick={() =>
+                        copyToClipboard(
+                          "https://tapshare.xyz/" + file._id,
+                          file._id
+                        )
+                      }
+                    >
+                      {copiedStatus[file._id] ? "Copied" : "Copy"}{" "}
+                      <span className="btn-icon">
+                        <MdContentCopy />
+                      </span>
+                    </button>
                   </div>
                 </div>
               );
@@ -229,16 +215,16 @@ const SeeFiles = () => {
               }}
             >
               <span>
-                <a href={frontendUrlProd}>
-                  <button className="css-btn-primary btn-primary-reverse">
-                    Share Another
-                  </button>
-                </a>
                 {/* <a href={frontendUrlProd}>
                   <button className="css-btn-primary btn-primary-reverse">
                     Share Another
                   </button>
                 </a> */}
+                <a href={baseUrl}>
+                  <button className="css-btn-primary btn-primary-reverse">
+                    Share Another
+                  </button>
+                </a>
               </span>
               <span>
                 <a href="#">
@@ -261,11 +247,9 @@ const SeeFiles = () => {
         <div className="css-container">
           <h3 className="card-links-title title">Keep tapping! 👏</h3>
 
-          <label className="text-sky-300 font-mono">
-            {" "}
-            {/* // or we can also give =>  text-slate-300 */}
+          <label>
             To {id.startsWith("f") ? "open" : "download"} this{" "}
-            {id.startsWith("f") ? "code" : "file"}, click on the{" "}
+            {id.startsWith("f") ? "code" : "download"}, click on the{" "}
             {id.startsWith("f") ? "open" : "download"} button
           </label>
           <div className="card-links">
@@ -300,11 +284,11 @@ const SeeFiles = () => {
 
             <div>
               {id.startsWith("f") ? (
-                <a href={frontendUrlProdCode}>
+                <a href={baseUrl}>
                   <button className="css-btn-primary">Share your Code</button>
                 </a>
               ) : (
-                <a href={frontendUrlProd}>
+                <a href={baseUrl}>
                   <button className="css-btn-primary">Share your file</button>
                 </a>
               )}

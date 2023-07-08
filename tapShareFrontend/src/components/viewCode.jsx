@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Grid,
   TextField,
   TextareaAutosize,
@@ -9,6 +10,8 @@ import React, { useRef, useState } from "react";
 import { baseUrl } from "../config";
 import { useNavigate, useParams } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import DownloadDoneIcon from "@mui/icons-material/DownloadDone";
 import "../styles/addCode.css";
 
 const Item = styled(Box)(({ theme }) => ({
@@ -33,6 +36,7 @@ const ViewCode = () => {
   const navigate = useNavigate();
   const [title, setTitle] = React.useState("");
   const [text, setText] = React.useState("");
+
   const { id } = useParams();
   const fetchCode = async () => {
     const response = await axios.get(`${baseUrl}api/v1/code/single/${id}`);
@@ -48,22 +52,20 @@ const ViewCode = () => {
   }, []);
   const theme = useTheme();
 
-  const inputRef = useRef(null);
+
   const [isCopied, setIsCopied] = useState(false);
-  const handleCopyClick = (e) => {
-    e.preventDefault();
-    if (inputRef.current) {
-      inputRef.current.select();
-      document.execCommand("copy");
+  const handleCopy = (e) => {
+       e.preventDefault();
+        navigator.clipboard.writeText(text);
+              setIsCopied(true);
+              console.log(isCopied);
+              setTimeout(() => {
+                setIsCopied(false);
+                console.log(isCopied);
+              }, 2000);
+    
 
-      setIsCopied(true);
-
-      // Reset the button text after 2 seconds
-      setTimeout(() => {
-        setIsCopied(false);
-      }, 2000);
-    }
-  };
+  }
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box sx={{ width: "95%", pt: 4 }}>
@@ -105,6 +107,20 @@ const ViewCode = () => {
                 }}
                 size="small"
               />
+              <Button
+                variant="outlined"
+                sx={{ color: "skyblue" }}
+                onClick={handleCopy}
+              >
+                {isCopied ? (
+                  <DownloadDoneIcon sx={{ fontSize: "20px" }} />
+                ) : (
+                  <ContentCopyIcon sx={{ fontSize: "20px" }} />
+                )}
+                <span style={{ marginLeft: "5px", color: "white" }}>
+                  {isCopied ? "Copied" : "Copy"}
+                </span>
+              </Button>
             </Box>
           </CodeWrap>
 
