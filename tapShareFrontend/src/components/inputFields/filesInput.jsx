@@ -1,4 +1,4 @@
-import IconButton from "@mui/material/IconButton";
+import {IconButton} from "@mui/material/";
 import { useStore } from "../../utility/store";
 
 export default function FilesInput() {

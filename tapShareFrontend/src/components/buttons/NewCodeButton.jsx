@@ -7,7 +7,7 @@ export default function NewCodeButton({ handleNewCode }) {
       title="Share new text"
       onClick={handleNewCode}
     >
-      <VscNewFile className="text-2xl" /> New Code
+      <VscNewFile className="text-2xl" /> New Text
     </button>
   );
 }

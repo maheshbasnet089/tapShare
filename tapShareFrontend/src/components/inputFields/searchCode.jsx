@@ -1,4 +1,4 @@
-import Modal from "@mui/material/Modal";
+import {Modal} from "@mui/material/";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 export default function SearchCode() {
