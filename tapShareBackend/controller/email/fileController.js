@@ -72,14 +72,14 @@ exports.sendFiles = async (req, res) => {
 
     if (req.body.email.startsWith("98")) {
       try {
-        
         await sendSms(emailOptions);
         return res.json({
           message: "File sent successfully",
           status: 200,
         });
       } catch (e) {
-       
+        console.log(e);
+
         return res.json({
           message: "Error sending sms",
           longMessage: e.message,
