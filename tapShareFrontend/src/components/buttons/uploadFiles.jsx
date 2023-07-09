@@ -1,6 +1,6 @@
 import React from "react";
-import { useStore } from "../utility/store";
-import UploadingAnimation from "./uploadingAnimation";
+import { useStore } from "../../utility/store";
+import UploadingAnimation from "../animated/uploadingAnimation";
 
 export default function UploadFiles({ setToasterData }) {
   // store calls
