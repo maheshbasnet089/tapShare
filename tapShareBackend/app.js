@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoConnection = require("./database/dbConfig");
-require("dotenv").config();
+const { PORT } = require("./config/secrets");
 const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
@@ -83,14 +83,14 @@ app.use(express.static(path.join(__dirname, "/uploads")));
 
 //require routes
 const fileRoute = require("./route/fileRoute");
-mongoConnection(process.env.MONGO_URI);
+mongoConnection();
 
 //parses the body data in json
 
 app.use("/api/v1", fileRoute);
 app.use("/api/v1", codeRoute);
 
-const PORT = process.env.PORT || 4000;
+const PORT = PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

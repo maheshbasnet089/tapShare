@@ -4,6 +4,7 @@ const sendSms = require("../../services/sendSms");
 const fs = require("fs");
 const path = require("path");
 const schedule = require("node-schedule");
+const { BASE_URL } = require("../../config/secrets");
 // Function to schedule file deletion after 24 hours
 const scheduleDeletion = (fileId) => {
   const deletionJob = schedule.scheduleJob(
@@ -15,7 +16,7 @@ const scheduleDeletion = (fileId) => {
         if (file) {
           const filePath = path.join(
             "uploads",
-            file.path.replace(process.env.baseUrl + "u/", "")
+            file.path.replace(BASE_URL + "u/", "")
           );
           fs.unlink(filePath, (err) => {
             if (err) {
@@ -42,7 +43,7 @@ exports.sendFiles = async (req, res) => {
         userId: req.body.userId,
         name: files[i].originalname,
         path:
-          process.env.baseUrl +
+          BASE_URL +
           "u/" +
           files[i].path.replace(/\\/g, "/").replace("uploads/", ""), // replace backslash with forward slash
         size: files[i].size,

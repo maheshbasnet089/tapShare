@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const { EMAIL,EMAIL_APP_PASSWORD } = require("../config/secrets");
 
 const sendEmail = async (options) => {
   try {
@@ -8,8 +9,8 @@ const sendEmail = async (options) => {
       port: 465,
 
       auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
+        user: EMAIL,
+        pass: EMAIL_APP_PASSWORD,
       },
     });
     const mailOptions = {
