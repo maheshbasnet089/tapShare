@@ -14,7 +14,7 @@ const ViewCode = () => {
   const [text, setText] = useState("");
   const [fetchedId, setFetchedId] = useState("");
   const { id } = useParams();
-  const [isFetching, setIsFetching] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
 
   const fetchCode = async () => {
     try {
