@@ -6,7 +6,7 @@ import { AiOutlineFileImage } from "react-icons/ai";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { BsFiletypePpt } from "react-icons/bs";
 import { AiOutlineFileExcel } from "react-icons/ai";
-import { useStore } from "../utility/store";
+import { useStore } from "../../utility/store";
 
 const ViewFiles = () => {
   // store calls

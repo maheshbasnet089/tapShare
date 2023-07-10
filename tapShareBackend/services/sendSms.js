@@ -10,10 +10,11 @@ const twilio = require("twilio")(accountSid, authToken, {
 
 const sendSms = async (options) => {
   try {
+    console.log(options);
     return await twilio.messages.create({
       body: `Tapshare: ${options.text} `,
       from: TWILIO_NUMBER,
-      to: "+977" + options.to,
+      to: `+977${options.to}`,
     });
   } catch (e) {
     console.log(e);

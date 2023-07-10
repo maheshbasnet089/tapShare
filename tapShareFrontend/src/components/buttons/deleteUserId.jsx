@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import FireSound from "../assets/fire.mp3";
+import FireSound from "../../assets/fire.mp3";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
-import { useStore } from "../utility/store";
+import { useStore } from "../../utility/store";
 
 const DeleteUserId = () => {
   const fireButton = useStore((state) => state.fireButton);
@@ -56,7 +56,6 @@ const DeleteUserId = () => {
   useEffect(() => {
     audioRef.current = new Audio(FireSound);
     audioRef.current.volume = 0.1;
-
     return () => {
       clearTimeout(timeoutIdRef.current);
       setShowToast(false);

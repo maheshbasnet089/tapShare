@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import SeeFiles from "./SeeFiles";
-import AddCode from "./components/addCode";
-import ViewCode from "./components/viewCode";
+import Home from "./pages/Home";
+import AddCode from "./pages/addCode";
+import ViewCode from "./pages/viewCode";
+import SeeFiles from "./pages/SeeFiles";
 
 const App = () => {
   return (

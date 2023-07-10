@@ -1,5 +1,5 @@
 import React from "react";
-import { useStore } from "../utility/store";
+import { useStore } from "../../utility/store";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phonePattern = /^(97|98)\d{8}$/;

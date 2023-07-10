@@ -1,16 +1,16 @@
 import { useState } from "react";
-import IconButton from "@mui/material/IconButton";
+import {IconButton} from "@mui/material/";
 import ViewFiles from "./components/viewFiles";
 import AppBar from "./components/appBar";
 import ReceiverEmailInputField from "./components/receiverEmailInputField";
 import UploadFiles from "./components/uploadFiles";
 import Toaster from "./components/toaster";
 import { useStore } from "./utility/store";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import {Button} from "@mui/material/";
+import {Modal} from "@mui/material/";
+import {Box} from "@mui/material";
+import {Typography} from "@mui/material/";
+import {TextField} from "@mui/material/";
 import { useNavigate } from "react-router-dom";
 import DeleteUserId from "./components/deleteUserId";
 
@@ -287,7 +287,7 @@ function Home() {
           />
 
           <img
-            src="/tapShare.png"
+            src="/tapShare-194x194.png"
             className={`text-[1.5rem] text-[#efefef] ${
               files && files.length > 0 && "pointer"
             }`}

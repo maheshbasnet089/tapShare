@@ -11,9 +11,8 @@ const AppBar = () => {
           <div className="flex justify-center items-center  bg-[rgba(0,0,0,0.2)] p-[2px] rounded-full">
             <div className="flex justify-center bg-[rgba(0,0,0,0.4)] rounded-full">
               <img
-                src="/tapShare.png"
+                src="/tapShare-194x194.png"
                 className="w-8 backdrop-blur-lg rounded-full"
-                
               />
             </div>
           </div>
