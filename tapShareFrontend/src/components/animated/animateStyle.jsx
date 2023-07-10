@@ -1,6 +1,5 @@
-import React from "react";
-
-const AnimateStyle = ({ files }) => {
+//123
+export default function AnimateStyle({ files }){
   return (
     <div
       className={`w-full h-screen flex items-center justify-center ${
@@ -40,4 +39,3 @@ const AnimateStyle = ({ files }) => {
   );
 };
 
-export default AnimateStyle;

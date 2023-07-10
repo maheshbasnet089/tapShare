@@ -42,7 +42,7 @@ export default function LoadingSvg() {
           repeatCount="indefinite"
         />
         <animate
-          attributeName="fill-opacity"
+          attributeName="fillOpacity"
           from="0.5"
           to="0.5"
           begin="0s"
@@ -64,7 +64,7 @@ export default function LoadingSvg() {
           repeatCount="indefinite"
         />
         <animate
-          attributeName="fill-opacity"
+          attributeName="fillOpacity"
           from="1"
           to="1"
           begin="0s"
