@@ -1,4 +1,4 @@
-import {IconButton} from "@mui/material/";
+import { IconButton } from "@mui/material/";
 import { useStore } from "../../utility/store";
 
 export default function FilesInput() {
@@ -32,7 +32,7 @@ export default function FilesInput() {
         />
 
         <img
-          src="/tapShare.png"
+          src="/tapShare-194x194.png"
           className={`text-[1.5rem] text-[#efefef] ${
             files && files.length > 0 && "pointer"
           }`}
