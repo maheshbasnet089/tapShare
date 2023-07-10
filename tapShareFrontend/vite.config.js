@@ -31,7 +31,7 @@ export default defineConfig({
       onUpdateReady: () => {
         // Prompt the user to update the app
         const result = window.confirm(
-          "A new version of the app is available. Do you want to update?"
+          "A new version of the app is available. Do you want to update app?"
         );
         if (result) {
           // Skip waiting for the user to explicitly reload the app
