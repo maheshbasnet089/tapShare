@@ -20,7 +20,7 @@ export default defineConfig({
             },
             handler: "CacheFirst",
             options: {
-              cacheName: "api-cache",
+              cacheName: "api-cache-v=2",
               cacheableResponse: {
                 statuses: [0, 200],
               },
