@@ -83,7 +83,7 @@ const DeleteUserId = () => {
         } absolute  sm:bottom-12 bottom-[1.4rem] z-40 -right-[22.8rem] sm:-right-[19.7rem]`}
       >
         <img
-          src="/giphy.gif"
+          src="/gif/giphy.gif"
           style={{ WebkitUserDrag: "none" }}
           className="h-[30%] w-[30%] select-none user"
         />
