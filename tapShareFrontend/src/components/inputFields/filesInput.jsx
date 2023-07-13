@@ -32,7 +32,7 @@ export default function FilesInput() {
         />
 
         <img
-          src="/tapShare-194x194.png"
+          src="/tapShare-194x194.webp"
           className={`text-[1.5rem] text-[#efefef] ${
             files && files.length > 0 && "pointer"
           }`}
