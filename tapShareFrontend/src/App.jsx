@@ -3,8 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import AddCode from "./pages/addCode";
 import ViewCode from "./pages/viewCode";
-import SeeFiles from "./pages/SeeFiles";
-import SeeShared from "./pages/test";
+import SeeShared from "./pages/ViewShared";
 
 const App = () => {
   return (
@@ -14,8 +13,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/code" element={<AddCode />} />
           <Route path="/code/:id" element={<ViewCode />} />
-          {/* <Route path="/:id" element={<SeeFiles />} /> */}
-          <Route path="/see" element={<SeeShared />} />
+          <Route path="/:id" element={<SeeShared />} />
         </Routes>
       </BrowserRouter>
     </div>
