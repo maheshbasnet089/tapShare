@@ -52,7 +52,7 @@ export default function ShareSingleLinkContainer({ files }) {
       <QRcodeContainer
         isQRshown={isQRshown}
         setShowQR={setShowQR}
-        content="https://tapshare.xyz/6789091"
+        content={"https://tapshare.xyz/" + id}
       />
     </>
   );
