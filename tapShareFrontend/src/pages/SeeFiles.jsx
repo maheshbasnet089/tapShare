@@ -8,7 +8,7 @@ import { MdContentCopy, MdOutlineQrCode } from "react-icons/md";
 //model
 import { Box } from "@mui/material";
 
-import {Modal} from "@mui/material/";
+import { Modal } from "@mui/material/";
 // import { baseUrl, frontendUrlProd, frontendUrlProdCode } from "./config";
 import {
   baseUrl,

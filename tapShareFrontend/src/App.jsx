@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import AddCode from "./pages/addCode";
 import ViewCode from "./pages/viewCode";
 import SeeFiles from "./pages/SeeFiles";
+import SeeShared from "./pages/test";
 
 const App = () => {
   return (
@@ -13,7 +14,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/code" element={<AddCode />} />
           <Route path="/code/:id" element={<ViewCode />} />
-          <Route path="/:id" element={<SeeFiles />} />
+          {/* <Route path="/:id" element={<SeeFiles />} /> */}
+          <Route path="/see" element={<SeeShared />} />
         </Routes>
       </BrowserRouter>
     </div>
