@@ -15,8 +15,7 @@ export default function NotFoundScreen() {
               <p className="select-none  text-slate-800 font-bold">
                 <span className="text-md">
                   {" "}
-                  The link you are following is either invalid or it is not
-                  found.
+                  The link you are following is either invalid or unavailable.
                 </span>
                 <br />
                 <span className="text-sm font-medium">
