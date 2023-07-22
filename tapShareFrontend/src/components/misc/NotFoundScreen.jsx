@@ -35,13 +35,13 @@ export default function NotFoundScreen() {
             <div className="flex justify-center pt-5">
               <div className="flex flex-wrap gap-4 sm:gap-8 justify-center">
                 <button
-                  className="text-blue-500 border-2 border-blue-500 hover:bg-blue-500 hover:text-gray-50 transition-all ease duration-100 w-[161px] active:bg-blue-400"
+                  className="text-blue-500 border-2 border-blue-500 hover:bg-blue-500 hover:text-gray-50 transition-all ease duration-100 w-[161px] active:bg-blue-400 py-2 rounded-md"
                   onClick={(e) => navigate("/")}
                 >
                   Share File
                 </button>
                 <button
-                  className="flex items-center gap-1 justify-center text-gray-100 bg-blue-500 w-[161px] hover:bg-blue-600 hover:text-gray-50 transition-all ease duration-100 active:bg-blue-400"
+                  className="flex items-center gap-1 justify-center text-gray-100 bg-blue-500 w-[161px] hover:bg-blue-600 hover:text-gray-50 transition-all ease duration-100 active:bg-blue-400 rounded-md py-2"
                   onClick={() => navigate("/code")}
                 >
                   Share Code

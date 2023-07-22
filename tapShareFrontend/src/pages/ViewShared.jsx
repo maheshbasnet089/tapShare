@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import FetchingScreen from "../components/animated/FetchingScreen";
 import NotFoundScreen from "../components/misc/NotFoundScreen";
-import LinkContainer from "../components/misc/LinkContainer";
 import { baseUrl } from "../config";
 
 export default function SeeShared() {
@@ -16,20 +15,15 @@ export default function SeeShared() {
     const res = await axios.get(`${baseUrl}api/v1/code/${id}`);
     if (res.data.status === 200) {
       setFiles(res.data.code);
-    } else {
-      alert("Something Went Wrong ! Try again ");
     }
   };
   const fetchFiles = async function fetchFiles() {
     const res = await axios.get(`${baseUrl}${id}`);
     if (res.data.status === 200) {
       setFiles(res.data.files);
-    } else {
-      alert("Something Went Wrong ! Try again ");
     }
   };
   useEffect(() => {
-    console.log("fetching")
     try {
       if (id.startsWith("f")) {
         fetchCode();
@@ -39,7 +33,6 @@ export default function SeeShared() {
       setIsFetching(false);
       fetchFiles();
     } catch (e) {
-      alert("Something Went Wrong ! Try again ");
     } finally {
       setIsFetching(false);
     }

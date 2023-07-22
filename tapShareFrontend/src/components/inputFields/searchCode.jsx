@@ -87,7 +87,7 @@ export default function SearchCode() {
                   autoFocus={true}
                   ref={inputRef}
                 />
-                <button className="w-full bg-blue-500 text-md my-2 text-white hover:bg-blue-600 active:bg-blue-400">
+                <button className="w-full bg-blue-500 text-md my-2 text-white hover:bg-blue-600 active:bg-blue-400 py-3 rounded-md">
                   Search
                 </button>
               </form>

@@ -9,6 +9,7 @@ import CancelButton from "../components/buttons/CancelButton";
 import CodeTextField from "../components/inputFields/CodeTextField";
 import ShareCodeButton from "../components/buttons/ShareCodeButton";
 import NewCodeButton from "../components/buttons/NewCodeButton";
+import CopyButton from "../components/buttons/CopyButton";
 export default function AddCode() {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
