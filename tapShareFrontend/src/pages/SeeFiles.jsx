@@ -45,8 +45,7 @@ const SeeFiles = () => {
 
   const fetchFiles = async function fetchFiles() {
     const res = await axios.get(`${baseUrl}${id}`);
-    // const res = await axios.get(`http://localhost:1337/${id}`);
-
+    // const res = await axios.get(`http://localhost:1337/${id}`)
     if (res.data.status === 200) {
       setFiles(res.data.files);
     } else {
@@ -78,7 +77,6 @@ const SeeFiles = () => {
 
   // copy link START
   const [shareAllStatus, setShareAllStatus] = useState("Copy"); //for shareAll links
-
   const copyShareAll = (txt) => {
     setShareAllStatus("Copied");
 
