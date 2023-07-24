@@ -39,8 +39,9 @@ export default function SeeShared() {
   }, []);
   return (
     <>
-      {isFetching && <FetchingScreen />}
-      {!isFetching && (
+      {isFetching ? (
+        <FetchingScreen />
+      ) : (
         <>
           {files.length !== 0 && (
             <>
