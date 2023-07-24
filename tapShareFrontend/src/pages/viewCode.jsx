@@ -7,7 +7,8 @@ import CodeTitleField from "../components/inputFields/CodeTitleField";
 import ShareNewCode from "../components/buttons/ShareNewCode";
 import CopyButton from "../components/buttons/CopyButton";
 import HomeButton from "../components/buttons/HomeButton";
-import LoadingSvg from "../components/svg/loadingSvg";
+import FetchingScreen from "../components/animated/FetchingScreen";
+import NotFoundScreen from "../components/misc/NotFoundScreen";
 const ViewCode = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
@@ -25,10 +26,10 @@ const ViewCode = () => {
         setIsFetching(false);
       } else {
         setIsFetching(false);
-        alert("Something Went Wrong ! Try again ");
       }
     } catch (e) {
-      alert("Something Went Wrong ! Try again ");
+    } finally {
+      setIsFetching(false);
     }
   };
   useEffect(() => {
@@ -45,46 +46,47 @@ const ViewCode = () => {
   };
   return (
     <>
-      {isFetching && (
-        <div className="w-full h-[100dvh] flex justify-center items-center absolute bg-[rgba(0,0,0,0.6)]">
-          <div>
-            <div>
-              <span className="text-xl sm:text-3xl font-bold text-gray-100">
-                Fetching Data
-              </span>
+      {isFetching && <FetchingScreen />}
+      {!isFetching && (
+        <>
+          {title.length !== 0 && (
+            <div className="px-2 py-2">
+              <div className="flex justify-end pt-2">
+                <ShareNewCode handleShareNewCode={handleShareNewCode} />
+              </div>
+              <div className="bg-[#22283C] mt-10 rounded-xl px-2">
+                <div className="flex justify-center pt-4">
+                  <h2 className="text-xl text-gray-200">Keep Tapping 👏</h2>
+                </div>
+
+                <div className="px-2 pt-4 flex justify-between flex-wrap-reverse gap-2 items-center">
+                  <CodeTitleField
+                    setTitle={setTitle}
+                    title={title}
+                    type={"readOnly"}
+                  />
+                  <HomeButton />
+                </div>
+                <div className="p-2 mt-1 w-full">
+                  <CodeTextField
+                    text={text}
+                    setText={setText}
+                    type={"readOnly"}
+                  />
+                </div>
+                <div className="h-[80px] px-2 flex items-center">
+                  <CopyButton text={text} />
+                </div>
+              </div>
             </div>
-            <div className="flex justify-center">
-              <LoadingSvg />
-            </div>
-          </div>
-        </div>
+          )}
+          {title.length === 0 && (
+            <>
+              <NotFoundScreen />
+            </>
+          )}
+        </>
       )}
-
-      <div className="px-2 py-2">
-        <div className="flex justify-end pt-2">
-          <ShareNewCode handleShareNewCode={handleShareNewCode} />
-        </div>
-        <div className="bg-[#22283C] mt-10 rounded-xl px-2">
-          <div className="flex justify-center pt-4">
-            <h2 className="text-xl text-gray-200">Keep Tapping 👏</h2>
-          </div>
-
-          <div className="px-2 pt-4 flex justify-between flex-wrap-reverse gap-2 items-center">
-            <CodeTitleField
-              setTitle={setTitle}
-              title={title}
-              type={"readOnly"}
-            />
-            <HomeButton />
-          </div>
-          <div className="p-2 mt-1 w-full">
-            <CodeTextField text={text} setText={setText} type={"readOnly"} />
-          </div>
-          <div className="h-[80px] px-2 flex items-center">
-            <CopyButton text={text} />
-          </div>
-        </div>
-      </div>
     </>
   );
 };
