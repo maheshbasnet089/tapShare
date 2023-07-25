@@ -27,11 +27,9 @@ export default function SeeShared() {
     try {
       if (id.startsWith("f")) {
         fetchCode();
-        setIsFetching(false);
-        return;
+      } else {
+        fetchFiles();
       }
-      fetchFiles();
-      setIsFetching(false);
     } catch (e) {
     } finally {
       setIsFetching(false);
