@@ -46,8 +46,9 @@ const ViewCode = () => {
   };
   return (
     <>
-      {isFetching && <FetchingScreen />}
-      {!isFetching && (
+      {isFetching ? (
+        <FetchingScreen />
+      ) : (
         <>
           {title.length !== 0 && (
             <div className="px-2 py-2">

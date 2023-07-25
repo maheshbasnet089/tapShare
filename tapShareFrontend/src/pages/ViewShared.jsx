@@ -30,8 +30,8 @@ export default function SeeShared() {
         setIsFetching(false);
         return;
       }
-      setIsFetching(false);
       fetchFiles();
+      setIsFetching(false);
     } catch (e) {
     } finally {
       setIsFetching(false);
@@ -39,8 +39,9 @@ export default function SeeShared() {
   }, []);
   return (
     <>
-      {isFetching && <FetchingScreen />}
-      {!isFetching && (
+      {isFetching ? (
+        <FetchingScreen />
+      ) : (
         <>
           {files.length !== 0 && (
             <>
