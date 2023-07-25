@@ -30,8 +30,8 @@ export default function SeeShared() {
         setIsFetching(false);
         return;
       }
-      setIsFetching(false);
       fetchFiles();
+      setIsFetching(false);
     } catch (e) {
     } finally {
       setIsFetching(false);
