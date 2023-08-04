@@ -3,7 +3,7 @@ export default function NotFoundScreen() {
   const navigate = useNavigate();
   return (
     <div className="min-h-[100vdh] flex justify-center items-center w-full">
-      <div className="flex justify-center min-h-[100dvh] items-center overflow-y-scroll overflow-x-hidden py-12">
+      <div className="flex justify-center min-h-[100dvh] items-center py-12">
         <div className="w-full max-w-[1000px] px-2 sm:px-8 md:px-12 lg:px-20">
           <div className="bg-gray-50 w-full rounded-md mt-10 py-8 px-6">
             <div className="flex justify-center">

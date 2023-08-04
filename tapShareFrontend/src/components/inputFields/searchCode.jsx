@@ -77,10 +77,12 @@ export default function SearchCode() {
                   Search Files or Text
                 </h1>
                 <input
+                  name="code"
                   type="text"
                   onChange={(e) => setSearch(e.target.value)}
                   value={search}
                   placeholder="Enter Code"
+                  autoComplete="given-code"
                   className="w-full h-12 rounded-xl px-2 text-center bg-gray-50 outline-none focus:outline-2 focus:outline-blue-500 border-2 border-blue-400 focus:border-0 transition-all duration-150 ease-out focus:bg-gray-100 mb-1"
                   required
                   title="Enter the code shared by sender"
