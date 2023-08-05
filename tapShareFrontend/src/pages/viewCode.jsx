@@ -23,6 +23,9 @@ const ViewCode = () => {
       if (response.data.status == 200) {
         setTitle(response.data.code.title);
         setText(response.data.code.text);
+        setIsFetching(false);
+      } else {
+        setIsFetching(false);
       }
     } catch (e) {
     } finally {
