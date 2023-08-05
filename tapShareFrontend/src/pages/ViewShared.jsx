@@ -9,52 +9,59 @@ import { baseUrl } from "../config";
 
 export default function SeeShared() {
   const [files, setFiles] = useState([]);
-  const [isFileAvaliable, setIsFileAvaliable] = useState(true);
+  const [isFileAvailable, setIsFileAvailable] = useState(true);
   const [isFetching, setIsFetching] = useState(true);
   const { id } = useParams();
   const fetchCode = async () => {
-    const res = await axios.get(`${baseUrl}api/v1/code/${id}`);
-    if (res.data.status === 200) {
-      if (res.data.code.length > 0) {
-        setFiles(res.data.code);
-      } else {
-        setIsFileAvaliable(false);
-      }
-    } else {
-      setIsFileAvaliable(false);
-    }
-  };
-  const fetchFiles = async function fetchFiles() {
-    const res = await axios.get(`${baseUrl}${id}`);
-    if (res.data.status === 200) {
-      if (res.data.files.length > 0) {
-        setFiles(res.data.files);
-      } else {
-        setIsFileAvaliable(false);
-      }
-    } else {
-      setIsFileAvaliable(false);
-    }
-  };
-  useEffect(() => {
     try {
-      if (id.startsWith("f")) {
-        fetchCode();
-        setIsFetching(false);
-      } else {
-        fetchFiles();
-        setIsFetching(false);
+      const { data } = await axios.get(`${baseUrl}api/v1/code/${id}`);
+      const { status, code } = data;
+      if (status === 200) {
+        if (code.length > 0) {
+          setFiles(code);
+          setIsFileAvailable(true);
+        } else {
+          setIsFileAvailable(false);
+        }
+      } else if (status === 404) {
+        setIsFileAvailable(false);
       }
     } catch (e) {
     } finally {
       setIsFetching(false);
+    }
+  };
+  const fetchFiles = async function fetchFiles() {
+    try {
+      const { data } = await axios.get(`${baseUrl}${id}`);
+      const { status, files } = data;
+      if (status === 200) {
+        if (files & (files.length > 0)) {
+          setFiles(files);
+          setIsFileAvailable(true);
+        } else {
+          setIsFileAvailable(false);
+        }
+      } else if (status === 404) {
+        setIsFileAvailable(false);
+      }
+    } catch (e) {
+    } finally {
+      setIsFetching(false);
+    }
+  };
+  useEffect(() => {
+    if (id.startsWith("f")) {
+      fetchCode();
+    } else {
+      fetchFiles();
     }
   }, []);
   return (
     <>
       {isFetching ? (
         <FetchingScreen />
-      ) : !isFileAvaliable ? (
+      ) : !isFileAvailable ? (
         <NotFoundScreen />
       ) : files.length === 0 ? (
         <FetchingScreen />

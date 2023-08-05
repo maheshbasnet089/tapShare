@@ -1,9 +1,11 @@
-import {Modal} from "@mui/material/";
+import { Modal } from "@mui/material/";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 export default function SearchCode() {
   const navigate = useNavigate();
   const [isSearchOpen, setSearchOpen] = useState(false);
+  const [shakeInput, setShakeInput] = useState(false);
+  const [alreadyTry, setAlreadyTry] = useState(0);
   const inputRef = useRef(null);
   const handleOpenSearch = () => {
     setSearchOpen(true);
@@ -12,7 +14,10 @@ export default function SearchCode() {
   const [search, setSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (search.length !== 0) {
+    if (search.length <= 5) {
+      setShakeInput(true);
+      setAlreadyTry((alreadyTry) => alreadyTry + 1);
+    } else {
       navigate(`/${search}`);
     }
   };
@@ -24,6 +29,14 @@ export default function SearchCode() {
       }, 100);
     }
   }, [isSearchOpen]);
+  useEffect(() => {
+    if (alreadyTry) {
+      if (search.length <= 5) {
+        setShakeInput(true);
+      }
+    }
+    setShakeInput(false);
+  }, [search]);
   return (
     <div className="relative">
       <div
@@ -83,7 +96,13 @@ export default function SearchCode() {
                   value={search}
                   placeholder="Enter Code"
                   autoComplete="given-code"
-                  className="w-full h-12 rounded-xl px-2 text-center bg-gray-50 outline-none focus:outline-2 focus:outline-blue-500 border-2 border-blue-400 focus:border-0 transition-all duration-150 ease-out focus:bg-gray-100 mb-1"
+                  className={`${
+                    shakeInput
+                      ? "animate-shake border-red-400 focus:outline-red-500"
+                      : alreadyTry != 0 && search.length <= 5
+                      ? "border-red-400 focus:outline-red-500"
+                      : "focus:outline-blue-500 border-blue-400"
+                  } w-full h-12 rounded-xl px-2 text-center bg-gray-50 outline-none focus:outline-2  border-2  focus:border-0 transition-all duration-150 ease-out focus:bg-gray-100 mb-1`}
                   required
                   title="Enter the code shared by sender"
                   autoFocus={true}

@@ -14,12 +14,9 @@ export const useStore = create((set) => ({
   setIsReceiverValid: (isValid) => set({ isReceiverValid: isValid }),
   setReceiverEmail: (email) => set({ receiverEmail: email }),
   setFiles: (files) => set({ files }),
-  send_file: async (file, email, setToasterData, setFiles) => {
-    if (
-      localStorage.getItem("userId") == null ||
-      localStorage.getItem("userId") == "" ||
-      localStorage.getItem("userId") == undefined
-    ) {
+  send_file: async (file, email, setToasterData, setFiles, navigate) => {
+    let userId = localStorage.getItem("userId");
+    if (userId == null || userId == "" || userId == undefined) {
       const userId = generateUserId();
       localStorage.setItem("userId", userId);
       set({ fireButton: true });
@@ -27,7 +24,7 @@ export const useStore = create((set) => ({
     const formData = new FormData();
 
     formData.append("email", email);
-    formData.append("userId", localStorage.getItem("userId"));
+    formData.append("userId", userId);
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
     }
@@ -57,8 +54,7 @@ export const useStore = create((set) => ({
         });
         setFiles(null);
       } else if (res.data.status === 201) {
-        window.location.href =
-          "https://tapshare.xyz/" + localStorage.getItem("userId");
+        navigate("/" + localStorage.getItem("userId"));
         // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
       } else {
