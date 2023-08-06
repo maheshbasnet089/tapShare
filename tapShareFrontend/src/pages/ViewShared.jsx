@@ -36,7 +36,7 @@ export default function SeeShared() {
       const { data } = await axios.get(`${baseUrl}${id}`);
       const { status, files } = data;
       if (status === 200) {
-        if (files & (files.length > 0)) {
+        if (files.length > 0) {
           setFiles(files);
           setIsFileAvailable(true);
         } else {
