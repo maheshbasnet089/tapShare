@@ -55,7 +55,7 @@ function Home() {
 
       {/* This is the cool ring type animation which is shown when any file is selected */}
       <AnimateStyle files={files} />
-
+{/* test */}
       {/** Component to select files */}
       <FilesInput />
 
