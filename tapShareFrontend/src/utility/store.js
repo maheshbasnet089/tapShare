@@ -15,8 +15,11 @@ export const useStore = create((set) => ({
   setReceiverEmail: (email) => set({ receiverEmail: email }),
   setFiles: (files) => set({ files }),
   send_file: async (file, email, setToasterData, setFiles, navigate) => {
-    let userId = localStorage.getItem("userId");
-    if (userId == null || userId == "" || userId == undefined) {
+    if (
+      localStorage.getItem("userId") == null ||
+      localStorage.getItem("userId") == "" ||
+      localStorage.getItem("userId") == undefined
+    ) {
       const userId = generateUserId();
       localStorage.setItem("userId", userId);
       set({ fireButton: true });
@@ -24,7 +27,7 @@ export const useStore = create((set) => ({
     const formData = new FormData();
 
     formData.append("email", email);
-    formData.append("userId", userId);
+    formData.append("userId", localStorage.getItem("userId"));
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
     }
@@ -46,6 +49,7 @@ export const useStore = create((set) => ({
           },
         }
       );
+      console.log(res.data.status)
       if (res.data.status === 200) {
         setToasterData({
           open: true,
