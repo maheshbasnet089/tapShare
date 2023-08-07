@@ -14,7 +14,7 @@ export default function SearchCode() {
   const [search, setSearch] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (search.length <= 5) {
+    if (search.length <= 3) {
       setShakeInput(true);
       setAlreadyTry((alreadyTry) => alreadyTry + 1);
     } else {
@@ -31,7 +31,7 @@ export default function SearchCode() {
   }, [isSearchOpen]);
   useEffect(() => {
     if (alreadyTry) {
-      if (search.length <= 5) {
+      if (search.length <= 3) {
         setShakeInput(true);
       }
     }
