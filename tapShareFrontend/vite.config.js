@@ -1,6 +1,5 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-
 import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
@@ -9,10 +8,11 @@ export default defineConfig({
   // server
   plugins: [
     react(),
-
     VitePWA({
       registerType: "autoUpdate",
       workbox: {
+        cleanupOutdatedCaches: true,
+        sourcemap: true,
         runtimeCaching: [
           {
             urlPattern: ({ url }) => {
@@ -20,7 +20,7 @@ export default defineConfig({
             },
             handler: "NetworkFirst",
             options: {
-              cacheName: "api-cache-v=4",
+              cacheName: "api-cache-v4",
               cacheableResponse: {
                 statuses: [0, 200],
               },
@@ -29,26 +29,14 @@ export default defineConfig({
         ],
       },
       onUpdateReady: () => {
-        // Prompt the user to update the app
-        const result = window.confirm(
-          "A new version of the app is available. Do you want to update app?"
-        );
-        if (result) {
-          // Skip waiting for the user to explicitly reload the app
-          window.location.reload();
-        }
+        // Skip waiting for the user to explicitly reload the app
+        self.skipWaiting();
       },
       onUpdated: () => {
-        // Notify the user that the app has been updated
-        alert(
-          "The app has been updated. Please reload to see the latest version."
-        );
+        // Send a message to the clients (browser tabs) to update themselves
+        self.clients.claim();
       },
-      includeAssets: [
-        "tapShare.ico",
-        "apple-touch-icon.webp",
-        "tapShare.webp",
-      ],
+      includeAssets: ["tapShare.ico", "apple-touch-icon.webp", "tapShare.webp"],
       manifest: {
         name: "TapShare",
         short_name: "TapShare",

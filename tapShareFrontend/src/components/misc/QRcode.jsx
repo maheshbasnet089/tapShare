@@ -36,7 +36,6 @@ export default function QRcodeContainer({ isQRshown, setShowQR, content }) {
       a.download = "qrcode_tapshare.png";
       a.click();
     } catch (error) {
-      console.log(error);
       alert("Something went wrong while saving the QR code.");
     }
   };

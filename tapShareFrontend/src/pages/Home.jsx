@@ -59,6 +59,7 @@ function Home() {
       {/** Component to select files */}
       <FilesInput />
 
+      {/* test */}
       {/* it is hidden by default, it appears as soon as one selects a file */}
       {files && files.length > 0 && (
         <HomePageFilesOptions setToasterData={setToasterData} />

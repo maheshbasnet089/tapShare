@@ -1,61 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="theme-color" content="#3C486B"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#3C486B" />
 
-  <link rel="shortcut icon" href="/tapShare.ico?v=4"/>
-  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=4" color="#3c486b" />
-  <link rel="icon" type="image/gif" sizes="500x500" href="https://tapshare.xyz/gif/tapshare.gif"/>
-  <link rel="icon" type="image/webp" sizes="384x384" href="/tapShare-384x384.webp?v=4"/>
-  <link rel="icon" type="image/webp" sizes="194x194" href="/tapShare-194x194.webp?v=4"/>
-  <link rel="icon" type="image/webp" sizes="192x192" href="/tapShare-192x192.webp?v=4"/>
-  <link rel="icon" type="image/webp" sizes="16x16" href="/tapShare-16x16.webp?v=4"/>
-  <link rel="icon" type="image/webp" sizes="32x32" href="/public/tapShare-32x32.webp"/>
-  
-  <meta name="application-name" content="TapShare"/>
-  <meta name="apple-mobile-web-app-title" content="TapShare"/>
-  <meta name="msapplication-TileColor" content="#000000"/>
-  <meta name="msapplication-TileImage" content="mstile-150x150.webp"/>
-  <link rel="apple-touch-icon" sizes="180x180" href="/tapShare-apple-touch-icon.webp?v=4"/>
+    <link rel="shortcut icon" href="/tapShare.ico?v=4" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=4" color="#3c486b" />
+    <link
+      rel="icon"
+      type="image/gif"
+      sizes="500x500"
+      href="https://tapshare.xyz/gif/tapshare.gif"
+    />
+    <link
+      rel="icon"
+      type="image/webp"
+      sizes="384x384"
+      href="/tapShare-384x384.webp?v=4"
+    />
+    <link
+      rel="icon"
+      type="image/webp"
+      sizes="194x194"
+      href="/tapShare-194x194.webp?v=4"
+    />
+    <link
+      rel="icon"
+      type="image/webp"
+      sizes="192x192"
+      href="/tapShare-192x192.webp?v=4"
+    />
+    <link
+      rel="icon"
+      type="image/webp"
+      sizes="16x16"
+      href="/tapShare-16x16.webp?v=4"
+    />
+    <link
+      rel="icon"
+      type="image/webp"
+      sizes="32x32"
+      href="/public/tapShare-32x32.webp"
+    />
 
-  <meta name="description" content="TapShare is a simple, secure, and fast file and code sharing platform. Share large files and codes easily with TapShare."/>
-  
-  <!-- TapShare facebook page app id -->
-  <meta property="fb:app_id" content="100093945937193"/> 
-  <!-- Open Graph Protocol (OGP) metadata tags -->
-  <meta property="og:title" content="TapShare"/>
-  <meta property="og:description" content="TapShare is a simple, secure, and fast file and code sharing platform. Share large files and codes easily with TapShare./">
-  <meta property="og:url" content="https://tapshare.xyz"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image:alt" content="Sharing made simple with tapShare! 📁💨 No login or registration is needed. Seamlessly share files, code snippets, and text using a unique 6-digit ID. Get tapShare today"/>
-  <meta property="og:image" content="https://tapshare.xyz/tapshare.png"/>
-  <!-- <meta property="og:image:width" content="500"/> -->
-  <!-- <meta property="og:image:height" content="500"/> -->
+    <meta name="application-name" content="TapShare" />
+    <meta name="apple-mobile-web-app-title" content="TapShare" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="msapplication-TileImage" content="mstile-150x150.webp" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/tapShare-apple-touch-icon.webp?v=4"
+    />
 
+    <meta
+      name="description"
+      content="TapShare is a simple, secure, and fast file and code sharing platform. Share large files and codes easily with TapShare."
+    />
 
-  <!-- Twitter Card metadata tags -->
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:url" content="https://tapshare.xyz"/>
-  <meta name="twitter:title" content="TapShare"/>
-  <meta name="twitter:description" content="Tapshare is an emerging platform that facilitates code and file sharing among individuals. Sharing code and files among people is a common challenge faced by many individuals . TapShare aims to provide a solution to this problem by offering a groundbreaking file/code-sharing platform that simplifies the process and eliminates the need for authentication and login hassles."/>
-  <meta name="twitter:image" content="https://tapshare.xyz/tapshare.png"/>
+    <!-- TapShare facebook page app id -->
+    <meta property="fb:app_id" content="100093945937193" />
+    <!-- Open Graph Protocol (OGP) metadata tags -->
+    <meta property="og:title" content="TapShare" />
+    <meta
+      property="og:description"
+      content="TapShare is a simple, secure, and fast file and code sharing platform. Share large files and codes easily with TapShare./"
+    />
+    <meta property="og:url" content="https://tapshare.xyz" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image:alt"
+      content="Sharing made simple with tapShare! 📁💨 No login or registration is needed. Seamlessly share files, code snippets, and text using a unique 6-digit ID. Get tapShare today"
+    />
+    <meta property="og:image" content="https://tapshare.xyz/tapshare.png" />
+    <!-- <meta property="og:image:width" content="500"/> -->
+    <!-- <meta property="og:image:height" content="500"/> -->
 
+    <!-- Twitter Card metadata tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://tapshare.xyz" />
+    <meta name="twitter:title" content="TapShare" />
+    <meta
+      name="twitter:description"
+      content="Tapshare is an emerging platform that facilitates code and file sharing among individuals. Sharing code and files among people is a common challenge faced by many individuals . TapShare aims to provide a solution to this problem by offering a groundbreaking file/code-sharing platform that simplifies the process and eliminates the need for authentication and login hassles."
+    />
+    <meta name="twitter:image" content="https://tapshare.xyz/tapshare.png" />
 
-  <!-- LinkedIn metadata tags -->
+    <!-- LinkedIn metadata tags -->
 
-  <meta property="li:site" content="https://tapshare.xyz"/>
-  <meta property="li:title" content="TapShare"/>
-  <meta property="li:description" content="Tapshare is an emerging platform that facilitates code and file sharing among individuals. Sharing code and files among people is a common challenge faced by many individuals . TapShare aims to provide a solution to this problem by offering a groundbreaking file/code-sharing platform that simplifies the process and eliminates the need for authentication and login hassles."/>
-  <meta property="li:image" content="https://tapshare.xyz/tapshare.png"/>
-  <meta property="li:image:alt" content="Sharing made simple with tapShare! 📁💨 No login or registration is needed. Seamlessly share files, code snippets, and text using a unique 6-digit ID. Get tapShare today"/>
+    <meta property="li:site" content="https://tapshare.xyz" />
+    <meta property="li:title" content="TapShare" />
+    <meta
+      property="li:description"
+      content="Tapshare is an emerging platform that facilitates code and file sharing among individuals. Sharing code and files among people is a common challenge faced by many individuals . TapShare aims to provide a solution to this problem by offering a groundbreaking file/code-sharing platform that simplifies the process and eliminates the need for authentication and login hassles."
+    />
+    <meta property="li:image" content="https://tapshare.xyz/tapshare.png" />
+    <meta
+      property="li:image:alt"
+      content="Sharing made simple with tapShare! 📁💨 No login or registration is needed. Seamlessly share files, code snippets, and text using a unique 6-digit ID. Get tapShare today"
+    />
 
-  <title>TapShare</title>
-</head>
-<body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-  <script defer src="/_vercel/insights/script.js"></script>
-</body>
+    <title>TapShare</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+
+      .loadingSvg {
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        place-content: center;
+        justify-content: center;
+        z-index: 999999999;
+        background-color: hsl(225, 28%, 33%);
+      }
+
+      .LoadingInfoText {
+        font-size: 2rem;
+        text-align: center;
+        color: hsl(0, 0%, 94%);
+        font-family: "'Play', sans-serif, roboto";
+      }
+      .loadinText{
+        color: hsl(0, 0%, 81%);
+      }
+
+      .loadingCont {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading" class="loadingSvg">
+      <div class="loadingCont">
+        <img src="/gif/tapshare.gif" alt="loading......" />
+        <p class="LoadingInfoText">Sharing made simple with TapShare!</p>
+        <div class="loadinText">
+          Loading...
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <div id="root"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const loading = document.getElementById("loading");
+        loading.style.display = "none";
+        loading.style.visibility = "hidden";
+      });
+    </script>
+    <script type="module" src="/src/main.jsx"></script>
+    <script defer  src="/_vercel/insights/script.js"></script>
+  </body>
 </html>

@@ -10,12 +10,14 @@ import CodeTextField from "../components/inputFields/CodeTextField";
 import ShareCodeButton from "../components/buttons/ShareCodeButton";
 import NewCodeButton from "../components/buttons/NewCodeButton";
 import CopyButton from "../components/buttons/CopyButton";
+import ViewSharedAndAddNewCode from "../components/code/ViewSharedAndAddNewCode";
 export default function AddCode() {
   const loading = useStore((state) => state.loading);
   const setLoading = useStore((state) => state.setLoading);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
+
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
@@ -54,35 +56,18 @@ export default function AddCode() {
     }
     storeUser();
   }, []);
-  
+
   return (
     <>
-      <div className="px-2 py-2">
-        <div className="flex justify-end pt-2">
-          <NewCodeButton handleNewCode={handleNewCode} />
-        </div>
-        <div>
-          <form
-            onSubmit={handleSubmit}
-            className="bg-[#22283C] mt-10 rounded-xl px-2"
-          >
-            <div className="px-2 pt-6 flex justify-between flex-wrap-reverse gap-2 items-center">
-              <CodeTitleField
-                setTitle={setTitle}
-                title={title}
-                type={"readWrite"}
-              />
-              <CancelButton handleCancel={handleCancel} />
-            </div>
-            <div className="p-2 mt-1 w-full">
-              <CodeTextField text={text} setText={setText} type={"readWrite"} />
-            </div>
-            <div className="h-[100px] px-2 flex items-center">
-              <ShareCodeButton />
-            </div>
-          </form>
-        </div>
-      </div>
+      <ViewSharedAndAddNewCode
+        setTitle={setTitle}
+        title={title}
+        text={text}
+        handleCancel={handleCancel}
+        handleNewCode={handleNewCode}
+        handleSubmit={handleSubmit}
+        setText={setText}
+      />
     </>
   );
 }
