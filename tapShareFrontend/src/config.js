@@ -1,4 +1,4 @@
-export const baseUrl = "https://oyster-app-2-t6ajw.ondigitalocean.app/";
+export const baseUrl = "https://octopus-app-xvcp4.ondigitalocean.app/";
 
 //for development use uncomment the following line
 
