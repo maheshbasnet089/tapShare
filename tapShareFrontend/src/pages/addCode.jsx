@@ -23,6 +23,9 @@ export default function AddCode() {
       e.preventDefault();
       setLoading(true);
       const formData = new FormData(e.target);
+      const responseForIp = await axios.get('https://api64.ipify.org?format=json');
+      const ipAddress = responseForIp.data.ip
+      formData.append("ipAddress",ipAddress)
       formData.append("userId", "f" + localStorage.getItem("userId"));
       const data = Object.fromEntries(formData);
       const response = await axios.post(`${baseUrl}api/v1/code`, data);
