@@ -16,13 +16,13 @@ TapShare is a platform that enables users to transfer files, including zip files
 ## What Sets TapShare Apart?
 TapShare distinguishes itself from other file-sharing platforms in several ways, ensuring a seamless and efficient experience for users:
 
-** Simplicity and Convenience **: With just one click, TapShare allows users to effortlessly transfer files, share text, and exchange code between devices. The user-friendly interface eliminates the need for complex login procedures.
+**Simplicity and Convenience**: With just one click, TapShare allows users to effortlessly transfer files, share text, and exchange code between devices. The user-friendly interface eliminates the need for complex login procedures.
 
-No Login or Authentication Required: Unlike other platforms, TapShare removes the need for users to authenticate or log in, saving valuable time and enhancing productivity.
+**No Login or Authentication Required**: Unlike other platforms, TapShare removes the need for users to authenticate or log in, saving valuable time and enhancing productivity.
 
-Email and Phone Integration: TapShare takes file sharing to the next level by providing integration not only with email but also with phones. In addition to sending files directly to someone's email, TapShare enables users to send files directly to a recipient's phone number.
+**Email and Phone Integration**: TapShare takes file sharing to the next level by providing integration not only with email but also with phones. In addition to sending files directly to someone's email, TapShare enables users to send files directly to a recipient's phone number.
 
-Open Source: A distinguishing feature of TapShare is its commitment to open-source principles. TapShare is an open-source project, meaning its source code is freely available for anyone to access, modify, and distribute. This openness fosters collaboration and allows developers to contribute to the platform's improvement.
+**Open Source**: A distinguishing feature of TapShare is its commitment to open-source principles. TapShare is an open-source project, meaning its source code is freely available for anyone to access, modify, and distribute. This openness fosters collaboration and allows developers to contribute to the platform's improvement.
 
 
 ## How to Use TapShare
