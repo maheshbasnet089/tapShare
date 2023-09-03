@@ -11,6 +11,10 @@ const fileSchema = new Schema(
       type: String,
       required: true,
     },
+    ipAddress :{
+      type : String,
+      required : true
+    },
     path: {
       type: String,
       required: true,
