@@ -1,8 +1,2 @@
 /node_modules
 .env
-
-# Ignore all files in the uploads folder
-uploads/*
-
-# Except for test.txt
-!uploads/test.txt
