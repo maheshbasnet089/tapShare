@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { AiOutlineFileWord } from "react-icons/ai";
 import { AiOutlineFilePdf } from "react-icons/ai";
-import { AiOutlineFileImage } from "react-icons/ai";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { BsFiletypePpt } from "react-icons/bs";
 import { AiOutlineFileExcel } from "react-icons/ai";
 import { useStore } from "../../utility/store";
-
+import TapshareLogoGif from "../../assets/tapshare.gif";
 const ViewFiles = () => {
   // store calls
   const files = useStore((state) => state.files);
@@ -29,7 +28,7 @@ const ViewFiles = () => {
   }, [files]);
   return (
     <>
-      <div className="flex gap-x-[.75em] overflow-y-scroll max-w-[23em] sm:max-w-[35em] items-center">
+      <div className="flex gap-x-[.75em] flex-wrap overflow-y-scroll max-h-64 items-end gap-1  max-w-[23em] sm:max-w-[35em] ">
         {/* displays the selected files -> if there are many files then ihe div turn to scrollable  horizontally */}
         {showFiles?.length > 0 &&
           showFiles.map((file, index) => {
@@ -43,7 +42,10 @@ const ViewFiles = () => {
                   <AiOutlineFilePdf className="text-[2.5rem] " />
                 )) ||
                   (file.type.startsWith("image") && (
-                    <AiOutlineFileImage className="text-[2.5rem] " />
+                    <img
+                      className="h-[100px] w-[100px] object-cover"
+                      src={file ? URL.createObjectURL(file) : TapshareLogoGif}
+                    />
                   )) ||
                   (file.type ===
                     "application/vnd.openxmlformats-officedocument.wordprocessingml.document" && (
