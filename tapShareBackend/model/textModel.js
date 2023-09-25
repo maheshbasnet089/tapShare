@@ -12,6 +12,12 @@ const codeSchema = new Schema({
   title: {
     type: String,
   },
+  ipAddress :{
+    type : String,
+    required : true
+  }
+},{
+  timestamps:true
 });
 
 const Code = mongoose.model("Code", codeSchema);

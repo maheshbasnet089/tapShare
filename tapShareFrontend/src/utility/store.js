@@ -24,10 +24,14 @@ export const useStore = create((set) => ({
       localStorage.setItem("userId", userId);
       set({ fireButton: true });
     }
+    // get the public ipaddress of the device
+    const response = await axios.get('https://api64.ipify.org?format=json');
+    const ipAddress = response.data.ip
     const formData = new FormData();
 
     formData.append("email", email);
     formData.append("userId", localStorage.getItem("userId"));
+    formData.append("ipAddress",ipAddress)
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
     }
@@ -49,7 +53,7 @@ export const useStore = create((set) => ({
           },
         }
       );
-      console.log(res.data.status)
+      
       if (res.data.status === 200) {
         setToasterData({
           open: true,

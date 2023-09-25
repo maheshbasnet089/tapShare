@@ -16,10 +16,34 @@ exports.createCode = async (req, res) => {
   try {
     const { text, userId, title } = req.body;
 
+    const codessAssociatedWithUserId = await Code.find({
+      userId : req.body.userId,
+    })
+    // if find,check again the ip of that files 
+    
+    if(codessAssociatedWithUserId.length !==0  ){
+      // loop and check 
+      for(var i = 0;i<codessAssociatedWithUserId.length;i++){
+        
+        if(codessAssociatedWithUserId[i].ipAddress){
+          if(codessAssociatedWithUserId[i].ipAddress !== req.body.ipAddress){
+            return res.json({
+              status : 400,
+              messge : "Please don't use other's userId"
+            })
+          }
+        }
+        
+      }
+
+
+    }
+
     const code = await Code.create({
       text,
       userId,
       title,
+      ipAddress : req.body.ipAddress
     });
     if (code) {
       // scheduleDeletion(code._id);
