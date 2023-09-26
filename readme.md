@@ -44,6 +44,7 @@ Using TapShare is easy and straightforward. Here are the steps to follow:
 
 - Establish secure shell connection (ssh) realtime between sender and receiver
 - Offline support
+- Send files to multiple emails
 
 ## Support
 
