@@ -4,9 +4,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QRcodeContainer from "./QRcode";
 import { useParams } from "react-router-dom";
+import { useStore } from "../../utility/store";
 export default function ShareSingleLinkContainer({ files }) {
   const navigate = useNavigate();
   const { id } = useParams();
+  const setFiles = useStore((state) => state.setFiles);
+
   const [isQRshown, setShowQR] = useState(false);
   return (
     <>
@@ -36,7 +39,9 @@ export default function ShareSingleLinkContainer({ files }) {
           <div className="flex flex-wrap gap-4 sm:gap-8 justify-center">
             <button
               className="text-blue-500 border-2 border-blue-500 hover:bg-blue-500 hover:text-gray-50 transition-all ease duration-100 w-[161px] active:bg-blue-400 py-2 rounded-md"
-              onClick={(e) => navigate("/")}
+              onClick={() => {
+                navigate("/"), setFiles([]);
+              }}
             >
               Share Another
             </button>
