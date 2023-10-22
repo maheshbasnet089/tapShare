@@ -8,6 +8,10 @@ export const useHistoryStore = create((set) => ({
   },
   getHistory: async () => {
     try {
+      const responseForIp = await axios.get(
+        "https://api64.ipify.org?format=json"
+      );
+      const ipAddress = responseForIp.data.ip;
       const res = await axios.get(
         `http://localhost:5000/api/v1/history/2400:1a00:bd20:d727:3d41:95d9:94a3:224e`
       );
@@ -28,4 +32,6 @@ export const useHistoryStore = create((set) => ({
       return null;
     }
   },
+  queryData: {},
+  setQueryData: (data) => set({ queryData: data }),
 }));

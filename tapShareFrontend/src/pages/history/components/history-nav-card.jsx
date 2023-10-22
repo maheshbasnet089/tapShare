@@ -1,11 +1,13 @@
 import React from "react";
+import { useHistoryStore } from "../store";
 
 const HistoryNavCard = ({ data }) => {
+  const setQueryData = useHistoryStore((state) => state.setQueryData);
   return (
     <>
       <div
-        className="border px-2 py-3 rounded border-l-[3px] z-[-2]"
-        onClick={() => navigate("/history")}
+        className="border px-2 py-3 rounded border-l-[3px] z-[-2] cursor-pointer"
+        onClick={() => setQueryData(data)}
       >
         <p className="relative z-[-1]">
           <span>

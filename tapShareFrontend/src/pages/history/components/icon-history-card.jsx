@@ -1,13 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useHistoryStore } from "../store";
 
 const IconHistoryCard = ({ data }) => {
   const navigate = useNavigate();
+  const setQueryData = useHistoryStore((state) => state.setQueryData);
   return (
     <>
       <div
         className="border px-2 cursor-pointer py-3 rounded-sm"
-        onClick={() => navigate("/history")}
+        onClick={() => {
+          navigate("/history");
+          setQueryData(data);
+        }}
       >
         <p className="relative">
           <span>
