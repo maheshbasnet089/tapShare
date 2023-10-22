@@ -1,5 +1,6 @@
 import React from "react";
 import { useStore } from "../../utility/store";
+// import { HiBackspace } from "react-icons/hi";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phonePattern = /^(97|98)\d{8}$/;
@@ -25,7 +26,7 @@ export default function ReceiverEmailInputField() {
     }
   };
   return (
-    <div className="relative flex justify-center py-3 px-3">
+    <div className="relative flex flex-col items-center py-3 px-3">
       <input
         type="text"
         placeholder="Enter the email address"

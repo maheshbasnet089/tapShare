@@ -1,10 +1,18 @@
 import React from "react";
+import SearchCode from "../inputFields/searchCode";
+import { useStore } from "../../utility/store";
+import HistoryIcon from "../../pages/history/components/history-icon";
 
 const AppBar = () => {
+  const files = useStore((state) => state.files);
   return (
     <nav className="fixed w-full">
-      <div className="flex justify-center select-none w-full items-center p-[1em] relative">
-        <a href="https://tapshare.xyz" title="TapShare" className="flex items-center gap-[.3rem] cursor-pointer" target="_blank">
+      <div className="flex justify-center flex-col select-none w-full items-center p-[1em] relative gap-y-10">
+        <a
+          href="https://tapshare.xyz"
+          title="TapShare"
+          className="flex items-center gap-[.3rem] cursor-pointer"
+        >
           <div className="flex justify-center items-center bg-[rgba(0,0,0,0.2)] p-[2px] rounded-full">
             <div className="flex justify-center bg-[rgba(0,0,0,0.4)] rounded-full">
               <img
@@ -18,7 +26,8 @@ const AppBar = () => {
             Share
           </p>
         </a>
-        <div className="absolute top-0 right-0 m-[1rem] flex items-center" title="About">
+        {Array.isArray(files) && files?.length <= 0 && <SearchCode />}
+        <div className="absolute top-0 right-0 m-[1rem] flex flex-col justify-center items-center gap-2">
           <a
             href="https://github.com/maheshbasnet089/tapShare"
             className="text-[#efefef] text-sm hover:underline relative"
@@ -33,8 +42,9 @@ const AppBar = () => {
               lineHeight: "24px",
             }}
             target="_blank"
+            title="About"
           >
-            <div
+            <span
               style={{
                 position: "absolute",
                 top: "50%",
@@ -43,8 +53,9 @@ const AppBar = () => {
               }}
             >
               &#63; {/* Unicode character for question mark */}
-            </div>
+            </span>
           </a>
+          <HistoryIcon />
         </div>
       </div>
     </nav>

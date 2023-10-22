@@ -5,7 +5,6 @@ import { useStore } from "../utility/store";
 import DeleteUserId from "../components/buttons/deleteUserId";
 import ShareTextButtonHome from "../components/buttons/shareTextButtonHome";
 import AnimateStyle from "../components/animated/animateStyle";
-import SearchCode from "../components/inputFields/searchCode";
 import HomePageFilesOptions from "../components/misc/homePageFilesOptions";
 import FilesInput from "../components/inputFields/filesInput";
 function Home() {
@@ -46,16 +45,12 @@ function Home() {
 
       {/* This is the app bar section that contains logo at the top of the page */}
       <AppBar />
-
-      {/** Component to search code  */}
-      <SearchCode />
-
       {/* When no file is selected ShareText Button is to be shown in Home Page */}
       {files?.length == 0 && <ShareTextButtonHome />}
 
       {/* This is the cool ring type animation which is shown when any file is selected */}
       <AnimateStyle files={files} />
-{/* test */}
+      {/* test */}
       {/** Component to select files */}
       <FilesInput />
 

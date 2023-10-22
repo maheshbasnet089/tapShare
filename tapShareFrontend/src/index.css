@@ -11,7 +11,7 @@
 }
 body {
   /* background:#6f6f6f ; */
-  /* background-color: #27374D */
+  /* background-color: #303030; */
   background-color: #3c486b;
 }
 
@@ -131,4 +131,8 @@ body {
   100% {
     transform: rotate(405deg);
   }
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
