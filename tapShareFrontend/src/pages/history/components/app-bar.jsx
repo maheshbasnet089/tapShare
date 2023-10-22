@@ -3,7 +3,7 @@ import React from "react";
 const HistoryAppBar = () => {
   return (
     <>
-      <nav className="fixed w-full">
+      <nav className="fixed w-full bg-[#3c486b] z-10">
         <div className="flex justify-center flex-col select-none w-full items-center p-[1em] relative gap-y-10">
           <a
             href="https://tapshare.xyz"
