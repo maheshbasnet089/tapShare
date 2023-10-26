@@ -22,7 +22,14 @@ const History = () => {
           </p>
           <p className="h-[1px] bg-slate-300" />
           <div className="px-2 min-[450px]:px-4 min-[800px]:flex gap-x-3">
-            <HistoryNav data={history} />
+            <div className="">
+              <div className="flex mt-2 gap-x-4">
+                <p>Files</p>
+                <p>Text</p>
+              </div>
+              <p className="h-[1px] bg-slate-300 mt-1" />
+              <HistoryNav data={history} />
+            </div>
             <div className="border-l pl-2 pt-2 w-full">
               {queryData?.name && <FilesHistory data={queryData} />}
               {queryData?.title && (
