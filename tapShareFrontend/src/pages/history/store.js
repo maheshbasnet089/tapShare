@@ -1,5 +1,6 @@
 import axios from "axios";
 import { create } from "zustand";
+import { baseUrl } from "../../config";
 
 export const useHistoryStore = create((set) => ({
   history: {
@@ -12,9 +13,7 @@ export const useHistoryStore = create((set) => ({
         "https://api64.ipify.org?format=json"
       );
       const ipAddress = responseForIp.data.ip;
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/history/${ipAddress}`
-      );
+      const res = await axios.get(`${baseUrl}api/v1/history/${ipAddress}`);
       if (res.data.status === 200) {
         set({
           history: {
@@ -36,9 +35,7 @@ export const useHistoryStore = create((set) => ({
   setQueryData: (data) => set({ queryData: data }),
   getCodeDetails: async (id) => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/history/code/${id}`
-      );
+      const res = await axios.get(`${baseUrl}api/v1/history/code/${id}`);
       if (res.data.status === 200) {
         set({ queryData: res.data.code });
         return res.data.code;
@@ -50,9 +47,7 @@ export const useHistoryStore = create((set) => ({
   },
   getFilesDetails: async (id) => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/history/file/${id}`
-      );
+      const res = await axios.get(`${baseUrl}api/v1/history/file/${id}`);
       if (res.data.status === 200) {
         set({ queryData: res.data.file });
         return res.data.file;
