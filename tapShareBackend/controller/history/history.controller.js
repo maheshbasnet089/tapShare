@@ -25,7 +25,6 @@ exports.getHistory = async (req, res) => {
     return res.status(500).json({ message: error.message, status: 500 });
   }
 };
-// get all
 exports.getCodeDetails = async (req, res) => {
   const id = req.params.id;
   try {

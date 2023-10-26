@@ -53,13 +53,13 @@ const History = () => {
                     (Array.isArray(data?.files) && data?.files.length > 0 ? (
                       <HistoryNav data={data?.files} />
                     ) : (
-                      <p>no files available</p>
+                      <p className="mt-2">no files available</p>
                     ))}
                   {navType === "codes" &&
                     (Array.isArray(data?.codes) && data?.codes.length > 0 ? (
                       <HistoryNav data={data?.codes} />
                     ) : (
-                      <p>no codes available</p>
+                      <p className="mt-2">no codes available</p>
                     ))}
                 </>
               )}
