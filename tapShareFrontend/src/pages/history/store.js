@@ -34,4 +34,18 @@ export const useHistoryStore = create((set) => ({
   },
   queryData: {},
   setQueryData: (data) => set({ queryData: data }),
+  getCodeDetails: async (id) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/v1/history/code/${id}`
+      );
+      if (res.data.status === 200) {
+        set({ queryData: res.data.code });
+        return res.data.code;
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
+  },
 }));

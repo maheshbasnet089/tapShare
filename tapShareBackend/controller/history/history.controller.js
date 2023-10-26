@@ -40,3 +40,16 @@ exports.getAllHistory = async (_, res) => {
     return res.status(500).json({ message: error.message, status: 500 });
   }
 };
+
+exports.getCodeDetails = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const code = await CodeModal.findById(id);
+    if (!code)
+      return res.status(200).json({ message: "No code found", status: 200 });
+
+    return res.status(200).json({ code, status: 200 });
+  } catch (error) {
+    return res.status(500).json({ message: error.message, status: 500 });
+  }
+};

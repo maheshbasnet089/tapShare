@@ -1,11 +1,12 @@
 import HistoryAppBar from "./components/app-bar";
 import HistoryNav from "./components/history-nav";
 import { useHistoryStore } from "./store";
-import FilesHistory from "./components/files-history";
+import FilesHistory from "./components/files/files-history";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import HistorySkeleton from "./components/history-skeleton";
-import CodeHistory from "./components/code-history";
+import CodeHistory from "./components/codes/code-history";
+import HistoryLoading from "./components/loading/history-loading";
 const History = () => {
   // stores
   const getHistory = useHistoryStore((state) => state.getHistory);
@@ -65,26 +66,7 @@ const History = () => {
             </div>
             <div className="border-l pl-2 pt-2 w-full hidden min-[800px]:block ">
               {isFetching ? (
-                <div className="w-full flex justify-center items-center min-[800px]:h-[87dvh]">
-                  <a
-                    href="https://tapshare.xyz"
-                    title="TapShare"
-                    className="flex items-center gap-[.3rem] cursor-pointer"
-                  >
-                    <div className="flex justify-center items-center bg-[rgba(0,0,0,0.2)] p-[2px] rounded-full">
-                      <div className="flex justify-center bg-[rgba(0,0,0,0.4)] rounded-full">
-                        <img
-                          src="/tapShare-194x194.webp"
-                          className="w-8 backdrop-blur-lg rounded-full"
-                          alt="TapShare Logo"
-                        />
-                      </div>
-                    </div>
-                    <p className="text-[1.5rem] text-[#efefef] font-semibold tracking-wide">
-                      Share
-                    </p>
-                  </a>
-                </div>
+                <HistoryLoading />
               ) : (
                 <>
                   {queryData?.name && <FilesHistory data={queryData} />}

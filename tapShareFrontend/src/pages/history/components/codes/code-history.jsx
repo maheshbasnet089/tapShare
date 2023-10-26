@@ -4,7 +4,7 @@ import { BiCopy } from "react-icons/bi";
 const CodeHistory = ({ data }) => {
   return (
     <>
-      <div className="w-full  min-[800px]:h-[87dvh]">
+      <div className="w-full min-[800px]:h-[87dvh]">
         <p className="text-[#efefef] text-[1.1rem] min-[450px]:text-[1.2rem] px-2 min-[450px]:px-4 capitalize">
           {data?.title}'s History
         </p>
