@@ -11,13 +11,12 @@ exports.getHistory = async (req, res) => {
         message: "Please provide ipAddress",
         status: 200,
       });
-    // const codes = await CodeModal.find({ ipAddress })
-    //   .sort({ createdAt: -1 })
-    //   .limit(total);
+    const codes = await CodeModal.find({ ipAddress })
+      .sort({ createdAt: -1 })
+      .limit(total);
     const files = await FileModal.find({ ipAddress })
       .sort({ createdAt: -1 })
       .limit(total);
-    const codes = await CodeModal.find().sort({ createdAt: -1 }).limit(total);
     if (codes?.length <= 0 && files?.length <= 0) {
       return res.status(200).json({ message: "No history found", status: 200 });
     }
@@ -27,20 +26,6 @@ exports.getHistory = async (req, res) => {
   }
 };
 // get all
-exports.getAllHistory = async (_, res) => {
-  try {
-    // const codes = await CodeModal.find();
-    const files = await FileModal.find();
-    const ipAddress = [...files].filter((item) => item.ipAddress);
-    // if (codes?.length <= 0 && files?.length <= 0) {
-    //   return res.status(200).json({ message: "No history found", status: 200 });
-    // }
-    return res.status(200).json({ ipAddress, status: 200 });
-  } catch (error) {
-    return res.status(500).json({ message: error.message, status: 500 });
-  }
-};
-
 exports.getCodeDetails = async (req, res) => {
   const id = req.params.id;
   try {
@@ -49,6 +34,19 @@ exports.getCodeDetails = async (req, res) => {
       return res.status(200).json({ message: "No code found", status: 200 });
 
     return res.status(200).json({ code, status: 200 });
+  } catch (error) {
+    return res.status(500).json({ message: error.message, status: 500 });
+  }
+};
+
+// get files details
+exports.getFileDetails = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const file = awaitFileModal.findById(id);
+    if (!file)
+      return res.status(200).json({ message: "No file found", status: 200 });
+    return res.status(200).json({ file, status: 200 });
   } catch (error) {
     return res.status(500).json({ message: error.message, status: 500 });
   }

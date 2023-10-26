@@ -13,7 +13,7 @@ export const useHistoryStore = create((set) => ({
       );
       const ipAddress = responseForIp.data.ip;
       const res = await axios.get(
-        `http://localhost:5000/api/v1/history/2400:1a00:bd20:d727:3d41:95d9:94a3:224e`
+        `http://localhost:5000/api/v1/history/${ipAddress}`
       );
       if (res.data.status === 200) {
         set({
@@ -42,6 +42,20 @@ export const useHistoryStore = create((set) => ({
       if (res.data.status === 200) {
         set({ queryData: res.data.code });
         return res.data.code;
+      }
+      return null;
+    } catch (error) {
+      return null;
+    }
+  },
+  getFilesDetails: async (id) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:5000/api/v1/history/file/${id}`
+      );
+      if (res.data.status === 200) {
+        set({ queryData: res.data.file });
+        return res.data.file;
       }
       return null;
     } catch (error) {
