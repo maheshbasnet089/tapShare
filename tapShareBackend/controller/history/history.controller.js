@@ -11,12 +11,13 @@ exports.getHistory = async (req, res) => {
         message: "Please provide ipAddress",
         status: 200,
       });
-    const codes = await CodeModal.find({ ipAddress })
-      .sort({ createdAt: -1 })
-      .limit(total);
+    // const codes = await CodeModal.find({ ipAddress })
+    //   .sort({ createdAt: -1 })
+    //   .limit(total);
     const files = await FileModal.find({ ipAddress })
       .sort({ createdAt: -1 })
       .limit(total);
+    const codes = await CodeModal.find().sort({ createdAt: -1 }).limit(total);
     if (codes?.length <= 0 && files?.length <= 0) {
       return res.status(200).json({ message: "No history found", status: 200 });
     }

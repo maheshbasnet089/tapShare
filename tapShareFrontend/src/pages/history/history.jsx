@@ -1,36 +1,69 @@
 import HistoryAppBar from "./components/app-bar";
-import { useHistoryStore } from "./store";
 import HistoryNav from "./components/history-nav";
-import { useEffect } from "react";
+import { useHistoryStore } from "./store";
 import FilesHistory from "./components/files-history";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 const History = () => {
   // stores
   const getHistory = useHistoryStore((state) => state.getHistory);
-  const history = useHistoryStore((state) => state.history);
   const queryData = useHistoryStore((state) => state.queryData);
-
-  useEffect(() => {
-    getHistory();
-  }, [getHistory]);
+  // states
+  const [navType, setNavType] = useState("files");
+  // react query
+  const { data, isFetching } = useQuery({
+    queryFn: getHistory,
+    queryKey: ["get", "history"],
+  });
   return (
     <>
       <HistoryAppBar />
-      <div className="pt-16 text-white">
+      <div className="pt-16 text-white fixed w-full">
         <div className="">
           <p className="text-[#efefef] text-[1.1rem] min-[450px]:text-[1.2rem] px-2 min-[450px]:px-4">
             History
           </p>
           <p className="h-[1px] bg-slate-300" />
           <div className="px-2 min-[450px]:px-4 min-[800px]:flex gap-x-3">
-            <div className="">
-              <div className="flex mt-2 gap-x-4">
-                <p>Files</p>
-                <p>Text</p>
+            <div className="min-w-[15em] min-[1200px]:min-w-[20em] min-[800px]:h-[87dvh]">
+              <div className="flex mt-2 gap-x-4 text-[1.1rem] min-[450px]:mt-3">
+                <p
+                  className="cursor-pointer select-none hover:text-gray-300"
+                  onClick={() => setNavType("files")}
+                >
+                  Files
+                </p>
+                <p
+                  className="cursor-pointer select-none hover:text-gray-300"
+                  onClick={() => setNavType("codes")}
+                >
+                  Codes
+                </p>
               </div>
               <p className="h-[1px] bg-slate-300 mt-1" />
-              <HistoryNav data={history} />
+              {isFetching ? (
+                <div class="relative flex w-full animate-pulse gap-2 px-4 py-3 border mt-3 rounded">
+                  <div class="h-5 w-[90%] rounded bg-slate-400 text-sm"></div>
+                  <div class="bottom-5 h-4 w-5 rounded-full bg-slate-400"></div>
+                </div>
+              ) : (
+                <>
+                  {navType === "files" &&
+                    (Array.isArray(data?.files) && data?.files.length > 0 ? (
+                      <HistoryNav data={data?.files} />
+                    ) : (
+                      <p>no files available</p>
+                    ))}
+                  {navType === "codes" &&
+                    (Array.isArray(data?.codes) && data?.codes.length > 0 ? (
+                      <HistoryNav data={data?.codes} />
+                    ) : (
+                      <p>no codes available</p>
+                    ))}
+                </>
+              )}
             </div>
-            <div className="border-l pl-2 pt-2 w-full">
+            <div className="border-l pl-2 pt-2 w-full hidden min-[800px]:block">
               {queryData?.name && <FilesHistory data={queryData} />}
               {queryData?.title && (
                 <p className="text-[#efefef] text-[1.1rem] min-[450px]:text-[1.2rem] px-2 min-[450px]:px-4">
