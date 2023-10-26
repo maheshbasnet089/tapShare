@@ -4,6 +4,8 @@ import { useHistoryStore } from "./store";
 import FilesHistory from "./components/files-history";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import HistorySkeleton from "./components/history-skeleton";
+import CodeHistory from "./components/code-history";
 const History = () => {
   // stores
   const getHistory = useHistoryStore((state) => state.getHistory);
@@ -42,10 +44,7 @@ const History = () => {
               </div>
               <p className="h-[1px] bg-slate-300 mt-1" />
               {isFetching ? (
-                <div class="relative flex w-full animate-pulse gap-2 px-4 py-3 border mt-3 rounded">
-                  <div class="h-5 w-[90%] rounded bg-slate-400 text-sm"></div>
-                  <div class="bottom-5 h-4 w-5 rounded-full bg-slate-400"></div>
-                </div>
+                <HistorySkeleton />
               ) : (
                 <>
                   {navType === "files" &&
@@ -65,11 +64,7 @@ const History = () => {
             </div>
             <div className="border-l pl-2 pt-2 w-full hidden min-[800px]:block">
               {queryData?.name && <FilesHistory data={queryData} />}
-              {queryData?.title && (
-                <p className="text-[#efefef] text-[1.1rem] min-[450px]:text-[1.2rem] px-2 min-[450px]:px-4">
-                  {queryData?.title}'s History
-                </p>
-              )}
+              {queryData?.title && <CodeHistory data={queryData} />}
             </div>
           </div>
         </div>
@@ -79,5 +74,3 @@ const History = () => {
 };
 
 export default History;
-//  <Route path="/code/:id" element={<ViewCode />} />
-// <Route path="/:id" element={<SeeShared />} />
