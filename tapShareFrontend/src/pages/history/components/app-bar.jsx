@@ -9,12 +9,13 @@ const HistoryAppBar = () => {
         <div className="flex justify-between select-none w-full items-center px-[1em] py-2">
           <p
             title="back"
-            className="border p-1 rounded-sm cursor-pointer select-none"
+            className="border py-[.4rem] rounded-sm cursor-pointer select-none px-3 group 
+             transition-[translate] duration-500 delay-150"
             onClick={() => {
               window.history.back();
             }}
           >
-            <MdOutlineKeyboardBackspace className="text-[1.2rem]" />
+            <MdOutlineKeyboardBackspace className="text-[1.2rem] group-hover:-translate-x-1" />
           </p>
           <div
             title="TapShare"

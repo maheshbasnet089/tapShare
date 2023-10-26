@@ -40,6 +40,3 @@ exports.getAllHistory = async (_, res) => {
     return res.status(500).json({ message: error.message, status: 500 });
   }
 };
-
-// // gets files that contains ipAddress
-// const ipAddress = [...codes, ...files].filter((item) => item.ipAddress);
