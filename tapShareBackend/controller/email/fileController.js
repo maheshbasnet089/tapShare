@@ -37,28 +37,24 @@ exports.sendFiles = async (req, res) => {
   const files = req.files;
   try {
     const filePaths = [];
-    // find the file with that userId and ipaddress , if not matches exit 
+    // find the file with that userId and ipaddress , if not matches exit
     const filesAssociatedWithUserId = await File.find({
-      userId : req.body.userId,
-    })
-    if(filesAssociatedWithUserId.length !==0  ){
-      // loop and check 
-      for(var i = 0;i<filesAssociatedWithUserId.length;i++){
-
-        if(filesAssociatedWithUserId[i].ipAddress){
-          if(filesAssociatedWithUserId[i].ipAddress !== req.body.ipAddress){
+      userId: req.body.userId,
+    });
+    if (filesAssociatedWithUserId.length !== 0) {
+      // loop and check
+      for (var i = 0; i < filesAssociatedWithUserId.length; i++) {
+        if (filesAssociatedWithUserId[i].ipAddress) {
+          if (filesAssociatedWithUserId[i].ipAddress !== req.body.ipAddress) {
             return res.json({
-              status : 400,
-              messge : "Please don't use other's userId"
-            })
+              status: 400,
+              message: "Please don't use other's userId",
+            });
           }
         }
-        
       }
-
-
     }
-  
+
     for (var i = 0; i < files.length; i++) {
       const newFile = await File.create({
         userId: req.body.userId,
@@ -68,7 +64,7 @@ exports.sendFiles = async (req, res) => {
           "u/" +
           files[i].path.replace(/\\/g, "/").replace("uploads/", ""), // replace backslash with forward slash
         size: files[i].size,
-        ipAddress : req.body.ipAddress
+        ipAddress: req.body.ipAddress,
       });
 
       const savedFile = await newFile.save();
@@ -100,8 +96,6 @@ exports.sendFiles = async (req, res) => {
           status: 200,
         });
       } catch (e) {
-        console.log(e);
-
         return res.json({
           message: "Error sending sms",
           longMessage: e.message,
@@ -118,7 +112,6 @@ exports.sendFiles = async (req, res) => {
     } else if (req.body.email === "" || req.body.email === null) {
       return res.json({
         userId: req.body.userId,
-
         message: "Link generated",
         status: 201,
       });

@@ -8,7 +8,7 @@ const IconHistoryCard = ({ data }) => {
   return (
     <>
       <div
-        className="border px-2 cursor-pointer py-3 rounded-sm"
+        className="border px-2 cursor-pointer py-2 rounded-sm"
         onClick={() => {
           navigate("/history");
           setQueryData(data);
