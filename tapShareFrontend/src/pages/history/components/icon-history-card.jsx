@@ -3,12 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { useHistoryStore } from "../store";
 
 const IconHistoryCard = ({ data }) => {
+  console.log(
+    "🚀 ~ file: icon-history-card.jsx:6 ~ IconHistoryCard ~ data:",
+    data
+  );
   const navigate = useNavigate();
   const setQueryData = useHistoryStore((state) => state.setQueryData);
   return (
     <>
       <div
-        className="border px-2 cursor-pointer py-2 rounded-sm"
+        className="border px-2 cursor-pointer py-2 rounded border-l-[3px]"
         onClick={() => {
           navigate("/history");
           setQueryData(data);
@@ -31,6 +35,7 @@ const IconHistoryCard = ({ data }) => {
             {data?.name ? "file" : "code"}
           </span>
         </p>
+        <p className="text-[.7rem]">code: {data?.userId}</p>
       </div>
     </>
   );
