@@ -54,7 +54,6 @@ exports.sendFiles = async (req, res) => {
         }
       }
     }
-
     for (var i = 0; i < files.length; i++) {
       const newFile = await File.create({
         userId: req.body.userId,
@@ -66,61 +65,52 @@ exports.sendFiles = async (req, res) => {
         size: files[i].size,
         ipAddress: req.body.ipAddress,
       });
-
       const savedFile = await newFile.save();
-
       if (savedFile) {
         filePaths.push(newFile.path);
         scheduleDeletion(savedFile._id);
       }
     }
-
     // send email here test
     const emailOptions = {
-      to: req.body.email,
+      to: null,
       subject: "New File Received from TapShare ",
       text: "Tapshare is a simple, secure, and reliable file sharing platform that allows users to quickly and easily send large files over the internet.Give it a  try today at https://www.tapshare.xyz/ . For more Info visit https://github.com/maheshbasnet089/tapShare",
     };
-
     // Add file paths as links in the email body
     emailOptions.text += "\n\nShared Files(tap to download):\n";
     for (const filePath of filePaths) {
       emailOptions.text += `${filePath}\n`;
     }
-
-    if (req.body.email.startsWith("98")) {
-      try {
-        await sendSms(emailOptions);
-        return res.json({
-          message: "File sent successfully",
-          status: 200,
-        });
-      } catch (e) {
-        return res.json({
-          message: "Error sending sms",
-          longMessage: e.message,
-          status: 500,
-        });
-      }
-    } else if (req.body.email) {
-      sendEmail(emailOptions);
-
-      return res.json({
-        message: "File sent successfully",
-        status: 200,
-      });
-    } else if (req.body.email === "" || req.body.email === null) {
+    const sendToData = JSON.parse(req.body.email);
+    if (!Array.isArray(sendToData) || sendToData === null)
       return res.json({
         userId: req.body.userId,
         message: "Link generated",
         status: 201,
       });
-    } else {
+    const emails = sendToData.filter((data) => data.type === "email");
+    const phones = sendToData.filter((data) => data.type === "phone");
+    if (emails.length <= 0 && phones.length <= 0) {
       return res.json({
         message: "Error sending file",
         status: 500,
       });
     }
+    emails.length > 0 &&
+      emails.forEach((email) => {
+        emailOptions.to = email.value;
+        sendEmail(emailOptions);
+      });
+    phones.length > 0 &&
+      phones.forEach((phone) => {
+        emailOptions.to = phone.value;
+        sendSms(emailOptions);
+      });
+    return res.json({
+      message: "File sent successfully",
+      status: 200,
+    });
   } catch (e) {
     res.json({
       errorMessage: e.message,

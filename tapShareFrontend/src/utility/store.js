@@ -3,18 +3,32 @@ import axios from "axios";
 import { baseUrl } from "../config";
 import generateUserId from "./generateUserId";
 
-export const useStore = create((set) => ({
+export const useStore = create((set, get) => ({
   loading: false,
   progress: 0,
   fireButton: false,
   files: [],
-  receiverEmail: "",
+  emailData: {
+    value: "",
+    type: "",
+  },
+  setEmailData: (email) =>
+    set((set) => ({
+      emailData: {
+        ...set.emailData,
+        ...email,
+      },
+    })),
+  receiverEmail: [],
   isReceiverValid: false,
   setLoading: (isLoading) => set({ loading: isLoading }),
   setIsReceiverValid: (isValid) => set({ isReceiverValid: isValid }),
-  setReceiverEmail: (email) => set({ receiverEmail: email }),
+  setReceiverEmail: (email) =>
+    set((state) => ({
+      receiverEmail: [...state.receiverEmail, email],
+    })),
   setFiles: (files) => set({ files }),
-  send_file: async (file, email, setToasterData, setFiles, navigate) => {
+  send_file: async (file, setToasterData, setFiles, navigate) => {
     if (
       localStorage.getItem("userId") == null ||
       localStorage.getItem("userId") == "" ||
@@ -24,14 +38,14 @@ export const useStore = create((set) => ({
       localStorage.setItem("userId", userId);
       set({ fireButton: true });
     }
-    // get the public ipaddress of the device
-    const response = await axios.get('https://api64.ipify.org?format=json');
-    const ipAddress = response.data.ip
-    const formData = new FormData();
+    // get the public ip address of the device
+    const response = await axios.get("https://api64.ipify.org?format=json");
+    const ipAddress = response.data.ip;
 
-    formData.append("email", email);
+    const formData = new FormData();
+    formData.append("email", JSON.stringify(get().receiverEmail));
     formData.append("userId", localStorage.getItem("userId"));
-    formData.append("ipAddress",ipAddress)
+    formData.append("ipAddress", ipAddress);
     for (let i = 0; i < file.length; i++) {
       formData.append("files", file[i]);
     }
@@ -53,7 +67,7 @@ export const useStore = create((set) => ({
           },
         }
       );
-      
+
       if (res.data.status === 200) {
         setToasterData({
           open: true,
