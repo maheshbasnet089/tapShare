@@ -83,18 +83,22 @@ exports.sendFiles = async (req, res) => {
       emailOptions.text += `${filePath}\n`;
     }
     const sendToData = JSON.parse(req.body.email);
-    if (!Array.isArray(sendToData) || sendToData === null)
+
+    if (!Array.isArray(sendToData)) {
       return res.json({
         userId: req.body.userId,
         message: "Link generated",
         status: 201,
       });
+    }
     const emails = sendToData.filter((data) => data.type === "email");
     const phones = sendToData.filter((data) => data.type === "phone");
+
     if (emails.length <= 0 && phones.length <= 0) {
       return res.json({
-        message: "Error sending file",
-        status: 500,
+        userId: req.body.userId,
+        message: "Link generated",
+        status: 201,
       });
     }
     emails.length > 0 &&
