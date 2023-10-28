@@ -73,7 +73,6 @@ export const useStore = create((set, get) => ({
           },
         }
       );
-      console.log("🚀 ~ file: store.js:76 ~ send_file: ~ res:", res);
 
       if (res.data.status === 200) {
         setToasterData({
@@ -84,8 +83,9 @@ export const useStore = create((set, get) => ({
         set(() => ({
           receiverEmail: [],
         }));
-        setFiles(null);
+        setFiles([]);
       } else if (res.data.status === 201) {
+        setFiles([]);
         navigate("/" + localStorage.getItem("userId"));
         // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
@@ -97,7 +97,6 @@ export const useStore = create((set, get) => ({
         });
       }
     } catch (error) {
-      console.log("🚀 ~ file: store.js:100 ~ send_file: ~ error:", error);
       setToasterData({
         open: true,
         message: "Error sending files",
