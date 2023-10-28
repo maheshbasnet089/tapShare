@@ -23,9 +23,15 @@ export const useStore = create((set, get) => ({
   isReceiverValid: false,
   setLoading: (isLoading) => set({ loading: isLoading }),
   setIsReceiverValid: (isValid) => set({ isReceiverValid: isValid }),
+  validEmailToAdd: false,
+  setValidEmailToAdd: (isValid) => set({ validEmailToAdd: isValid }),
   setReceiverEmail: (email) =>
     set((state) => ({
       receiverEmail: [...state.receiverEmail, email],
+    })),
+  replaceReceiverEmail: (email) =>
+    set(() => ({
+      receiverEmail: email,
     })),
   setFiles: (files) => set({ files }),
   send_file: async (file, setToasterData, setFiles, navigate) => {
@@ -74,6 +80,9 @@ export const useStore = create((set, get) => ({
           message: "files sent successfully",
           severity: "success",
         });
+        set(() => ({
+          receiverEmail: [],
+        }));
         setFiles(null);
       } else if (res.data.status === 201) {
         navigate("/" + localStorage.getItem("userId"));

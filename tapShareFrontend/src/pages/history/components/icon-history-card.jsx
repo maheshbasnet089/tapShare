@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useHistoryStore } from "../store";
 
 const IconHistoryCard = ({ data }) => {
-  console.log(
-    "🚀 ~ file: icon-history-card.jsx:6 ~ IconHistoryCard ~ data:",
-    data
-  );
   const navigate = useNavigate();
   const setQueryData = useHistoryStore((state) => state.setQueryData);
   return (
