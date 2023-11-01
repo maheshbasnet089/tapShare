@@ -50,11 +50,9 @@ function Home() {
 
       {/* This is the cool ring type animation which is shown when any file is selected */}
       <AnimateStyle files={files} />
-      {/* test */}
       {/** Component to select files */}
       <FilesInput />
 
-      {/* test */}
       {/* it is hidden by default, it appears as soon as one selects a file */}
       {files && files.length > 0 && (
         <HomePageFilesOptions setToasterData={setToasterData} />

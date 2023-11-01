@@ -10,7 +10,7 @@ const HistoryNavCard = ({ data }) => {
   return (
     <>
       <div
-        className="border px-2 py-3 rounded border-l-[3px] z-[-2] cursor-pointer hidden min-[800px]:block"
+        className="border p-2 rounded border-l-[3px] z-[-2] cursor-pointer hidden min-[800px]:block"
         onClick={() => {
           setQueryData(data);
         }}
@@ -32,11 +32,12 @@ const HistoryNavCard = ({ data }) => {
             {data?.name ? "file" : "code"}
           </span>
         </p>
+        <p className="text-[.7rem]">code: {data?.userId}</p>
       </div>
       {/* nav cards for small devices */}
       {/* it si because for a small device, details of the history is shown in a separate page thus it is needed to navigate to a separate route */}
       <div
-        className="border px-2 py-3 rounded border-l-[3px] z-[-2] cursor-pointer min-[800px]:hidden"
+        className="border p-2 rounded border-l-[3px] z-[-2] cursor-pointer min-[800px]:hidden"
         onClick={() => {
           setQueryData(data);
           if (data?.name) navigate(`/history/file/${data?._id}`);
@@ -60,6 +61,7 @@ const HistoryNavCard = ({ data }) => {
             {data?.name ? "file" : "code"}
           </span>
         </p>
+        <p className="text-[.7rem]">code: {data?.userId}</p>
       </div>
     </>
   );

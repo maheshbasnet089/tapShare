@@ -8,7 +8,7 @@ const IconHistoryCard = ({ data }) => {
   return (
     <>
       <div
-        className="border px-2 cursor-pointer py-3 rounded-sm"
+        className="border px-2 cursor-pointer py-2 rounded border-l-[3px]"
         onClick={() => {
           navigate("/history");
           setQueryData(data);
@@ -31,6 +31,7 @@ const IconHistoryCard = ({ data }) => {
             {data?.name ? "file" : "code"}
           </span>
         </p>
+        <p className="text-[.7rem]">code: {data?.userId}</p>
       </div>
     </>
   );
