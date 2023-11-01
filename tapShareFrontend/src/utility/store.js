@@ -83,6 +83,12 @@ export const useStore = create((set, get) => ({
         set(() => ({
           receiverEmail: [],
         }));
+        set(() => ({
+          emailData: {
+            value: "",
+            type: "",
+          },
+        }));
         setFiles([]);
       } else if (res.data.status === 201) {
         setFiles([]);
