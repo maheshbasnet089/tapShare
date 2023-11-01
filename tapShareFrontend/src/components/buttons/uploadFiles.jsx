@@ -45,10 +45,10 @@ export default function UploadFiles({ setToasterData }) {
                 role="button"
                 className="bg-blue-500 p-0 text-gray-50 rounded-full text-center mt-2 font-semibold hover:bg-blue-600 ease-in transition-all duration-300 hover:scale-110 py-2 px-5"
                 onClick={() => {
-                  if (!validEmailToAdd) {
+                  if (emailData?.value && !validEmailToAdd) {
                     setToasterData({
                       open: true,
-                      message: "One of the email/phone is invalid",
+                      message: "One of the email is invalid",
                       severity: "warning",
                     });
                     return;
@@ -59,7 +59,7 @@ export default function UploadFiles({ setToasterData }) {
                       (email) => email.value !== emailData.value
                     )
                   ) {
-                    setReceiverEmail(emailData);
+                    emailData?.value && setReceiverEmail(emailData);
                   }
                   send_file(files, setToasterData, setFiles, navigate);
                 }}
