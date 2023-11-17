@@ -184,7 +184,7 @@ const History = () => {
                 })
               ) : (
                 <div>
-                  <img src={notFound} alt="there isn't any history" />
+                  <img src={notFound} className="mx-auto" alt="there isn't any history" />
                   <p className="text-center mt-4">No History</p>
                 </div>
               )}
