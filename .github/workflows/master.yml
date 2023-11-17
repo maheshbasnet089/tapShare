@@ -12,8 +12,7 @@ jobs:
       steps:
         - name: 🚚 Get latest code
           uses: actions/checkout@v2
-          with:
-            path: 'tapShareBackend'  
+        
   
         - name: 📂 Sync files
           uses: SamKirkland/FTP-Deploy-Action@4.3.2
@@ -21,4 +20,4 @@ jobs:
             server:  ${{ secrets.ftp_server }}
             username: ${{ secrets.ftp_username }}
             password: ${{ secrets.ftp_password }}
-            source: 'tapShareBackend/tapShareBackend'
+            source: 'tapShareBackend'
