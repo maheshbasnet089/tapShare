@@ -4,6 +4,7 @@ on:
         - master
   
 name: 🚀 Deploy website on push
+  
 jobs:
     web-deploy:
       name: 🎉 Deploy
@@ -11,6 +12,8 @@ jobs:
       steps:
         - name: 🚚 Get latest code
           uses: actions/checkout@v2
+          with:
+            path: 'tapShareBackend'  
   
         - name: 📂 Sync files
           uses: SamKirkland/FTP-Deploy-Action@4.3.2
