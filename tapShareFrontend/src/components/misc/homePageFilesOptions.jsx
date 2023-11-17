@@ -11,7 +11,7 @@ export default function HomePageFilesOptions({ setToasterData }) {
       </div>
 
       {/* the input field that accepts email */}
-      <ReceiverEmailInputField />
+      <ReceiverEmailInputField setToasterData={setToasterData} />
 
       {/* generates links or send email*/}
       <div className="flex justify-center">

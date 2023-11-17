@@ -6,14 +6,16 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const File = require("./model/fileModel");
-const codeRoute = require("./route/codeRoute");
-const ejs = require("ejs");
 
 app.set("view engine", "ejs");
 
 //CORS config
 const corsOptions = {
-  origin: ["https://tapshare.xyz", "http://127.0.0.1:5173","http://localhost:5173"],
+  origin: [
+    "https://tapshare.xyz",
+    "http://127.0.0.1:5173",
+    "http://localhost:5173",
+  ],
   // origin: "http://127.0.0.1:5173",
   // credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
@@ -77,18 +79,22 @@ app.get("/u/:fileName", (req, res) => {
   }
 });
 
+// Connect to MongoDB
+mongoConnection();
+
+//parses the body data in json
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "/uploads")));
 
 //require routes
 const fileRoute = require("./route/fileRoute");
-mongoConnection();
-
-//parses the body data in json
+const codeRoute = require("./route/codeRoute");
+const historyRoute = require("./route/history.routes");
 
 app.use("/api/v1", fileRoute);
 app.use("/api/v1", codeRoute);
+app.use("/api/v1/history", historyRoute);
 
 app.listen(PORT || 4000, () => {
   console.log(`Server is running on port ${PORT}`);

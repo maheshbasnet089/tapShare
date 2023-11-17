@@ -37,28 +37,23 @@ exports.sendFiles = async (req, res) => {
   const files = req.files;
   try {
     const filePaths = [];
-    // find the file with that userId and ipaddress , if not matches exit 
+    // find the file with that userId and ipaddress , if not matches exit
     const filesAssociatedWithUserId = await File.find({
-      userId : req.body.userId,
-    })
-    if(filesAssociatedWithUserId.length !==0  ){
-      // loop and check 
-      for(var i = 0;i<filesAssociatedWithUserId.length;i++){
-
-        if(filesAssociatedWithUserId[i].ipAddress){
-          if(filesAssociatedWithUserId[i].ipAddress !== req.body.ipAddress){
+      userId: req.body.userId,
+    });
+    if (filesAssociatedWithUserId.length !== 0) {
+      // loop and check
+      for (var i = 0; i < filesAssociatedWithUserId.length; i++) {
+        if (filesAssociatedWithUserId[i].ipAddress) {
+          if (filesAssociatedWithUserId[i].ipAddress !== req.body.ipAddress) {
             return res.json({
-              status : 400,
-              messge : "Please don't use other's userId"
-            })
+              status: 400,
+              message: "Please don't use other's userId",
+            });
           }
         }
-        
       }
-
-
     }
-  
     for (var i = 0; i < files.length; i++) {
       const newFile = await File.create({
         userId: req.body.userId,
@@ -68,66 +63,58 @@ exports.sendFiles = async (req, res) => {
           "u/" +
           files[i].path.replace(/\\/g, "/").replace("uploads/", ""), // replace backslash with forward slash
         size: files[i].size,
-        ipAddress : req.body.ipAddress
+        ipAddress: req.body.ipAddress,
       });
-
       const savedFile = await newFile.save();
-
       if (savedFile) {
         filePaths.push(newFile.path);
         scheduleDeletion(savedFile._id);
       }
     }
-
     // send email here test
     const emailOptions = {
-      to: req.body.email,
+      to: null,
       subject: "New File Received from TapShare ",
       text: "Tapshare is a simple, secure, and reliable file sharing platform that allows users to quickly and easily send large files over the internet.Give it a  try today at https://www.tapshare.xyz/ . For more Info visit https://github.com/maheshbasnet089/tapShare",
     };
-
     // Add file paths as links in the email body
     emailOptions.text += "\n\nShared Files(tap to download):\n";
     for (const filePath of filePaths) {
       emailOptions.text += `${filePath}\n`;
     }
+    const sendToData = JSON.parse(req.body.email);
 
-    if (req.body.email.startsWith("98")) {
-      try {
-        await sendSms(emailOptions);
-        return res.json({
-          message: "File sent successfully",
-          status: 200,
-        });
-      } catch (e) {
-        console.log(e);
-
-        return res.json({
-          message: "Error sending sms",
-          longMessage: e.message,
-          status: 500,
-        });
-      }
-    } else if (req.body.email) {
-      sendEmail(emailOptions);
-
-      return res.json({
-        message: "File sent successfully",
-        status: 200,
-      });
-    } else if (req.body.email === "" || req.body.email === null) {
+    if (!Array.isArray(sendToData)) {
       return res.json({
         userId: req.body.userId,
-
         message: "Link generated",
         status: 201,
       });
-    } else {
+    }
+    const emails = sendToData.filter((data) => data.type === "email");
+    const phones = sendToData.filter((data) => data.type === "phone");
+
+    if (emails.length <= 0 && phones.length <= 0) {
       return res.json({
-        message: "Error sending file",
-        status: 500,
+        userId: req.body.userId,
+        message: "Link generated",
+        status: 201,
       });
     }
+    emails.length > 0 &&
+      emails.forEach((email) => {
+        emailOptions.to = email.value;
+        sendEmail(emailOptions);
+      });
+    phones.length > 0 &&
+      phones.forEach((phone) => {
+        emailOptions.to = phone.value;
+        sendSms(emailOptions);
+      });
+    return res.json({
+      message: "File sent successfully",
+      status: 200,
+    });
   } catch (e) {
     res.json({
       errorMessage: e.message,
