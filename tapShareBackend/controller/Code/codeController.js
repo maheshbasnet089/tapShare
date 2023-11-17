@@ -17,33 +17,28 @@ exports.createCode = async (req, res) => {
     const { text, userId, title } = req.body;
 
     const codessAssociatedWithUserId = await Code.find({
-      userId : req.body.userId,
-    })
-    // if find,check again the ip of that files 
-    
-    if(codessAssociatedWithUserId.length !==0  ){
-      // loop and check 
-      for(var i = 0;i<codessAssociatedWithUserId.length;i++){
-        
-        if(codessAssociatedWithUserId[i].ipAddress){
-          if(codessAssociatedWithUserId[i].ipAddress !== req.body.ipAddress){
+      userId: req.body.userId,
+    });
+    // if find,check again the ip of that files
+
+    if (codessAssociatedWithUserId.length !== 0) {
+      // loop and check
+      for (var i = 0; i < codessAssociatedWithUserId.length; i++) {
+        if (codessAssociatedWithUserId[i].ipAddress) {
+          if (codessAssociatedWithUserId[i].ipAddress !== req.body.ipAddress) {
             return res.json({
-              status : 400,
-              messge : "Please don't use other's userId"
-            })
+              status: 400,
+              messge: "Please don't use other's userId",
+            });
           }
         }
-        
       }
-
-
     }
-
     const code = await Code.create({
       text,
       userId,
       title,
-      ipAddress : req.body.ipAddress
+      ipAddress: req.body.ipAddress,
     });
     if (code) {
       // scheduleDeletion(code._id);
@@ -113,6 +108,52 @@ exports.getSingleCode = async (req, res) => {
   } catch (error) {
     res.json({
       status: 404,
+      message: error.message,
+    });
+  }
+};
+
+exports.createCodeWithVSCode = async (req, res) => {
+  const { text, userId, ipAddress } = req.body;
+  try {
+    const code = await Code.create({
+      text,
+      userId,
+      ipAddress,
+      vscode: Math.floor(100000 + Math.random() * 900000),
+    });
+    if (code) {
+      return res.status(201).json({
+        status: 201,
+        message: "Code created successfully",
+        code,
+        vscode: code.vscode,
+      });
+    }
+    res.status(500).json({
+      status: 500,
+      message: "Something went wrong",
+    });
+  } catch (error) {}
+};
+
+exports.getCodeWithVSCode = async (req, res) => {
+  try {
+    const vscode = req.params.vscode;
+    const code = await Code.findOne({ vscode });
+    if (code) {
+      return res.status(200).json({
+        status: 200,
+        code,
+      });
+    }
+    res.status(200).json({
+      status: 404,
+      message: "Code Not Found",
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
       message: error.message,
     });
   }
