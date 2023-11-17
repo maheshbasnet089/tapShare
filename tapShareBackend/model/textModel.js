@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const codeSchema = new Schema(
   {
     text: {
@@ -18,6 +19,9 @@ const codeSchema = new Schema(
       type: String,
       required: true,
       index: true,
+    },
+    vscode: {
+      type: String,
     },
   },
   {
