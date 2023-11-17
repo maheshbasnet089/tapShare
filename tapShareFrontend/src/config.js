@@ -1,4 +1,4 @@
-export const baseUrl = "https://octopus-app-xvcp4.ondigitalocean.app/";
+export const baseUrl = "https://tapshare.dpkailashcollab.com/";
 
 //for development use uncomment the following line
 

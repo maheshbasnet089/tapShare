@@ -14,7 +14,7 @@ const ViewCode = React.lazy(() => import("./pages/viewCode"));
 const SeeShared = React.lazy(() => import("./pages/ViewShared"));
 const History = React.lazy(() => import("./pages/history/history"));
 const AreYouLost = React.lazy(() => import("./components/misc/AreYouLost"));
-
+//test
 const App = () => {
   registerSW();
   return (
@@ -36,3 +36,4 @@ const App = () => {
 };
 
 export default App;
+//test
