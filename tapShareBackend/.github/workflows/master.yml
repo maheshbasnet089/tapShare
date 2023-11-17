@@ -15,6 +15,6 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
-          server: 107.178.101.189
-          username: manishbasnet@test.prismeffectnepal.com
+          server:  ${{ secrets.ftp_server }}
+          username: ${{ secrets.ftp_username }}
           password: ${{ secrets.ftp_password }}
