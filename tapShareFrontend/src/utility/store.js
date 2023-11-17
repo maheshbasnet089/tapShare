@@ -57,22 +57,17 @@ export const useStore = create((set, get) => ({
     }
     try {
       set({ loading: true });
-      const res = await axios.post(
-        // "http://localhost:1337/api/v1/sendFile",
-        `${baseUrl}api/v1/sendFile`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-          onUploadProgress: (progressEvent) => {
-            const percentCompleted = Math.round(
-              (progressEvent.loaded * 100) / progressEvent.total
-            );
-            set({ progress: percentCompleted });
-          },
-        }
-      );
+      const res = await axios.post(`${baseUrl}api/v1/sendFile`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+          set({ progress: percentCompleted });
+        },
+      });
 
       if (res.data.status === 200) {
         setToasterData({
@@ -92,6 +87,12 @@ export const useStore = create((set, get) => ({
         setFiles([]);
       } else if (res.data.status === 201) {
         setFiles([]);
+        set(() => ({
+          emailData: {
+            value: "",
+            type: "",
+          },
+        }));
         navigate("/" + localStorage.getItem("userId"));
         // "http://127.0.0.1:5173/" + localStorage.getItem("userId");
         // navigate("/seeAllMyFiles");
