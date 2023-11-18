@@ -1,7 +1,7 @@
 import React from "react";
 import SearchCode from "../inputFields/searchCode";
 import { useStore } from "../../utility/store";
-import HistoryIcon from "../../pages/history/components/history-icon";
+import HistoryIcon from "../../pages/history/components/History-icon";
 
 const AppBar = () => {
   const files = useStore((state) => state.files);
@@ -28,7 +28,7 @@ const AppBar = () => {
         </a>
         {Array.isArray(files) && files?.length <= 0 && <SearchCode />}
         <div className="absolute top-0 right-0 m-[1rem] flex flex-col justify-center items-center gap-2">
-          <a
+          {/* <a
             href="https://github.com/maheshbasnet089/tapShare"
             className="text-[#efefef] text-sm hover:underline relative"
             style={{
@@ -52,9 +52,9 @@ const AppBar = () => {
                 transform: "translate(-50%, -50%)", // Center the content horizontally and vertically
               }}
             >
-              &#63; {/* Unicode character for question mark */}
+              &#63; 
             </span>
-          </a>
+          </a> */}
           <HistoryIcon />
         </div>
       </div>

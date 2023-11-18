@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const codeSchema = new Schema(
   {
     text: {
@@ -9,6 +10,7 @@ const codeSchema = new Schema(
     userId: {
       type: String,
       required: true,
+      index: true,
     },
     title: {
       type: String,
@@ -16,6 +18,7 @@ const codeSchema = new Schema(
     ipAddress: {
       type: String,
       required: true,
+      index: true,
     },
     vscode: {
       type: String,
@@ -25,6 +28,7 @@ const codeSchema = new Schema(
     timestamps: true,
   }
 );
+codeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 24 * 60 * 60 });
 
 const Code = mongoose.model("Code", codeSchema);
 module.exports = Code;

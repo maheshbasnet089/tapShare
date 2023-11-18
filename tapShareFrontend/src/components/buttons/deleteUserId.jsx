@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import FireSound from "../../assets/fire.mp3";
-import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import { MdLocalFireDepartment } from "react-icons/md";
 import { useStore } from "../../utility/store";
 
 const DeleteUserId = () => {
@@ -104,9 +104,9 @@ const DeleteUserId = () => {
             showButton ? "visible" : "invisible scale-0"
           } duration-100 select-none hover:scale-110  cursor-pointer after:animate-ping rounded-full  p-4`}
         >
-          <LocalFireDepartmentIcon
+          <MdLocalFireDepartment
             style={{ WebkitUserDrag: "none" }}
-            className="select-none text-red-400 z-50 "
+            className="select-none text-red-400 text-2xl z-50 "
           />
         </div>
       </div>
