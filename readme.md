@@ -27,7 +27,6 @@ TapShare is not just a file-sharing platform; it's your go-to solution for seaml
 
 Using TapShare is simple. Follow these steps:
 
-
 - Go to the [TapShare website](https://tapshare.xyz).
 - Tap on the middle icon button to upload the files you want to transfer.
 - Choose whether you want to send the files to an email or phone number.
@@ -55,10 +54,10 @@ We welcome contributions from the community to make TapShare even better. If you
 
 Note: Uncomment the `baseUrl` in the `config.js` file.
 
-## Conclusion
+## Final
 
 TapShare is not just a file transfer tool; it's your hassle-free solution for sharing files and code. Try TapShare today and experience a new level of simplicity and security!
 
 ## Connect with Us
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/tapshare089/)  [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/tapshare089)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/tapshare089/) [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/tapshare089)
