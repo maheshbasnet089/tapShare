@@ -13,6 +13,7 @@ import Stack from "@mui/material/Stack";
 import { Chip } from "@mui/material";
 import { PiFileCode, PiFileSvg, PiFiles } from "react-icons/pi";
 import { BiFileFind } from "react-icons/bi";
+import { formatFileSize } from "../../utility/FormatFileSize";
 
 const History = () => {
   const navigate = useNavigate();
@@ -145,7 +146,7 @@ const History = () => {
                         </div>
                         {data?.size && (
                           <div className="flex gap-1 ">
-                            size: <p>{data?.size}</p>
+                            size: <p>{formatFileSize(data?.size)}</p>
                           </div>
                         )}
                         {data?.text && (
@@ -184,7 +185,11 @@ const History = () => {
                 })
               ) : (
                 <div>
-                  <img src={notFound} className="mx-auto" alt="there isn't any history" />
+                  <img
+                    src={notFound}
+                    className="mx-auto"
+                    alt="there isn't any history"
+                  />
                   <p className="text-center mt-4">No History</p>
                 </div>
               )}
