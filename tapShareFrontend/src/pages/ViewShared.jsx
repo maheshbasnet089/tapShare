@@ -71,7 +71,7 @@ export default function SeeShared() {
             <div className="w-full max-w-[1000px] px-2 sm:px-8 md:px-12 lg:px-20">
               <div className="flex justify-center py-2">
                 <h1 className="text-lg sm:text-xl md:text-2xl text-gray-100 ">
-                  Keep tapping! 👏
+                  Keep tapping!!! 👏
                 </h1>
               </div>
               {files && (

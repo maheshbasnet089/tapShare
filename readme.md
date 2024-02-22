@@ -1,4 +1,7 @@
 # TapShare
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 TapShare is not just a file-sharing platform; it's your go-to solution for seamless transfers of zip files, code snippets, and text with a simple tap. This README serves as your guide to unlocking the full potential of TapShare.
 
@@ -27,7 +30,6 @@ TapShare is not just a file-sharing platform; it's your go-to solution for seaml
 
 Using TapShare is simple. Follow these steps:
 
-
 - Go to the [TapShare website](https://tapshare.xyz).
 - Tap on the middle icon button to upload the files you want to transfer.
 - Choose whether you want to send the files to an email or phone number.
@@ -55,10 +57,53 @@ We welcome contributions from the community to make TapShare even better. If you
 
 Note: Uncomment the `baseUrl` in the `config.js` file.
 
-## Conclusion
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/maheshbasnet089"><img src="https://avatars.githubusercontent.com/u/70196462?v=4?s=100" width="100px;" alt="Manish Basnet "/><br /><sub><b>Manish Basnet </b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=maheshbasnet089" title="Code">💻</a> <a href="#ideas-maheshbasnet089" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-maheshbasnet089" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-maheshbasnet089" title="Maintenance">🚧</a> <a href="https://github.com/maheshbasnet089/tapShare/pulls?q=is%3Apr+reviewed-by%3Amaheshbasnet089" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://tejbahadurkarki.com.np/"><img src="https://avatars.githubusercontent.com/u/72463407?v=4?s=100" width="100px;" alt="NGR"/><br /><sub><b>NGR</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=NGR-NP" title="Code">💻</a> <a href="#design-NGR-NP" title="Design">🎨</a> <a href="#maintenance-NGR-NP" title="Maintenance">🚧</a> <a href="#audio-NGR-NP" title="Audio">🔊</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/arpan404"><img src="https://avatars.githubusercontent.com/u/92071427?v=4?s=100" width="100px;" alt="Arpan Bhandari"/><br /><sub><b>Arpan Bhandari</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=arpan404" title="Code">💻</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/if1eight0sty"><img src="https://avatars.githubusercontent.com/u/83457080?v=4?s=100" width="100px;" alt="XÖ"/><br /><sub><b>XÖ</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=if1eight0sty" title="Code">💻</a> <a href="#design-if1eight0sty" title="Design">🎨</a> <a href="#maintenance-if1eight0sty" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/sandeshad100"><img src="https://avatars.githubusercontent.com/u/78026873?v=4?s=100" width="100px;" alt="sandeshad100"/><br /><sub><b>sandeshad100</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=sandeshad100" title="Code">💻</a> <a href="#design-sandeshad100" title="Design">🎨</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/0Aashish"><img src="https://avatars.githubusercontent.com/u/126847212?v=4?s=100" width="100px;" alt="Aashish pokhrel"/><br /><sub><b>Aashish pokhrel</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=0Aashish" title="Documentation">📖</a> <a href="#mentoring-0Aashish" title="Mentoring">🧑‍🏫</a> <a href="#question-0Aashish" title="Answering Questions">💬</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/ifeeldeveloper"><img src="https://avatars.githubusercontent.com/u/134189544?v=4?s=100" width="100px;" alt="Jagadish Bhatta"/><br /><sub><b>Jagadish Bhatta</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=ifeeldeveloper" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/devmanik"><img src="https://avatars.githubusercontent.com/u/142704843?v=4?s=100" width="100px;" alt="devmanik"/><br /><sub><b>devmanik</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=devmanik" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="20%"><a href="https://github.com/UmeshMehta1"><img src="https://avatars.githubusercontent.com/u/120069900?v=4?s=100" width="100px;" alt="Umesh Mehta"/><br /><sub><b>Umesh Mehta</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=UmeshMehta1" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td align="center" size="13px" colspan="5">
+        <img src="https://raw.githubusercontent.com/all-contributors/all-contributors-cli/1b8533af435da9854653492b1327a23a4dbd0a10/assets/logo-small.svg">
+          <a href="https://all-contributors.js.org/docs/en/bot/usage">Add your contributions</a>
+        </img>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+
+## Final
 
 TapShare is not just a file transfer tool; it's your hassle-free solution for sharing files and code. Try TapShare today and experience a new level of simplicity and security!
 
 ## Connect with Us
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/tapshare089/)  [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/tapshare089)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/tapshare089/) [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/tapshare089)
+

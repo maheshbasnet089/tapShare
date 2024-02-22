@@ -1,0 +1,109 @@
+{
+  "projectName": "tapShare",
+  "projectOwner": "maheshbasnet089",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "readme.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "maheshbasnet089",
+      "name": "Manish Basnet ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70196462?v=4",
+      "profile": "https://github.com/maheshbasnet089",
+      "contributions": [
+        "code",
+        "ideas",
+        "infra",
+        "maintenance",
+        "review"
+      ]
+    },
+    {
+      "login": "NGR-NP",
+      "name": "NGR",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72463407?v=4",
+      "profile": "https://tejbahadurkarki.com.np/",
+      "contributions": [
+        "code",
+        "design",
+        "maintenance",
+        "audio"
+      ]
+    },
+    {
+      "login": "arpan404",
+      "name": "Arpan Bhandari",
+      "avatar_url": "https://avatars.githubusercontent.com/u/92071427?v=4",
+      "profile": "https://github.com/arpan404",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "if1eight0sty",
+      "name": "XÖ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83457080?v=4",
+      "profile": "https://github.com/if1eight0sty",
+      "contributions": [
+        "code",
+        "design",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "sandeshad100",
+      "name": "sandeshad100",
+      "avatar_url": "https://avatars.githubusercontent.com/u/78026873?v=4",
+      "profile": "https://github.com/sandeshad100",
+      "contributions": [
+        "code",
+        "design"
+      ]
+    },
+    {
+      "login": "0Aashish",
+      "name": "Aashish pokhrel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/126847212?v=4",
+      "profile": "https://github.com/0Aashish",
+      "contributions": [
+        "doc",
+        "mentoring",
+        "question"
+      ]
+    },
+    {
+      "login": "ifeeldeveloper",
+      "name": "Jagadish Bhatta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/134189544?v=4",
+      "profile": "https://github.com/ifeeldeveloper",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "devmanik",
+      "name": "devmanik",
+      "avatar_url": "https://avatars.githubusercontent.com/u/142704843?v=4",
+      "profile": "https://github.com/devmanik",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "UmeshMehta1",
+      "name": "Umesh Mehta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/120069900?v=4",
+      "profile": "https://github.com/UmeshMehta1",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 5,
+  "linkToUsage": true
+}
