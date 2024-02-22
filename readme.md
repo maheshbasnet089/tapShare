@@ -1,6 +1,6 @@
 # TapShare
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 TapShare is not just a file-sharing platform; it's your go-to solution for seamless transfers of zip files, code snippets, and text with a simple tap. This README serves as your guide to unlocking the full potential of TapShare.
@@ -85,6 +85,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/devmanik"><img src="https://avatars.githubusercontent.com/u/142704843?v=4?s=100" width="100px;" alt="devmanik"/><br /><sub><b>devmanik</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=devmanik" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/UmeshMehta1"><img src="https://avatars.githubusercontent.com/u/120069900?v=4?s=100" width="100px;" alt="Umesh Mehta"/><br /><sub><b>Umesh Mehta</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=UmeshMehta1" title="Code">💻</a></td>
     </tr>
   </tbody>
   <tfoot>
