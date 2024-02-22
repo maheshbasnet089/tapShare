@@ -11,19 +11,19 @@
   "commitConvention": "gitmoji",
   "contributors": [
     {
-      "login": "NGR-NP",
-      "name": "NGR",
-      "avatar_url": "https://avatars.githubusercontent.com/u/72463407?v=4",
-      "profile": "https://tejbahadurkarki.com.np/",
+      "login": "maheshbasnet089",
+      "name": "Manish Basnet ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70196462?v=4",
+      "profile": "https://github.com/maheshbasnet089",
       "contributions": [
         "code"
       ]
     },
     {
-      "login": "maheshbasnet089",
-      "name": "Manish Basnet ",
-      "avatar_url": "https://avatars.githubusercontent.com/u/70196462?v=4",
-      "profile": "https://github.com/maheshbasnet089",
+      "login": "NGR-NP",
+      "name": "NGR",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72463407?v=4",
+      "profile": "https://tejbahadurkarki.com.np/",
       "contributions": [
         "code"
       ]
@@ -69,6 +69,15 @@
       "name": "Jagadish Bhatta",
       "avatar_url": "https://avatars.githubusercontent.com/u/134189544?v=4",
       "profile": "https://github.com/ifeeldeveloper",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "devmanik",
+      "name": "devmanik",
+      "avatar_url": "https://avatars.githubusercontent.com/u/142704843?v=4",
+      "profile": "https://github.com/devmanik",
       "contributions": [
         "code"
       ]

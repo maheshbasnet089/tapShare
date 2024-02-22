@@ -1,6 +1,6 @@
 # TapShare
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 TapShare is not just a file-sharing platform; it's your go-to solution for seamless transfers of zip files, code snippets, and text with a simple tap. This README serves as your guide to unlocking the full potential of TapShare.
@@ -75,13 +75,16 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tbody>
     <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://tejbahadurkarki.com.np/"><img src="https://avatars.githubusercontent.com/u/72463407?v=4?s=100" width="100px;" alt="NGR"/><br /><sub><b>NGR</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=NGR-NP" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/maheshbasnet089"><img src="https://avatars.githubusercontent.com/u/70196462?v=4?s=100" width="100px;" alt="Manish Basnet "/><br /><sub><b>Manish Basnet </b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=maheshbasnet089" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://tejbahadurkarki.com.np/"><img src="https://avatars.githubusercontent.com/u/72463407?v=4?s=100" width="100px;" alt="NGR"/><br /><sub><b>NGR</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=NGR-NP" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/arpan404"><img src="https://avatars.githubusercontent.com/u/92071427?v=4?s=100" width="100px;" alt="Arpan Bhandari"/><br /><sub><b>Arpan Bhandari</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=arpan404" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/if1eight0sty"><img src="https://avatars.githubusercontent.com/u/83457080?v=4?s=100" width="100px;" alt="XÖ"/><br /><sub><b>XÖ</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=if1eight0sty" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sandeshad100"><img src="https://avatars.githubusercontent.com/u/78026873?v=4?s=100" width="100px;" alt="sandeshad100"/><br /><sub><b>sandeshad100</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=sandeshad100" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/0Aashish"><img src="https://avatars.githubusercontent.com/u/126847212?v=4?s=100" width="100px;" alt="Aashish pokhrel"/><br /><sub><b>Aashish pokhrel</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=0Aashish" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ifeeldeveloper"><img src="https://avatars.githubusercontent.com/u/134189544?v=4?s=100" width="100px;" alt="Jagadish Bhatta"/><br /><sub><b>Jagadish Bhatta</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=ifeeldeveloper" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/devmanik"><img src="https://avatars.githubusercontent.com/u/142704843?v=4?s=100" width="100px;" alt="devmanik"/><br /><sub><b>devmanik</b></sub></a><br /><a href="https://github.com/maheshbasnet089/tapShare/commits?author=devmanik" title="Code">💻</a></td>
     </tr>
   </tbody>
   <tfoot>
