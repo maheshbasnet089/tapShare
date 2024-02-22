@@ -1,0 +1,25 @@
+{
+  "projectName": "tapShare",
+  "projectOwner": "maheshbasnet089",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "readme.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "gitmoji",
+  "contributors": [
+    {
+      "login": "NGR-NP",
+      "name": "NGR",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72463407?v=4",
+      "profile": "https://tejbahadurkarki.com.np/",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
+}
