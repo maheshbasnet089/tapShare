@@ -94,7 +94,6 @@ exports.getCode = async (req, res) => {
 exports.getSingleCode = async (req, res) => {
   try {
     const code = await Code.findById(req.params.id);
-
     if (code) {
       return res.json({
         status: 200,
@@ -116,25 +115,29 @@ exports.getSingleCode = async (req, res) => {
 exports.createCodeWithVSCode = async (req, res) => {
   const { text, userId, ipAddress } = req.body;
   try {
-    const code = await Code.create({
+    const code = new Code({
       text,
       userId,
       ipAddress,
-      vscode: Math.floor(100000 + Math.random() * 900000),
     });
-    if (code) {
-      return res.status(201).json({
-        status: 201,
-        message: "Code created successfully",
-        code,
-        vscode: code.vscode,
+    if (!code)
+      res.status(500).json({
+        status: 500,
+        message: "Something went wrong",
       });
-    }
+    await code.save();
+    return res.status(201).json({
+      status: 201,
+      message: "Code created successfully",
+      codeId: code?._id,
+      userId,
+    });
+  } catch (error) {
     res.status(500).json({
       status: 500,
-      message: "Something went wrong",
+      message: error.message,
     });
-  } catch (error) {}
+  }
 };
 
 exports.getCodeWithVSCode = async (req, res) => {

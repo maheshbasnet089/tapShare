@@ -17,9 +17,6 @@ const codeSchema = new Schema(
       type: String,
       required: true,
     },
-    vscode: {
-      type: String,
-    },
   },
   {
     timestamps: true,
