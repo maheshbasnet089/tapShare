@@ -54,7 +54,7 @@ We welcome contributions from the community to make TapShare even better. If you
 
 Note: Uncomment the `baseUrl` in the `config.js` file.
 
-## Final
+## Done
 
 TapShare is not just a file transfer tool; it's your hassle-free solution for sharing files and code. Try TapShare today and experience a new level of simplicity and security!
 
