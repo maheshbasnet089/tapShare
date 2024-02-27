@@ -6,8 +6,13 @@
   "scripts": {
     "frontend": "cd tapShareFrontend && yarn run dev",
     "backend": "cd tapShareBackend && npm start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "all-contributors-cli": "^6.26.1"
+  }
 }
