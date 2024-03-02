@@ -1,6 +1,6 @@
 const File = require("../../model/fileModel");
 const sendEmail = require("../../services/sendEmail");
-const sendSms = require("../../services/sendSms");
+// const sendSms = require("../../services/sendSms");
 const fs = require("fs");
 const path = require("path");
 const schedule = require("node-schedule");
@@ -101,15 +101,23 @@ exports.sendFiles = async (req, res) => {
         status: 201,
       });
     }
-    emails.length > 0 &&
-      emails.forEach((email) => {
+    if (emails.length > 0) {
+      for (const email of emails) {
         emailOptions.to = email.value;
-        sendEmail(emailOptions);
-      });
+        try {
+          const incomingData = await sendEmail(emailOptions);
+          console.log(incomingData)
+    
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    }
+    
     phones.length > 0 &&
       phones.forEach((phone) => {
         emailOptions.to = phone.value;
-        sendSms(emailOptions);
+        // sendSms(emailOptions);
       });
     return res.json({
       message: "File sent successfully",
