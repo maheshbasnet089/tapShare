@@ -1,4 +1,5 @@
-export const baseUrl = "https://tapshare.dpkailashcollab.com/";
+// export const baseUrl = "https://tapshare.dpkailashcollab.com/";
+export const baseUrl = "https://tapshare.digitalpathshalanepal.com/";
 
 //for development use uncomment the following line
 
