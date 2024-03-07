@@ -2,10 +2,14 @@ import React from "react";
 
 const LoadingScreen = () => {
   return (
-    <div className="bg-[rgb(60 72 107 )] h-screen w-screen">
-      <div className="Loadingring bg-[#3c486b]">
-        Loading
-        <div className="loadingAnimation"></div>
+    <div className="loadingSvg">
+      <div className="loadingCont">
+        <img src="/gif/tapshare.gif" alt="loading......" />
+        <p className="LoadingInfoText">Sharing made simple with TapShare!</p>
+        <div className="loadinText">
+          Loading...
+          <span></span>
+        </div>
       </div>
     </div>
   );
