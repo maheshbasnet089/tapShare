@@ -72,7 +72,7 @@ const DeleteUserId = () => {
           showButton && showToast
             ? "-translate-x-4 sm:-translate-x-8 visible"
             : "invisible translate-x-full"
-        } rounded z-50  cursor-pointer duration-300 fixed top-4 right-4 py-2 px-4  bg-blue-600 text-slate-100`}
+        } rounded z-50  cursor-pointer duration-300 fixed top-4 right-4 py-2 px-4  bg-blue-600 text-slate-100 shadow-lg`}
       >
         Session Cleared !!!
       </div>
@@ -99,10 +99,10 @@ const DeleteUserId = () => {
           onClick={handlePointerDown}
           onPointerUp={handlePointerUp}
           className={`${
-            showToast ? "bg-red-400/70" : "active:bg-slate-500/60 bg-slate-500"
+            showToast ? "bg-red-400/70" : "bg-[#465478]"
           } ${isPressed ? "animate" : "animate-none"} ${
             showButton ? "visible" : "invisible scale-0"
-          } duration-100 select-none hover:scale-110  cursor-pointer after:animate-ping rounded-full  p-4`}
+          } duration-100 select-none hover:scale-110 shadow-lg hover:shadow-2xl  cursor-pointer after:animate-ping rounded-full  p-4`}
         >
           <MdLocalFireDepartment
             style={{ WebkitUserDrag: "none" }}
