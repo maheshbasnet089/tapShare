@@ -33,7 +33,26 @@ export const useStore = create((set, get) => ({
     set(() => ({
       receiverEmail: email,
     })),
-  setFiles: (files) => set({ files }),
+
+  setFiles: (files) => {
+    if (!files.length) return set({ files: [] });
+
+    const existingFiles = get().files;
+
+    const uniqueFiles = files.filter(
+      (newFile) =>
+        !existingFiles.some(
+          (existingFile) => existingFile.name === newFile.name
+        )
+    );
+    const file = [...existingFiles, ...uniqueFiles];
+    set({ files: file });
+  },
+  removeFileByName: (fileName) => {
+    set((state) => ({
+      files: state.files.filter((file) => file.name !== fileName),
+    }));
+  },
   send_file: async (file, setToasterData, setFiles, navigate) => {
     if (
       localStorage.getItem("userId") == null ||
