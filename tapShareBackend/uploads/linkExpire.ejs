@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=Barlow:wght@400;600&family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Poppins&display=swap"
+        rel="stylesheet">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f91eeebc13.js" crossorigin="anonymous"></script>
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --color-primary:#657ee4;
+    --color-primary-deep: #4b6ae4;
+    --color-light:#fff;
+    --color-dark:#000;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+}
+
+#error-code{
+    font-weight: 900;
+    font-size: 150px;
+    background-color: var(--color-primary-deep);
+    /* background: -webkit-linear-gradient(#cf3cbc, #0078ff); */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.3s ease-in;
+}
+#error-description{
+    margin-top: 30px;
+    font-size: 30px;
+
+  
+}
+#error-detail{
+    color: #666;
+
+}
+#btn-back{
+    margin-top: 60px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--color-primary-deep);
+    /* background: -webkit-linear-gradient(#a0799b, #0078ff); */
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+#btn-back:hover{
+    transform: translateX(2px);
+}
+
+
+@media only screen and (max-width :576px) {
+    #error-code{
+        font-size: 100px;
+    }
+    #error-description{
+        margin-top: 30px;
+        font-size: 22px;
+      
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="error-code"><%- status -%>!</h1>
+        <p id="error-description"><%- message %></p>
+        <p id="error-detail">Keep Tapping !!!</p>
+        <a href="https://tapshare.xyz"><button id="btn-back">Go Back to Home</button></a>
+    </div>
+</body>
+
+</html>
