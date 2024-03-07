@@ -107,7 +107,7 @@ exports.sendFiles = async (req, res) => {
         try {
           const incomingData = await sendEmail(emailOptions);
           console.log(incomingData)
-    
+          // not working here
         } catch (error) {
           console.error(error);
         }
