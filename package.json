@@ -4,8 +4,10 @@
   "description": "TapShare is a platform that enables users to transfer files, including zip files,code,text to email and phone number in a tap. This readme file provides an overview of the platform, its features, and how to use it.",
   "main": "index.js",
   "scripts": {
-    "frontend": "cd tapShareFrontend && yarn && yarn run dev",
+    "frontend": "cd tapShareFrontend && yarn && yarn run build && yarn preview",
     "backend": "cd tapShareBackend && npm i && npm start",
+    "frontend-dev": "cd tapShareFrontend && yarn && yarn run dev",
+    "backend-dev": "cd tapShareBackend && npm i && npm run dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
