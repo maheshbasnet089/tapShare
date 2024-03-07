@@ -29,6 +29,15 @@ export default function FilesInput() {
           type="file"
           multiple="multiple"
           onChange={handleFileInput}
+          onDragEndCapture={handleFileInput}
+        />
+        <input
+          hidden
+          type="file"
+          directory=""
+          webkitdirectory=""
+          onDragEndCapture={handleFileInput}
+          onChange={handleFileInput}
         />
 
         <img
