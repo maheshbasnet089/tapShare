@@ -18,6 +18,14 @@ module.exports = {
             transform: "translate3d(4px, 0, 0)",
           },
         },
+        scale: {
+          "0%": {
+            transform: "scale(0)",
+          },
+          "100%": {
+            transform: "scale(1)",
+          },
+        },
         ripple: {
           "0%": {
             top: "36px",

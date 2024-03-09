@@ -44,12 +44,12 @@ function Home() {
       link: "https://github.com/maheshbasnet089/tapShare",
     },
     {
-      icon: <FaFacebook className="text-[#4267B2]" />,
+      icon: <FaFacebook className="text-[#5188f6]" />,
       name: "Facebook",
       link: "https://www.facebook.com/tapshare089",
     },
     {
-      icon: <BsLinkedin className="text-[#0a66c2]" />,
+      icon: <BsLinkedin className="text-[rgb(92,169,245)]" />,
       name: "LinkedIn",
       link: "https://www.linkedin.com/company/tapshare089/",
     },
@@ -89,7 +89,7 @@ function Home() {
       <Box sx={{ transform: "translateZ(0px)", flexGrow: 1 }}>
         <SpeedDial
           direction="up"
-          ariaLabel="SpeedDial openIcon example"
+          ariaLabel="Connect with us"
           sx={{
             position: "absolute",
             bottom: 16,
@@ -98,17 +98,20 @@ function Home() {
               width: "43px",
               height: "43px",
               bgcolor: "#3c486b6e",
-              color: "gray",
+              color: "rgb(163, 163, 163)",
               ":hover": {
                 color: "white",
                 bgcolor: "#3c486b",
               },
             },
-            ".MuiSpeedDialIcon-openIcon": {
-              fontSize: "1.4rem",
+            ".MuiSpeedDialAction-fab": {
+              bgcolor: "#3f4d75",
+              ":hover": {
+                bgcolor: "rgb(67, 82, 145)",
+              },
             },
           }}
-          icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+          icon={<SpeedDialIcon />}
         >
           {actions.map((action) => (
             <SpeedDialAction

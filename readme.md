@@ -1,7 +1,5 @@
 # TapShare
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 
 TapShare is not just a file-sharing platform; it's your go-to solution for seamless transfers of zip files, code snippets, and text with a simple tap. This README serves as your guide to unlocking the full potential of TapShare.
 
@@ -59,7 +57,11 @@ Note: Uncomment the `baseUrl` in the `config.js` file.
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks goes to these wonderful people [🧑🏻‍💻](https://github.com/maheshbasnet089/tapShare/graphs/contributors)
+
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

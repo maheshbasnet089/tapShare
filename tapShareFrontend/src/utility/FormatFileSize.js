@@ -6,6 +6,5 @@ export function formatFileSize(sizeInBytes) {
         sizeInBytes /= 1024;
         unitIndex++;
     }
-
-    return sizeInBytes.toFixed(2) + ' ' + units[unitIndex];
+    return Number(sizeInBytes).toFixed(2) + ' ' + units[unitIndex];
 }

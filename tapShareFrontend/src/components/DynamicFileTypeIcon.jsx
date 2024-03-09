@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { PiFile } from "react-icons/pi";
 
-const iconMap = {
+export const iconMap = {
   mp3: "PiFileAudio",
   archive: "PiFileArchive",
   code: "PiFileCode",
@@ -15,6 +15,7 @@ const iconMap = {
   webp: "PiFileImage",
   jpg: "PiFileJpg",
   js: "PiFileJs",
+  javascript: "PiFileJs",
   jsx: "PiFileJsx",
   pdf: "PiFilePdf",
   png: "PiFilePng",
@@ -22,7 +23,7 @@ const iconMap = {
   pptx: "PiFilePpt",
   sql: "PiFileSql",
   svg: "PiFileSvg",
-  text: "PiFileText",
+  plain: "PiFileText",
   txt: "PiFileText",
   ts: "PiFileTs",
   tsx: "PiFileTsx",
@@ -39,6 +40,8 @@ const iconMap = {
 const DynamicIcon = ({ name }) => {
   const [IconComponent, setIconComponent] = useState(null);
   const iconName = name.split(".").pop().toLowerCase();
+  const key = name.split(".").length > 1 && iconName.length > 1;
+
   useEffect(() => {
     const importIcon = async () => {
       try {
@@ -55,7 +58,7 @@ const DynamicIcon = ({ name }) => {
     importIcon();
   }, [iconName]);
 
-  return IconComponent ? <IconComponent /> : <PiFile />;
+  return IconComponent ? <IconComponent key={name} className="animate-[scale_300ms]" /> : <PiFile key={key ? iconName : key} className={`${!key ? "hidden": !iconMap[iconName] ? "animate-shake" : "animate-[scale_300ms]"}`} />;
 };
 
 export default DynamicIcon;
