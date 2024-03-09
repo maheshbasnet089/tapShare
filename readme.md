@@ -13,6 +13,7 @@ TapShare is not just a file-sharing platform; it's your go-to solution for seaml
 - PWA app (140 kb) 🧑‍💻
 - Secure and private file transfers 🔐
 - Code/Text sharing 🧑‍💻
+- Send files to multiple emails.
 
 ## What Sets TapShare Apart?
 
@@ -43,7 +44,7 @@ Using TapShare is simple. Follow these steps:
 
 - Establish a secure shell connection (SSH) in real-time between the sender and receiver.
 - Offline support.
-- Send files to multiple emails.
+
 
 ## Support
 
