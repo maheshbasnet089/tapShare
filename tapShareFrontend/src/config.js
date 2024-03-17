@@ -12,3 +12,4 @@ export const frontendUrlDev = import.meta.env.VITE_frontendUrlDev;
 // console.log("frontendUrlProd", frontendUrlProd);
 // console.log("frontendUrlProdCode", frontendUrlProdCode);
 // console.log("frontendUrlDev", frontendUrlDev);
+//test
