@@ -16,7 +16,7 @@ const fileSchema = new Schema(
       type: String,
       required: true,
       index: true,
-    },    
+    },
     path: {
       type: String,
       required: true,
@@ -30,7 +30,7 @@ const fileSchema = new Schema(
     timestamps: true,
   }
 );
-fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 24 * 60 * 60 });
+fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 15 * 24 * 60 * 60 });
 
 const File = mongoose.model("File", fileSchema);
 
