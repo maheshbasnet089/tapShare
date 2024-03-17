@@ -31,8 +31,8 @@ app.get("/whoami", (req, res) => {
 app.get("/:userId", async (req, res) => {
   try {
     const files = await File.find({ userId: req.params.userId });
-
-    if (!files) {
+    // console.log(files.length)
+    if (!files.length) {
       return res.json({
         status: 404,
         message: "No files found or link has been expired ",
