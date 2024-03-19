@@ -117,7 +117,7 @@ exports.sendFiles = async (req, res) => {
         userId: req.body.userId,
         name: files[i].originalname,
         path:
-          BASE_URL +
+          BASE_URL+
           "u/" +
           files[i].path.replace(/\\/g, "/").replace("uploads/", ""), // replace backslash with forward slash
         size: files[i].size,
