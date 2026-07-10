@@ -30,7 +30,6 @@ const fileSchema = new Schema(
     timestamps: true,
   }
 );
-fileSchema.index({ createdAt: 1 }, { expireAfterSeconds: 15 * 24 * 60 * 60 });
 
 const File = mongoose.model("File", fileSchema);
 

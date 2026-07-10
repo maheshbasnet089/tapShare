@@ -27,6 +27,6 @@ const codeSchema = new Schema(
     timestamps: true,
   }
 );
-codeSchema.index({ createdAt: 1 }, { expireAfterSeconds: 15 * 24 * 60 * 60 });
+
 const Code = mongoose.model("Code", codeSchema);
 module.exports = Code;

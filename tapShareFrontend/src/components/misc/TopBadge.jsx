@@ -1,157 +1,120 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import {
-  CircularProgress,
-  FormControl,
-  FormHelperText,
-  MenuItem,
-  TextField,
-} from "@mui/material";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { baseUrl } from "../../config";
 
-const timeOptions = [
-  { value: "day", label: "Days", max: 15 },
-  { value: "hr", label: "Hours", max: 24 },
-  { value: "min", label: "Minutes", max: 60 },
-  { value: "sec", label: "Seconds", max: 60 },
-];
-
 export default function TopBadge() {
   const { id } = useParams();
-  const [selectedIndex, setSelectedIndex] = useState(1);
-  const [value, setValue] = useState(24);
-  const [isChanged, setIsChanged] = useState(false);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
-  useEffect(() => {
-    validateInput();
-  }, [selectedIndex, value]);
+  const isCodeShare = id.startsWith("f");
 
-  useEffect(() => {
-    // get index and value form  local storeage and setit on state
-    const index = Number(localStorage.getItem("exp-index"));
-    const val = localStorage.getItem("exp-value");
-    if (index) setSelectedIndex(index);
-    if (val) setValue(val);
-  }, []);
-
-  const handleMenuItemClick = (idx) => {
-    setSelectedIndex(idx);
-    setIsChanged(true);
-  };
-
-  const handleInputChange = (e) => {
-    const val = Number(e.target.value);
-    if (e.target.value.length > 2) {
-      setErrorMsg("Only 2 digits are allowed");
-    } else {
-      setValue(val);
-      setIsChanged(true);
+  const handleDelete = async () => {
+    if (!confirmDelete) {
+      setConfirmDelete(true);
+      return;
     }
-  };
 
-  const validateInput = () => {
-    const selectedOption = timeOptions[selectedIndex];
-    const max = selectedOption.max;
+    setLoading(true);
+    setErrorMsg("");
 
-    if (value < 1) {
-      setErrorMsg(`Minimum expires ${selectedOption.label} is 1`);
-      setLoading(false);
-    } else if (value > max) {
-      setErrorMsg(`Maximum expires ${selectedOption.label} is ${max}`);
-      setLoading(false);
-    } else {
-      setErrorMsg("");
-
-      if (isChanged) {
-        setLoading(true);
-        const handler = setTimeout(() => {
-          callAPi();
-        }, 550);
-        return () => {
-          clearTimeout(handler);
-        };
-      }
-    }
-  };
-
-  const callAPi = async () => {
-    const response = await axios.get("https://api64.ipify.org?format=json");
-    const ipAddress = response.data.ip;
-    const data = {
-      time: value,
-      type: timeOptions[selectedIndex].value,
-      ip: ipAddress,
-    };
-    const userId = localStorage.getItem("userId");
     try {
-      const res = await axios.post(
-        `${baseUrl}api/v1/update-expires-time/${userId}`,
-        data
-      );
-      console.log(res, data);
+      let ipAddress = null;
+      try {
+        const response = await axios.get("https://api64.ipify.org?format=json");
+        ipAddress = response.data.ip;
+      } catch {
+        // IP lookup can fail; deletion still works with clientUserId.
+      }
+
+      const clientUserId = localStorage.getItem("userId");
+      const payload = { ipAddress, clientUserId };
+      const endpoint = isCodeShare
+        ? `${baseUrl}api/v1/code/share/${id}/delete`
+        : `${baseUrl}api/v1/share/${id}/delete`;
+
+      const res = await axios.post(endpoint, payload);
+
+      if (res.data.status === 200) {
+        navigate("/");
+      } else {
+        setErrorMsg(res.data.message || "Failed to delete share");
+      }
     } catch (error) {
-      setErrorMsg(error?.response?.data?.message);
+      if (!error.response) {
+        setErrorMsg(
+          "Cannot reach server. For local dev, set VITE_BASE_URL=http://localhost:1337/ in tapShareFrontend/.env and restart the frontend."
+        );
+      } else if (error.response.status === 404) {
+        setErrorMsg(
+          error.response.data?.message ||
+            "Delete API not found. Deploy the latest backend or use your local backend URL."
+        );
+      } else {
+        setErrorMsg(
+          error.response.data?.message ||
+            `Failed to delete share (${error.response.status})`
+        );
+      }
     } finally {
       setLoading(false);
+      setConfirmDelete(false);
     }
-
-    localStorage.setItem("exp-type", data.type);
-    localStorage.setItem("exp-index", selectedIndex);
-    localStorage.setItem("exp-value", data.time);
   };
 
   return (
-    <div className="flex justify-between bg-gray-50 py-4 rounded-md px-3 border-l-green-500 border-l-8">
-      <div className="flex gap-4 items-start">
-        <b className="select-none pt-1">Expires After:</b>
-        <FormControl variant="standard">
-          <div className="flex gap-4 items-center ">
-            <TextField
-              sx={{ minWidth: "20px", width: "40px", textAlign: "center" }}
-              variant="standard"
-              value={value}
-              type="number"
-              name="expires"
-              inputMode="numeric"
-              onChange={handleInputChange}
-              error={!!errorMsg}
-              className={`${errorMsg && "animate-shake"}`}
-            />
+    <div className="flex flex-col bg-gray-50 py-4 rounded-md px-3 border-l-green-500 border-l-8 gap-2">
+      <div className="flex justify-between items-center flex-wrap gap-3">
+        <div className="flex gap-4 items-center">
+          <b className="select-none">Your Share</b>
+          <span className="text-sm text-gray-500 select-none">
+            Files stay until you delete them
+          </span>
+        </div>
 
-            <TextField
-              id="standard-select-currency"
-              select
-              defaultValue={localStorage.getItem("exp-type") || "hr"}
-              variant="standard"
-            >
-              {timeOptions.map((option, idx) => (
-                <MenuItem
-                  key={option.value}
-                  selected={idx === selectedIndex}
-                  onClick={() => handleMenuItemClick(idx)}
-                  value={option.value}
-                >
-                  {option.label}
-                </MenuItem>
-              ))}
-            </TextField>
-            {loading && <CircularProgress size={20} />}
+        <div className="flex items-center gap-4">
+          <div className="flex">
+            <b className="font-semibold select-none">Code</b>
+            {" : "}
+            <h2 className="text-blue-500 font-medium select-text">{id}</h2>
           </div>
-          {errorMsg && (
-            <FormHelperText id="my-helper-text" error={!!errorMsg}>
-              {errorMsg}
-            </FormHelperText>
+
+          <button
+            type="button"
+            onClick={handleDelete}
+            disabled={loading}
+            className={`px-3 py-1 rounded-md text-sm font-medium text-white transition-colors ${
+              confirmDelete
+                ? "bg-red-600 hover:bg-red-700"
+                : "bg-red-500 hover:bg-red-600"
+            } disabled:opacity-50`}
+          >
+            {loading ? (
+              <CircularProgress size={16} color="inherit" />
+            ) : confirmDelete ? (
+              "Confirm Delete?"
+            ) : (
+              "Delete Share"
+            )}
+          </button>
+
+          {confirmDelete && !loading && (
+            <button
+              type="button"
+              onClick={() => setConfirmDelete(false)}
+              className="text-sm text-gray-500 hover:text-gray-700"
+            >
+              Cancel
+            </button>
           )}
-        </FormControl>
+        </div>
       </div>
 
-      <div className="flex">
-        <b className="font-semibold select-none">Code</b> {" : "}{" "}
-        <h2 className="text-blue-500 font-medium select-text">{id}</h2>
-      </div>
+      {errorMsg && <p className="text-red-500 text-sm">{errorMsg}</p>}
     </div>
   );
 }
