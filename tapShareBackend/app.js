@@ -18,7 +18,7 @@ const corsOptions = {
   ],
   // origin: "http://127.0.0.1:5173",
   // credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
+  optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
@@ -35,7 +35,7 @@ app.get("/:userId", async (req, res) => {
     if (!files.length) {
       return res.json({
         status: 404,
-        message: "No files found or link has been expired ",
+        message: "No files found",
       });
     }
 
@@ -54,12 +54,22 @@ app.get("/:userId", async (req, res) => {
 
 app.get("/u/:fileName", (req, res) => {
   try {
-    const filePath = path.join(__dirname, "uploads", req.params.fileName);
+    const fileName = path.basename(req.params.fileName);
+    const filePath = path.join(__dirname, "uploads", fileName);
+    const resolvedPath = path.resolve(filePath);
+    const uploadsDir = path.resolve(__dirname, "uploads");
 
-    const fileExists = fs.existsSync(filePath);
+    if (!resolvedPath.startsWith(uploadsDir)) {
+      return res.status(400).render("linkExpire", {
+        message: "Invalid file path",
+        status: 400,
+      });
+    }
+
+    const fileExists = fs.existsSync(resolvedPath);
 
     if (fileExists) {
-      res.download(filePath, req.params.fileName, (err) => {
+      res.download(resolvedPath, fileName, (err) => {
         if (err) {
           console.log("Error downloading file:", err);
         } else {
@@ -69,7 +79,7 @@ app.get("/u/:fileName", (req, res) => {
     } else {
       res
         .status(404)
-        .render("linkExpire", { message: "Opps!, Link Expired", status: 404 });
+        .render("linkExpire", { message: "File not found", status: 404 });
     }
   } catch (error) {
     res.status(500).render("linkExpire", {

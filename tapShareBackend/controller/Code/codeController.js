@@ -1,17 +1,4 @@
 const Code = require("../../model/textModel");
-const schedule = require("node-schedule");
-const scheduleDeletion = (codeId) => {
-  const deletionJob = schedule.scheduleJob(
-    new Date(Date.now() + 24 * 60 * 60 * 1000),
-    async () => {
-      try {
-        const code = await Code.findByIdAndDelete(codeId);
-      } catch (error) {
-        console.log("Error deleting code:", error);
-      }
-    }
-  );
-};
 exports.createCode = async (req, res) => {
   try {
     const { text, userId, title } = req.body;
@@ -41,7 +28,6 @@ exports.createCode = async (req, res) => {
       ipAddress: req.body.ipAddress,
     });
     if (code) {
-      // scheduleDeletion(code._id);
       res.status(201).json({
         status: 200,
         message: "Code created successfully",
@@ -134,7 +120,49 @@ exports.createCodeWithVSCode = async (req, res) => {
       status: 500,
       message: "Something went wrong",
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({
+      status: 500,
+      message: error.message,
+    });
+  }
+};
+
+const canDeleteShare = (shareUserId, storedIp, { ipAddress, clientUserId }) => {
+  if (ipAddress && storedIp === ipAddress) return true;
+  if (!clientUserId) return false;
+  return shareUserId === clientUserId || shareUserId === `f${clientUserId}`;
+};
+
+exports.deleteCodeShare = async (req, res) => {
+  const userId = req.params.userId;
+  const { ipAddress, clientUserId } = req.body;
+
+  if (!ipAddress && !clientUserId) {
+    return res.status(400).json({
+      message: "ipAddress or clientUserId is required",
+      status: 400,
+    });
+  }
+
+  try {
+    const codes = await Code.find({ userId });
+    if (!codes.length) {
+      return res.status(404).json({ message: "No code found", status: 404 });
+    }
+
+    if (!canDeleteShare(userId, codes[0].ipAddress, { ipAddress, clientUserId })) {
+      return res.status(403).json({
+        message: "Not authorized to delete this share",
+        status: 403,
+      });
+    }
+
+    await Code.deleteMany({ userId });
+    return res.json({ message: "Code share deleted successfully", status: 200 });
+  } catch (error) {
+    return res.status(500).json({ message: error.message, status: 500 });
+  }
 };
 
 exports.getCodeWithVSCode = async (req, res) => {

@@ -34,6 +34,7 @@ export default function AddCode() {
         navigate("/" + response.data.code.userId);
       }
     } catch (e) {
+      console.error("Failed to share code:", e);
     } finally {
       setLoading(false);
     }

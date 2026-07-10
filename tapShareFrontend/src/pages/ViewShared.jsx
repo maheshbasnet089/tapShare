@@ -7,11 +7,18 @@ import FetchingScreen from "../components/animated/FetchingScreen";
 import NotFoundScreen from "../components/misc/NotFoundScreen";
 import { baseUrl } from "../config";
 
+const isOwner = (shareId) => {
+  const storedUserId = localStorage.getItem("userId");
+  if (!storedUserId) return false;
+  return shareId === storedUserId || shareId === `f${storedUserId}`;
+};
+
 export default function SeeShared() {
   const [files, setFiles] = useState([]);
   const [isFileAvailable, setIsFileAvailable] = useState(true);
   const [isFetching, setIsFetching] = useState(true);
   const { id } = useParams();
+
   const fetchCode = async () => {
     try {
       const { data } = await axios.get(`${baseUrl}api/v1/code/${id}`);
@@ -27,11 +34,13 @@ export default function SeeShared() {
         setIsFileAvailable(false);
       }
     } catch (e) {
+      setIsFileAvailable(false);
     } finally {
       setIsFetching(false);
     }
   };
-  const fetchFiles = async function fetchFiles() {
+
+  const fetchFiles = async () => {
     try {
       const { data } = await axios.get(`${baseUrl}${id}`);
       const { status, files } = data;
@@ -46,17 +55,24 @@ export default function SeeShared() {
         setIsFileAvailable(false);
       }
     } catch (e) {
+      setIsFileAvailable(false);
     } finally {
       setIsFetching(false);
     }
   };
+
   useEffect(() => {
+    setIsFetching(true);
+    setFiles([]);
+    setIsFileAvailable(true);
+
     if (id.startsWith("f")) {
       fetchCode();
     } else {
       fetchFiles();
     }
-  }, []);
+  }, [id]);
+
   return (
     <>
       {isFetching ? (
@@ -64,33 +80,22 @@ export default function SeeShared() {
       ) : !isFileAvailable ? (
         <NotFoundScreen />
       ) : files.length === 0 ? (
-        <FetchingScreen />
+        <NotFoundScreen />
       ) : (
-        <>
-          <div className="flex justify-center min-h-[100dvh] items-center overflow-y-scroll overflow-x-hidden py-12">
-            <div className="w-full max-w-[1000px] px-2 sm:px-8 md:px-12 lg:px-20">
-              <div className="flex justify-center py-2">
-                <h1 className="text-lg sm:text-xl md:text-2xl text-gray-100 ">
-                  Keep tapping!!! 👏
-                </h1>
-              </div>
-              {files && (
-                <>
-                  {localStorage
-                    .getItem("userId")
-                    ?.endsWith(String(id).slice(-1)) && (
-                    <PersonalFiles files={files} />
-                  )}
-                  {!localStorage
-                    .getItem("userId")
-                    ?.endsWith(String(id).slice(-1)) && (
-                    <OthersFiles files={files} />
-                  )}
-                </>
-              )}
+        <div className="flex justify-center min-h-[100dvh] items-center overflow-y-scroll overflow-x-hidden py-12">
+          <div className="w-full max-w-[1000px] px-2 sm:px-8 md:px-12 lg:px-20">
+            <div className="flex justify-center py-2">
+              <h1 className="text-lg sm:text-xl md:text-2xl text-gray-100 ">
+                Keep tapping!!! 👏
+              </h1>
             </div>
+            {isOwner(id) ? (
+              <PersonalFiles files={files} />
+            ) : (
+              <OthersFiles files={files} />
+            )}
           </div>
-        </>
+        </div>
       )}
     </>
   );

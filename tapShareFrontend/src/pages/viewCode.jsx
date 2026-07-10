@@ -23,6 +23,8 @@ const ViewCode = () => {
         setText(text);
       }
     } catch (e) {
+      setTitle("");
+      setText("");
     } finally {
       setIsFetching(false);
     }

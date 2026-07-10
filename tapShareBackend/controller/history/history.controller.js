@@ -42,7 +42,7 @@ exports.getCodeDetails = async (req, res) => {
 exports.getFileDetails = async (req, res) => {
   const id = req.params.id;
   try {
-    const file = awaitFileModal.findById(id);
+    const file = await FileModal.findById(id);
     if (!file)
       return res.status(200).json({ message: "No file found", status: 200 });
     return res.status(200).json({ file, status: 200 });

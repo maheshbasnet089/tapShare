@@ -30,13 +30,13 @@ export default function SearchCode() {
     }
   }, [isSearchOpen]);
   useEffect(() => {
-    if (alreadyTry) {
-      if (search.length <= 3) {
-        setShakeInput(true);
-      }
+    if (alreadyTry && search.length <= 3) {
+      setShakeInput(true);
+      const timer = setTimeout(() => setShakeInput(false), 500);
+      return () => clearTimeout(timer);
     }
     setShakeInput(false);
-  }, [search]);
+  }, [search, alreadyTry]);
   return (
     <div className="relative">
       <div className="flex justify-center items-center">
