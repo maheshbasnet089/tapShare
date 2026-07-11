@@ -6,6 +6,7 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const File = require("./model/fileModel");
+const JSZip = require("jszip");
 
 app.set("view engine", "ejs");
 //test
@@ -52,8 +53,25 @@ app.get("/:userId", async (req, res) => {
   }
 });
 
-app.get("/u/:fileName", (req, res) => {
+app.get("/u/:fileName", async(req, res) => {
   try {
+     const fileUrls = req.query;
+    if (Object.entries(fileUrls).length > 0) {
+      const zip = new JSZip();
+      Object.entries(fileUrls).forEach((filePath) => {
+        const filesDirectory = path.join(__dirname, "uploads", filePath[1]);
+        const fileName = path.basename(filesDirectory);
+        const fileData = fs.readFileSync(filesDirectory); // Read file content
+        zip.file(fileName, fileData); // Add file to ZIP
+      });
+      res.setHeader("Content-Type", "application/zip");
+      res.setHeader("Content-Disposition", "attachment; filename=files.zip");
+      const zipContent = await zip.generateAsync({ type: "nodebuffer" });
+      const outputFileName = path.join(__dirname, "uploads", "files.zip");
+      fs.writeFileSync(outputFileName, zipContent); // Save the ZIP file
+      return res.send(zipContent);
+    }
+
     const filePath = path.join(__dirname, "uploads", req.params.fileName);
 
     const fileExists = fs.existsSync(filePath);
