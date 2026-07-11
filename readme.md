@@ -7,13 +7,14 @@ TapShare is not just a file-sharing platform; it's your go-to solution for seaml
 
 - **Blazing Fast Speed** ⚡
 - Transfer files of various sizes and types, including zip files 🗂️
-- No need for a Gmail account or registration ❌
+- There is no need for a Gmail account or registration. ❌
 - Send files to an email or phone number
 - Simple and easy-to-use interface
 - PWA app (140 kb) 🧑‍💻
 - Secure and private file transfers 🔐
 - Code/Text sharing 🧑‍💻
-- Send files to multiple emails.
+- Send files to multiple emails
+- Send a QR code containing your text or code.
 
 ## What Sets TapShare Apart?
 
@@ -21,7 +22,7 @@ TapShare is not just a file-sharing platform; it's your go-to solution for seaml
 
 **No Login or Authentication Required** 🔑: Unlike other platforms, TapShare removes the need for users to authenticate or log in, saving valuable time and enhancing productivity.
 
-**Email and Phone Integration** 📧📱: TapShare takes file sharing to the next level by providing integration not only with email but also with phones. In addition to sending files directly to someone's email, TapShare enables users to send files directly to a recipient's phone number.
+**Email and Phone Integration** 📧📱: TapShare takes file sharing to the next level by providing integration with email and phones. In addition to sending files directly to someone's email, TapShare enables users to send files directly to a recipient's phone number.
 
 **Open Source** 🌐: A distinguishing feature of TapShare is its commitment to open-source principles. TapShare is an open-source project, meaning its source code is freely available for anyone to access, modify, and distribute. This openness fosters collaboration and allows developers to contribute to the platform's improvement.
 
@@ -30,14 +31,14 @@ TapShare is not just a file-sharing platform; it's your go-to solution for seaml
 Using TapShare is simple. Follow these steps:
 
 - Go to the [TapShare website](https://tapshare.xyz).
-- Tap on the middle icon button to upload the files you want to transfer.
+- Tap the middle icon button to upload the files you want to transfer.
 - Choose whether you want to send the files to an email or phone number.
 - Enter the recipient’s email address or phone number.
 - Click on the “Send” button to initiate the file transfer.
 - The recipient will receive a notification with a link to download the files.
-- To generate a link for your shared file, click on the “Generate Link” button.
+- To generate a link for your shared file, click the “Generate Link” button.
 - Share the code with others so they can access your file.
-- To share text or code, click on the “Share Text” button and enter the title and text/code you want to share.
+- To share text or code, click the “Share Text” button and enter the title and text/code you want to share.
 - Share the generated code with others to share your text.
 
 ## Upcoming Features
@@ -102,10 +103,9 @@ Thanks goes to these wonderful people [🧑🏻‍💻](https://github.com/mahes
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 
-## Final
+## Conclusion
 
-TapShare is not just a file transfer tool; it's your hassle-free solution for sharing files and code. Try TapShare today and experience a new level of simplicity and security. Say goodbye to cumbersome file-sharing methods and hello to TapShare.
+TapShare is not just a file transfer tool; it's your hassle-free solution for sharing files,text and code. Try TapShare today and experience a new level of simplicity and security. Say goodbye to cumbersome file-sharing methods and hello to TapShare.
 ## Connect with Us
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/tapshare089/) [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/tapshare089)
-
