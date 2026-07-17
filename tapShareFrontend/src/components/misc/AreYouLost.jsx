@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdOutlineArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-
+//function 404
 const AreYouLost = () => {
   const navigate = useNavigate();
   return (
