@@ -10,7 +10,7 @@ var userJobs = {};
 
 const scheduleDeletion = (userId) => {
   userJobs[userId] = schedule.scheduleJob(
-    new Date(Date.now() + 24 * 60 * 60 * 1000),
+    new Date(Date.now() + expiresIn),
     // new Date(Date.now() + 60 * 1000),
     async () => {
       console.log("schedule called");
@@ -47,49 +47,131 @@ const timeOptions = [
   { value: "hr", label: "Hours", max: 24, in: 60 * 60 * 1000 },
   { value: "min", label: "Minutes", max: 60, in: 60 * 1000 },
   { value: "sec", label: "Seconds", max: 60, in: 1000 },
+
+  // NEW
+  { value: "never", label: "Unlimited" },
 ];
+
+
 const validateInput = (type, time) => {
-  const selectedOption = timeOptions.find((option) => option.value === type);
-  const max = selectedOption.max;
-  console.log(selectedOption);
+  if (type === "never") {
+    return {
+      success: true,
+      msg: null,
+    };
+  }
+
+  const selectedOption = timeOptions.find(
+    (option) => option.value === type
+  );
+
+  if (!selectedOption) {
+    return {
+      success: false,
+      msg: "Invalid expiration type",
+    };
+  }
+
   if (time < 1) {
     return {
       success: false,
       msg: `Minimum expires ${selectedOption.label} is 1`,
     };
-  } else if (time > max) {
+  }
+
+  if (time > selectedOption.max) {
     return {
       success: false,
-      msg: `Maximum expires ${selectedOption.label} is ${max}`,
+      msg: `Maximum expires ${selectedOption.label} is ${selectedOption.max}`,
     };
-  } else {
-    return { success: true, msg: time * selectedOption.in };
   }
+
+  return {
+    success: true,
+    msg: time * selectedOption.in,
+  };
 };
+
 exports.rescheduleDeletion = async (req, res) => {
   const id = req.params.id;
   const { type, time } = req.body;
-  console.log(req.body);
-  if (!type)
-    return res.status(400).json({ message: "type is required", status: 400 });
 
-  if (!time)
-    return res.status(400).json({ message: "time is required", status: 400 });
-
-  const isInputValid = validateInput(type, time);
-  if (!isInputValid.success)
-    return res.status(400).json({ message: isInputValid.msg, status: 400 });
-
-  const newDate = isInputValid.msg + Date.now();
-  if (userJobs[id]) {
-    const resudule = userJobs[id]?.reschedule(new Date(newDate));
-    res.send({ resudule, newDate });
-  } else {
-    res.json({
-      message: "there aren't any schedule to change",
-      status: 404,
+  if (!type) {
+    return res.status(400).json({
+      status: 400,
+      message: "type is required",
     });
   }
+
+  // ==========================
+  // Unlimited
+  // ==========================
+  if (type === "never") {
+    if (userJobs[id]) {
+      userJobs[id].cancel();
+      delete userJobs[id];
+    }
+
+    return res.json({
+      status: 200,
+      message: "Expiration removed successfully",
+    });
+  }
+
+  if (!time) {
+    return res.status(400).json({
+      status: 400,
+      message: "time is required",
+    });
+  }
+
+  const isInputValid = validateInput(type, time);
+
+  if (!isInputValid.success) {
+    return res.status(400).json({
+      status: 400,
+      message: isInputValid.msg,
+    });
+  }
+
+  const newDate = new Date(Date.now() + isInputValid.msg);
+
+  if (userJobs[id]) {
+    userJobs[id].reschedule(newDate);
+  } else {
+    userJobs[id] = schedule.scheduleJob(newDate, async () => {
+      try {
+        const files = await File.find({ userId: id });
+
+        if (files.length) {
+          files.forEach((f) => {
+            const filePath = path.join(
+              "uploads",
+              f.path.replace(BASE_URL + "u/", "")
+            );
+
+            fs.unlink(filePath, (err) => {
+              if (err) {
+                console.log(err);
+              }
+            });
+          });
+
+          await File.deleteMany({ userId: id });
+        }
+
+        delete userJobs[id];
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  }
+
+  return res.json({
+    status: 200,
+    message: "Expiration updated successfully",
+    expiresAt: newDate,
+  });
 };
 exports.sendFiles = async (req, res) => {
   const files = req.files;
