@@ -11,6 +11,38 @@ export default function ShareSingleLinkContainer({ files }) {
   const setFiles = useStore((state) => state.setFiles);
 
   const [isQRshown, setShowQR] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const allFileDownloadHandler = async () => {
+    try {
+      setIsLoading(true);
+      let urlForAllFiles = `${import.meta.env.VITE_BASE_URL}u/multiple?`;
+
+      files.forEach((url, index) => {
+        console.log(url);
+        const splitedUrl = url.path.split("/");
+        const fileName = splitedUrl[splitedUrl.length - 1];
+        urlForAllFiles += `file${index}=${fileName}&`;
+      });
+      const response = await fetch(urlForAllFiles);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "files.zip";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      window.URL.revokeObjectURL(url);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       <div className="bg-gray-50 rounded-md mt-10 py-8">
@@ -44,6 +76,13 @@ export default function ShareSingleLinkContainer({ files }) {
               }}
             >
               Share Another
+            </button>
+            <button
+              disabled={isLoading}
+              onClick={allFileDownloadHandler}
+              className="text-blue-500 border-2 border-blue-500 hover:bg-blue-500 hover:text-gray-50 transition-all ease duration-100 w-[161px] active:bg-blue-400 py-2 rounded-md"
+            >
+              {isLoading ? "processing..." : "Download All"}
             </button>
             <button
               className="flex items-center gap-1 justify-center text-gray-100 bg-blue-500 w-[161px] hover:bg-blue-600 hover:text-gray-50 transition-all ease duration-100 active:bg-blue-400 py-2 rounded-md"
